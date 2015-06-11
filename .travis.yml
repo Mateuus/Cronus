@@ -1,0 +1,21 @@
+language: c
+compiler:
+  - clang
+  - gcc
+  
+before_script:
+  - uname -a
+
+script:
+  - chmod 777 configure
+  - chmod 777 sysinfogen.sh
+  - ./configure
+  - make clean
+  - make sql
+  
+notifications:
+  email: false
+  
+branches:
+  only:
+    - master
