@@ -6378,9 +6378,12 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 
 	switch (type) {
 	case SC_STUN:
-		sc_def = st->vit*100;
+		/*sc_def = st->vit*100;
 		sc_def2 = st->luk*10 + SCDEF_LVL_DIFF(bl, src, 99, 10);
-		tick_def2 = st->luk*10;
+		tick_def2 = st->luk*10;*/
+		sc_def = st->mdef*100;
+        sc_def2 = st->luk*10 + SCDEF_LVL_DIFF(bl, src, 99, 10);
+        tick_def = st->luk*400;
 		break;
 	case SC_POISON:
 	case SC_DPOISON:
@@ -6447,7 +6450,7 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 	case SC_FREEZE:
 		sc_def = st->mdef*100;
 		sc_def2 = st->luk*10 + SCDEF_LVL_DIFF(bl, src, 99, 10);
-		tick_def2 = status_get_luk(src) * -10; //Caster can increase final duration with luk
+		tick_def2 = status_get_luk(src) * 25; //Caster can increase final duration with luk
 		break;
 	case SC_CURSE:
 		// Special property: immunity when luk is zero
