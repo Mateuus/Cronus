@@ -1,0 +1,175 @@
+prontera,163,187,1	script	Quests LambeRO	106,{
+	mes "Olá "+strcharinfo(0)+"!";
+	mes "Deseja ir para algum dos lugares abaixo?";
+	next;
+	switch(select("Sala de Quest")){
+		case 1:
+			mes "Até mais!";
+			close2;
+			warp "guild_vs2",50,52;
+			end;
+	}
+}
+
+//=============================================
+//== Cronus Tools :: Gerador de Quest's =======
+//== Versão: ==================================
+//== 1.0
+//== Autor: ===================================
+//== RoM
+//=============================================
+guild_vs2,49,50,0	script	Quests Rops	121,{
+	mes "[Quests Rops]";
+	mes "Olá "+strcharinfo(0)+"!";
+	mes "Eu tenho alguns itens interessantes aqui, deseja dar uma olhada?";
+	next;
+	if( select("Claro!:Talvez mais tarde...") == 2 )
+	{
+		mes "[Quests Rops]";
+		mes "Tudo bem, estarei aqui se você mudar de idéia.";
+		close;
+	}
+	mes "[Quests Rops]";
+	mes "Bem, estes são os itens que eu tenho...";
+	mes "Sobre qual deles vai querer saber mais?";
+	next;
+	switch(select("Chapéu de Poring Saltitante:Chapéu de Ovelha:Chapéu de Nove Caudas:Chapéu da Flor do Luar:Nenhum"))
+	{
+	case 1:
+		mes "[Chapéu de Poring Saltitante]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5335);
+		mes " ";
+		mes "Requerimento:";
+		mes "250x "+getitemname(949);
+		mes "2x "+getitemname(2254);
+		mes "120x "+getitemname(7063);
+		mes "1000000 Zenys";
+		next;
+		mes "[Quests Rops]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests Rops]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(949) >= 250 && countitem(2254) >= 2 && countitem(7063) >= 120 && Zeny >= 1000000)
+		{
+			delitem 949,250;
+			delitem 2254,2;
+			delitem 7063,120;
+			set Zeny,Zeny-1000000;
+			getitem 5335,1;
+			mes "[Quests Rops]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 2:
+		mes "[Chapéu de Ovelha]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5133);
+		mes " ";
+		mes "Requerimento:";
+		mes "100x "+getitemname(7106);
+		mes "175x "+getitemname(7107);
+		mes "1x "+getitemname(2220);
+		mes "1000000 Zenys";
+		next;
+		mes "[Quests Rops]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests Rops]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(7106) >= 100 && countitem(7107) >= 175 && countitem(2220) >= 1 && Zeny >= 1000000)
+		{
+			delitem 7106,100;
+			delitem 7107,175;
+			delitem 2220,1;
+			set Zeny,Zeny-1000000;
+			getitem 5133,1;
+			mes "[Quests Rops]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 3:
+		mes "[Chapéu de Nove Caudas]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5252);
+		mes " ";
+		mes "Requerimento:";
+		mes "200x "+getitemname(1022);
+		mes "150x "+getitemname(526);
+		mes "1x "+getitemname(4159);
+		mes "5000000 Zenys";
+		next;
+		mes "[Quests Rops]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests Rops]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(1022) >= 200 && countitem(526) >= 150 && countitem(4159) >= 1 && Zeny >= 5000000)
+		{
+			delitem 1022,200;
+			delitem 526,150;
+			delitem 4159,1;
+			set Zeny,Zeny-5000000;
+			getitem 5252,1;
+			mes "[Quests Rops]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 4:
+		mes "[Chapéu da Flor do Luar]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5214);
+		mes " ";
+		mes "Requerimento:";
+		mes "200x "+getitemname(7063);
+		mes "280x "+getitemname(728);
+		mes "1x "+getitemname(1648);
+		mes "2000000 Zenys";
+		next;
+		mes "[Quests Rops]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests Rops]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(7063) >= 200 && countitem(728) >= 280 && countitem(1648) >= 1 && Zeny >= 2000000)
+		{
+			delitem 7063,200;
+			delitem 728,280;
+			delitem 1648,1;
+			set Zeny,Zeny-2000000;
+			getitem 5214,1;
+			mes "[Quests Rops]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 5:
+		mes "[Quests Rops]";
+		mes "Tudo bem, estarei aqui se você mudar de idéia.";
+		close;
+	}
+	mes "[Quests Rops]";
+	mes "Me desculpe, mas você não tem todos os itens necessários para esta quest.";
+	mes "Volte quando você tiver todos os itens!";
+	close;
+}
