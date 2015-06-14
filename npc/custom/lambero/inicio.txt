@@ -1,0 +1,26 @@
+-	script	Welcome	-1,{
+
+OnPCLoginEvent:
+//set @item, ;           // -- Item 1
+//set @quant, 1;         // -- Quanntidade 1
+set @item2, 607;         // -- Ygg'sdrasil
+set @quant2, 30;         // -- Quanntidade 2
+set @item3, 12210;       // -- Goma de Mascar
+set @quant3, 1;          // -- Quanntidade 3
+
+
+
+
+if(#welcome == 1)end; //-- para setar apenas cada char novo use welcome$
+
+mes "[^FF8000Seja Bem Vindo ao LambeRO '-'^000000]";
+mes "Olá ^0000CD"+strcharinfo(0)+"^000000!";
+mes "Seja bem-vindo ao nosso servidor,^FF8000 divirta-se^000000";
+next;
+mes "Aqui estão alguns itens, para começar sua jornada...";
+//getitem @item,@quant;
+getitem @item2,@quant2;
+getitem @item3,@quant3;
+set #welcome,1; //-- para setar apenas cada char novo use welcome$
+close;
+}
