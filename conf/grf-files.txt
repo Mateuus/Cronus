@@ -11,10 +11,10 @@
 // Adicionar quantos for necessário.                      -
 //---------------------------------------------------------
 //grf: C:\Program Files\Gravity\RO\rdata.grf
-//grf: C:\Program Files\Gravity\RO\data.grf
+grf: D:\Level Up\Ragnarok\data.grf
 
 //---------------------------------------------------------
 // Diretório da Data
 // Use a pasta base, não o data\ path.
 //---------------------------------------------------------
-//data_dir: C:\Program Files\Gravity\RO\
+data_dir: D:\Ragnarok Desenvolvimento\Cronus Emulator\
