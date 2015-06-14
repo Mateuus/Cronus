@@ -778,7 +778,8 @@ void initChangeTables(void) {
 	status->IconChangeTable[SC_ATTHASTE_POTION3] = SI_ATTHASTE_POTION3;
 	status->IconChangeTable[SC_ATTHASTE_INFINITY] = SI_ATTHASTE_INFINITY;
 	status->IconChangeTable[SC_MOVHASTE_HORSE] = SI_MOVHASTE_HORSE;
-	status->IconChangeTable[SC_MOVHASTE_INFINITY] = SI_MOVHASTE_INFINITY;
+	//status->IconChangeTable[SC_MOVHASTE_INFINITY] = SI_MOVHASTE_INFINITY;
+	status-> IconChangeTable [SC_MOVHASTE_INFINITY] = SI_MOVHASTE_POTION;
 	status->IconChangeTable[SC_CHASEWALK2] = SI_INCSTR;
 	status->IconChangeTable[SC_MIRACLE] = SI_SOULLINK;
 	status->IconChangeTable[SC_CLAIRVOYANCE] = SI_CLAIRVOYANCE;
@@ -6378,9 +6379,6 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 
 	switch (type) {
 	case SC_STUN:
-		/*sc_def = st->vit*100;
-		sc_def2 = st->luk*10 + SCDEF_LVL_DIFF(bl, src, 99, 10);
-		tick_def2 = st->luk*10;*/
 		sc_def = st->mdef*100;
         sc_def2 = st->luk*10 + SCDEF_LVL_DIFF(bl, src, 99, 10);
         tick_def = st->luk*400;
@@ -6448,9 +6446,13 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 		tick_def = 0; //No duration reduction
 		break;
 	case SC_FREEZE:
-		sc_def = st->mdef*100;
+		/*sc_def = st->mdef*100;
 		sc_def2 = st->luk*10 + SCDEF_LVL_DIFF(bl, src, 99, 10);
-		tick_def2 = status_get_luk(src) * 25; //Caster can increase final duration with luk
+		tick_def2 = status_get_luk(src) * 25; //Caster can increase final duration with luk*/
+		sc_def = st->mdef*100;
+        sc_def2 = st->luk*10 + SCDEF_LVL_DIFF(bl, src, 99, 10);
+        tick_def = st->luk*400;
+		tick_def2 = st->luk*400;
 		break;
 	case SC_CURSE:
 		// Special property: immunity when luk is zero

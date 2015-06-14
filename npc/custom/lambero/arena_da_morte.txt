@@ -1,0 +1,344 @@
+===== eAthena Script =========================================
+								
+	        ___       ___       ___       ___		
+	       __     __            __		
+	       __   ___         __		
+	     -__ __ __ __		
+	     ;;-,-         		
+	                           		
+	       __     __     __     __		
+								
+		eATHENA SCRIPTS			
+===== Por ==================================================
+= Wukong - v1.0
+= Khan   - v3.0
+= NightmareA - v4.0
+= NightmareA - v5.0
+===== Versão Atual =========================================
+= 5.0
+===== Changelog ============================================
+= 1.0	- Script Inicializado	[Wukong]
+= 1.1 - Corrigido pequenos BUGs [Golen Maker]
+= 1.1	- Adicionado a opção de escolha do bloqueio de algums
+	  items ao entrar no PvP e na GvG	[Wukong]
+= 2.0 - Corrigido pequenos bugs [Wukong]
+= 3.0 - Optimização do NPC [Khan]
+= 3.0a- Corrigido comandos ( show mes ) [Khan]
+= 4.0 - Adicionado Arenas Sem Ygg [NightmareA]
+= 4.1 - Optimizado Warps de Saida ( adicionado nas arenas sem ygg ) [NightmareA]
+= 4.2 - Adicionado Arenas [NightmareA]
+= 4.3 - Adicionado sistema de saida por timer [NightmareA]
+= 4.4 - Adicionado Contagem de Ranking por arena e total [NightmareA]
+= 5.0 - Fix Bugs [NightmareA]
+===== Compatível Com =======================================
+= Qualquer eAthena (SVN)
+===== Descrição ============================================
+= Arena da Morte. Com arena de PvPGvG. Ranking InOut-Game
+===== Comentários Adicionais ================================
+= wBRO		www.wotanbro.com
+=
+= eAthena Emulator	www.eathena.ws
+=============================================================
+
+===== Arena da Morte ========================================
+prontera,161,185,5	script	Arena da Morte	801,{
+
+===== Nome do npc. ==========================================
+set @nome$,[ ^FF0000 Arena da Morte ^000000 ];
+
+===== Arena PvP =============================================
+set $pvp$[0],guild_vs3;Arena 1
+set $pvpy$[0],guild_vs4;Arena Sem ygg
+===== Arena GvG =============================================
+set $gvg$[0],guild_vs1; Arena 1
+set $gvgy$[0],guild_vs2;Arena Sem Ygg
+	mes @nome$;
+	mes ^008B8BPvP  Arena PvP 1 ^FFA500+getmapusers($pvp$[$pvp])+^008B8B Players;
+	mes ^008B8BPvP  Arena PvP Sem Ygg ^FFA500+getmapusers($pvpy$[$pvpy])+^008B8B Players;
+	mes ^008B8BGvG  Arena GvG 1 ^FFA500+getmapusers($gvg$[$gvg])+^008B8B Players;
+	mes ^008B8BGvG  Arena GvG Sem Ygg ^FFA500+getmapusers($gvgy$[$gvgy])+^008B8B Players;
+	next;
+	mes @nome$;
+	mes Olá +strcharinfo(0)+.;
+	next;
+	mes @nome$;
+	mes Escolha qual destino deseja ir;
+	next;
+	switch(SELECT(Arenas PvP,Arenas GvG,Sair))
+	{
+	
+	case 1
+		switch(select(- Arena PvP 1 ^0000FF[+getmapusers($pvp$[$pvp])+]^000000,- Arena PvP Sem Ygg ^0000FF[+getmapusers($pvpy$[$pvpy])+]^000000,- Sair))
+		{
+
+		case 1
+			warp $pvp$,0,0;	end;
+
+		case 2
+			warp $pvpy$,0,0;	end;
+	
+		case 3
+			mes @nome$;
+			mes Volte quando precisar dos meus serviços.;
+			close;
+		}
+		close;
+	case 2
+		switch(select(- Arena GvG 1 ^0000FF[+getmapusers($gvg$[$gvg])+]^000000,- Arena GvG Sem Ygg ^0000FF[+getmapusers($gvgy$[$gvgy])+]^000000,- Sair))
+		{
+
+		case 1
+			if(!getcharid(2)) {mes Você precisa estar em uma guild para poder entrar; close;}
+			warp $gvg$,0,0;	end;
+
+
+		case 2
+			if(!getcharid(2)) {mes Você precisa estar em uma guild para poder entrar; close;}
+			warp $gvgy$,0,0;	end;
+	
+		case 3
+			mes @nome$;
+			mes Volte quando precisar dos meus serviços.;
+			close;
+		}
+		close;
+	case 3
+		mes @nome$;
+		mes Volte quando precisar dos meus serviços.;
+		close;
+	}
+	end;
+}
+
+ -- Inicio do Script
+
+-	script	Arena#PCKill	-1,{
+
+OnPCKillEvent
+
+					getmapxy @map$,@x,@y,0;
+			if ( @map$ == $pvp$[$pvp] ) goto PvP;
+			if ( @map$ == $pvp$[$pvpx] ) goto PvP;
+			if ( @map$ == $pvp$[$pvpw] ) goto PvP;
+			if ( @map$ == $pvp$[$pvpy] ) goto PvP2;Sem ygg
+			if ( @map$ == $gvg$[$gvg] ) goto GvG;
+			if ( @map$ == $gvg$[$gvgx] ) goto GvG;
+			if ( @map$ == $gvg$[$gvgw] ) goto GvG;
+			if ( @map$ == $gvg$[$gvgy] ) goto GvG2;Sem ygg
+						end;
+						
+ ======= Arenas PvP =======
+PvP
+		set @CID,getcharid(0);set @name$,;set @points,0;
+					query_sql SELECT `kills` FROM `pvp` WHERE `char_id`=+@CID+,@points;
+					query_sql SELECT `name` FROM `pvp` WHERE `char_id`=+@CID+,@name$;
+			if ( @name$ ==  ) { query_sql INSERT INTO `pvp` (`char_id`,`name`,`kills`) VALUES (+@CID+,'+strcharinfo(0)+',1),@esc$; dispbottom Você Matou seu primeiro jogador; end; }
+					query_sql UPDATE `pvp` SET `kills` = `kills` +1 WHERE `char_id`=+@CID+,@esc$;
+		set @points,@points+1;
+		announce Você matou [ +rid2name(killedrid)+ ] e chegou a +@points+ jogadores mortos.,bc_self,0x90FFFF;
+						end;
+PvP2
+		set @CID,getcharid(0);set @name$,;set @points,0;
+					query_sql SELECT `kills` FROM `pvp2` WHERE `char_id`=+@CID+,@points;
+					query_sql SELECT `kills` FROM `pvp` WHERE `char_id`=+@CID+,@points2;
+					query_sql SELECT `name` FROM `pvp2` WHERE `char_id`=+@CID+,@name$;
+					query_sql SELECT `name` FROM `pvp` WHERE `char_id`=+@CID+,@name2$;
+			if ( @name$ ==  ) {
+			query_sql INSERT INTO `pvp2` (`char_id`,`name`,`kills`) VALUES (+@CID+,'+strcharinfo(0)+',1),@esc$;
+			dispbottom Você marcou seu primeiro ponto;
+			end; 
+			}
+			if ( @name2$ ==  ) {
+			query_sql INSERT INTO `pvp` (`char_id`,`name`,`kills`) VALUES (+@CID+,'+strcharinfo(0)+',1),@esc$;
+			end; 
+			}
+					query_sql UPDATE `pvp2` SET `kills` = `kills` +1 WHERE `char_id`=+@CID+,@esc$;
+					query_sql UPDATE `pvp` SET `kills` = `kills` +1 WHERE `char_id`=+@CID+,@esc$;
+		set @points,@points+1;
+		set @points2,@points2+1;
+		announce Você matou [ +rid2name(killedrid)+ ] e chegou a +@points+ jogadores mortos sem o uso de Ygg.,bc_self,0x90FFFF;
+		dispbottom Chegou a um total de +@points2+ pontos no PvP;
+						end;
+
+ ======= Arenas GvG =======
+GvG
+		set @GID,getcharid(2);set @name$,;set @points,0;
+					query_sql SELECT `kills` FROM `gvg` WHERE `guild_id`=+@GID+,@gpoints;
+					query_sql SELECT `name` FROM `gvg` WHERE `guild_id`=+@GID+,@name$;
+			if ( @name$ ==  ) { query_sql INSERT INTO `gvg` (`guild_id`,`name`,`kills`) VALUES (+@GID+,'+strcharinfo(2)+',1),@esc$; dispbottom Primeiro Frag da Guild; end; }
+					query_sql UPDATE `gvg` SET `kills` = `kills` + 1 WHERE `guild_id`=+@GID+,@esc$;
+		set @gpoints,@gpoints+1;
+		mapannounce	@map$,A Guild [ +@name$+ ] empilhou +@gpoints+ caveiras.,bc_self,0x90FFFF;
+						end;	
+
+GvG2
+		set @GID,getcharid(2);set @name$,;set @points,0;
+					query_sql SELECT `kills` FROM `gvg2` WHERE `guild_id`=+@GID+,@gpoints;
+					query_sql SELECT `name` FROM `gvg2` WHERE `guild_id`=+@GID+,@name$;
+					query_sql SELECT `name` FROM `gvg2` WHERE `guild_id`=+@GID+,@name2$;
+			if ( @name$ ==  ) {
+			query_sql INSERT INTO `gvg2` (`guild_id`,`name`,`kills`) VALUES (+@GID+,'+strcharinfo(2)+',1),@esc$;
+			dispbottom Primeiro Frag da Guild;
+			end;
+			}
+			if ( @name2$ ==  ) {
+			query_sql INSERT INTO `gvg` (`guild_id`,`name`,`kills`) VALUES (+@GID+,'+strcharinfo(2)+',1),@esc$;
+			end;
+			}
+					query_sql UPDATE `gvg2` SET `kills` = `kills` + 1 WHERE `guild_id`=+@GID+,@esc$;
+					query_sql UPDATE `gvg` SET `kills` = `kills` + 1 WHERE `guild_id`=+@GID+,@esc$;
+		set @gpoints,@gpoints+1;
+		mapannounce	@map$,A Guild [ +@name$+ ] empilhou +@gpoints+ caveiras sem auxilio da Berry.,bc_self,0x90FFFF;
+						end;
+}
+-	script	Arena#PCDie	-1,{
+
+OnPCDieEvent
+
+					getmapxy @map$,@x,@y,0;
+			if ( @map$ == $pvp$[$pvp] ) goto PvP;
+			if ( @map$ == $pvp$[$pvpx] ) goto PvP;
+			if ( @map$ == $pvp$[$pvpw] ) goto PvP;
+			if ( @map$ == $pvp$[$pvpy] ) goto PvP2;Sem ygg
+			if ( @map$ == $gvg$[$gvg] ) goto GvG;
+			if ( @map$ == $gvg$[$gvgx] ) goto GvG;
+			if ( @map$ == $gvg$[$gvgw] ) goto GvG;
+			if ( @map$ == $gvg$[$gvgy] ) goto GvG2;Sem ygg
+ ======= Arenas GvG =======
+
+PvP
+		set @CID,getcharid(0);set @name$,;set @points,0;
+					query_sql SELECT `deaths` FROM `pvp` WHERE `char_id`=+@CID+,@points;
+					query_sql SELECT `name` FROM `pvp` WHERE `char_id`=+@CID+,@name$;
+			if ( @name$ ==  ) { query_sql INSERT INTO `pvp` (`char_id`,`name`,`deaths`) VALUES (+@CID+,'+strcharinfo(0)+',1),@esc$; end; }
+					query_sql UPDATE `pvp1` SET `deaths` = `deaths` + 1 WHERE `char_id`=+@CID+,@esc$;
+						end;
+						
+PvP2
+		set @CID,getcharid(0);set @name$,;set @points,0;
+					query_sql SELECT `deaths` FROM `pvp2` WHERE `char_id`=+@CID+,@points;
+					query_sql SELECT `name` FROM `pvp2` WHERE `char_id`=+@CID+,@name$;
+					query_sql SELECT `name` FROM `pvp` WHERE `char_id`=+@CID+,@name2$;
+			if ( @name2$ ==  ) {
+			query_sql INSERT INTO `pvp2` (`char_id`,`name`,`deaths`) VALUES (+@CID+,'+strcharinfo(0)+',1),@esc$;
+			query_sql INSERT INTO `pvp` (`char_id`,`name`,`deaths`) VALUES (+@CID+,'+strcharinfo(0)+',1),@esc$;
+			end;
+			}
+			if ( @name$ ==  ) {
+			query_sql INSERT INTO `pvp2` (`char_id`,`name`,`deaths`) VALUES (+@CID+,'+strcharinfo(0)+',1),@esc$;
+			query_sql UPDATE `pvp` SET `deaths` = `deaths` + 1 WHERE `char_id`=+@CID+,@esc$;
+			end;
+			}
+					query_sql UPDATE `pvp2` SET `deaths` = `deaths` + 1 WHERE `char_id`=+@CID+,@esc$;
+					query_sql UPDATE `pvp` SET `deaths` = `deaths` + 1 WHERE `char_id`=+@CID+,@esc$;
+						end;
+
+ ======= Arenas GvG =======
+						
+GvG
+		set @GID,getcharid(2);set @name$,;set @gpoints,0;
+					query_sql SELECT `deaths` FROM `gvg1` WHERE `guild_id`=+@GID+,@gpoints;
+					query_sql SELECT `name` FROM `gvg1` WHERE `guild_id`=+@GID+,@name$;
+			if ( @name$ ==  ) { query_sql INSERT INTO`gvg1` (`guild_id`,`name`,`deaths`) VALUES (+@GID+,'+strcharinfo(2)+',1),@esc$; end; }
+					query_sql UPDATE `gvg1` SET `deaths` = `deaths` + 1 WHERE `guild_id`=+@GID+,@esc$;
+						end;
+						
+GvG2
+		set @GID,getcharid(2);set @name$,;set @gpoints,0;
+					query_sql SELECT `deaths` FROM `gvg2` WHERE `guild_id`=+@GID+,@gpoints;
+					query_sql SELECT `name` FROM `gvg2` WHERE `guild_id`=+@GID+,@name$;
+					query_sql SELECT `name` FROM `gvg` WHERE `guild_id`=+@GID+,@name2$;
+			if ( @name2$ ==  ) {
+				query_sql INSERT INTO`gvg2` (`guild_id`,`name`,`deaths`) VALUES (+@GID+,'+strcharinfo(2)+',1),@esc$;
+				query_sql INSERT INTO`gvg` (`guild_id`,`name`,`deaths`) VALUES (+@GID+,'+strcharinfo(2)+',1),@esc$;
+				end; 
+			}
+			if ( @name2$ ==  ) { 
+				query_sql INSERT INTO`gvg2` (`guild_id`,`name`,`deaths`) VALUES (+@GID+,'+strcharinfo(2)+',1),@esc$;
+				query_sql UPDATE `gvg` SET `deaths` = `deaths` + 1 WHERE `guild_id`=+@GID+,@esc$;
+				end; 
+			}
+					query_sql UPDATE `gvg2` SET `deaths` = `deaths` + 1 WHERE `guild_id`=+@GID+,@esc$;
+					query_sql UPDATE `gvg` SET `deaths` = `deaths` + 1 WHERE `guild_id`=+@GID+,@esc$;
+						end;
+						
+}
+
+============== Saída ==================
+guild_vs3,36,69,4	script	Saida#PvP1Saida#PvP	899,{
+dispbottom Você sairá em 10 segundos.;
+addtimer 10000,Saida#PvPOnSairpvp;
+end;
+OnSairpvp
+warp prontera.gat,155,191;
+}
+guild_vs2.gat,33,52,4	duplicate(Saida#PvP)	Saida#PvP2	899
+guild_vs4.gat,39,62,4	duplicate(Saida#PvP)	Saida#PvP3	899
+guild_vs1.gat,33,72,4	duplicate(Saida#PvP)	Saida#PvP4	899
+
+============== MAP FLAG ===============
+ PvP
+guild_vs3	mapflag	nosave
+guild_vs3	mapflag	noteleport
+guild_vs3	mapflag	nowarpto
+guild_vs3	mapflag	nowarp
+guild_vs3	mapflag	nomemo
+guild_vs3	mapflag	gvg	off
+guild_vs3	mapflag	pvp
+guild_vs3	mapflag	nopenalty
+guild_vs3	mapflag	nobranch
+guild_vs3	mapflag	pvp_noguild
+guild_vs3	mapflag	noloot
+guild_vs3	mapflag	noexp
+
+guild_vs4	mapflag	nosave
+guild_vs4	mapflag	noteleport
+guild_vs4	mapflag	nowarpto
+guild_vs4	mapflag	nowarp
+guild_vs4	mapflag	nomemo
+guild_vs4	mapflag	gvg	off
+guild_vs4	mapflag	pvp
+guild_vs4	mapflag	nopenalty
+guild_vs4	mapflag	nobranch
+guild_vs4	mapflag	pvp_noguild
+guild_vs4	mapflag	noloot
+guild_vs4	mapflag	noexp
+
+
+ GvG
+guild_vs1	mapflag	nosave
+guild_vs1	mapflag	noteleport
+guild_vs1	mapflag	nowarpto
+guild_vs1	mapflag	nowarp
+guild_vs1	mapflag	nomemo
+guild_vs1	mapflag	pvp	off
+guild_vs1	mapflag	gvg
+guild_vs1	mapflag	nopenalty
+guild_vs1	mapflag	nobranch
+guild_vs1	mapflag	noloot
+guild_vs1	mapflag	noexp
+
+guild_vs2	mapflag	nosave
+guild_vs2	mapflag	noteleport
+guild_vs2	mapflag	nowarpto
+guild_vs2	mapflag	nowarp
+guild_vs2	mapflag	nomemo
+guild_vs2	mapflag	pvp	off
+guild_vs2	mapflag	gvg
+guild_vs2	mapflag	nopenalty
+guild_vs2	mapflag	nobranch
+guild_vs2	mapflag	noloot
+guild_vs2	mapflag	noexp
+
+Não remova os MapFlags abaixo
+
+Arenas Sem Ygg
+guild_vs4	mapflag	restricted	5
+guild_vs2	mapflag	restricted	5
+Arenas Com Ygg
+guild_vs1	mapflag	restricted	6
+guild_vs3	mapflag	restricted	6
+pvp_y_1-5	mapflag	restricted	6
+pvp_y_1-2	mapflag	restricted	6
+pvp_y_1-1	mapflag	restricted	6
+pvp_y_1-3	mapflag	restricted	6
