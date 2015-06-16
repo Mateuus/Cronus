@@ -6379,9 +6379,9 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 
 	switch (type) {
 	case SC_STUN:
-		sc_def = st->mdef*100;
-        sc_def2 = st->luk*10 + SCDEF_LVL_DIFF(bl, src, 99, 10);
-        tick_def = st->luk*400;
+		sc_def = st->vit*100;
+		sc_def2 = st->luk*10 + SCDEF_LVL_DIFF(bl, src, 99, 10);
+		tick_def2 = st->luk*10;
 		break;
 	case SC_POISON:
 	case SC_DPOISON:
@@ -6446,6 +6446,10 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 		tick_def = 0; //No duration reduction
 		break;
 	case SC_FREEZE:
+		sc_def = st->mdef*100;
+		sc_def2 = st->luk*10 + SCDEF_LVL_DIFF(bl, src, 99, 10);
+		tick_def2 = status_get_luk(src) * -10; //Caster can increase final duration with luk
+		break;
 		//Tentativa 1 0%
 		/*sc_def = st->mdef*100;
 		sc_def2 = st->luk*10 + SCDEF_LVL_DIFF(bl, src, 99, 10);
@@ -6459,7 +6463,6 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 		////sc_def = st->mdef*100;
 		//sc_def2 = st->luk*10 + SCDEF_LVL_DIFF(bl, src, 99, 10);
 		//tick_def2 = st->luk-6 + st->mdef*100; //Caster can increase final duration with luk*/
-		sc_def = 3  + st->luk + st->mdef; // tentativa 4
 		break;
 	case SC_CURSE:
 		// Special property: immunity when luk is zero

@@ -1,0 +1,53 @@
+prontera,147,189,5	script	Vote	714,{
+ 
+	setarray @vote_item[0],			512, 513; // ID dos Itens
+	setarray @vote_item_count[0],	1 , 1; // Quantidade de item que será entregue
+	setarray @vote_cost[0],			1 , 2; // preço dos itens em pontos de votos
+	set @min_vote, 0; // contagem mínima de pontos de votos para ver a lista de itens
+	set @npcname$,"[^ff0000Vote por Pontos^000000]";
+ 
+	query_sql ("SELECT `point` FROM `vote_point` WHERE `account_id` = '"+getcharid(3)+"'", @vote);
+ 
+	mes @npcname$;
+	mes "Você tem ^ff0000"+@vote+"^000000 Pontos de votos!";
+	if( @vote < @min_vote ) {
+		mes "^ff0000É preciso ter pelomenos "+@min_vote+" ou mais pontos de votos para trocá-los comigo!^000000";
+		close;
+	}
+	if (select("Trocar meus pontos!","Cancela") == 2) 
+		close;
+ 
+	next;
+	mes "[^ff0000List^000000]";
+	mes "^0000ffItem^000000 = ^00aa00Preço^000000";
+	for( set .@i, 0; .@i < getarraysize(@vote_item); set .@i, .@i + 1 ) {
+		mes "^0000ff"+@vote_item_count[.@i]+"x "+getitemname(@vote_item[.@i])+"^000000 = ^00aa00"+@vote_cost[.@i]+"^000000";
+		if( .@i < 1 )
+			set .@menu$, getitemname(@vote_item[.@i]);
+		else
+			set .@menu$, .@menu$+":"+getitemname(@vote_item[.@i]);
+	}
+ 
+	next;
+	select(.@menu$);
+	set @choice, @menu - 1;
+ 
+	mes @npcname$;
+	if( @vote_cost[@choice] > @vote ) {
+		mes "^ff0000Você não tem pontos de votos suficiente para trocar por "+@vote_item_count[@choice]+"x '"+getitemname(@vote_item[@choice])+"' :/^000000";
+		close;
+	}
+	mes "Deseja trocar "+@vote_item_count[@choice]+"x '^ff0000"+getitemname(@vote_item[@choice])+"^000000' por ^00aa00"+@vote_cost[@choice]+"^000000 Pontos de votos?";
+	if(select("Não! Cancela!:Sim, Troque!") == 1 ) {
+		mes "^ff0000A troca foi cancelada^000000";
+		close;
+	}
+ 
+	set .@new, @vote - @vote_cost[@choice];
+	if( .@new < 0 ) // safty first..
+		set .@new, 0;
+	query_sql("UPDATE `vote_point` SET `point` = '"+.@new+"' WHERE `account_id` = '"+getcharid(3)+"'");
+	getitem @vote_item[@choice], @vote_item_count[@choice];
+	mes "^00aa00A troca foi um sucesso ^_^ Espero vê-lo novamente =)!^000000";
+	close;
+}
