@@ -1,18 +1,21 @@
-prontera,151,187,5	script	Assistente VIP	91,{
+prontera,170,190,3	script	Assistente VIP	91,{
+cutin "katsua01",2;
 
 //----------------------------------------------------------------------------
 set @npc$,"[ ^FF0000 Assistente VIP ^000000 ]";
 //----------------------------------------------------------------------------
 
-if (getgmlevel() < 1){
+if (getgroupid() < 1){
 mes @npc$;
 mes "Me desculpe, mas atendo somente a";
 mes "usuários VIP.";
 mes "Se você deseja ser usuário VIP,";
-mes "visite www.site.com.br e descubra";
+mes "visite www.lambero.com.br e descubra";
 mes "como se tornar um.";
 close; 
 }
+
+
 
 mes @npc$;
 mes "Olá ^CD3333"+strcharinfo(0)+"^000000!";
@@ -24,8 +27,8 @@ menu "- Curar",L_a,"- Encantamentos",L_b,"- Estilista",L_c,"- Removedor de Carta
 //============================================================================
 //==== CURA
 //============================================================================
-
 L_a:
+
 	mes @npc$;
 	mes "Bem-Vindo ao meu serviço.";
 	mes "Posso recuperar seu HP e SP.";
@@ -36,11 +39,14 @@ L_a:
 	L_sim1:
 	mes @npc$;
 	mes "Pronto! Volte quando precisar dos meus servoços.";
-		percentheal 100,100;
-		close;
+		percentheal 100,100; 
+                cutin "",255;     
+		close;          
 	
 	L_nao1:
+        cutin "",255;   
 	close;
+
 
 
 //============================================================================
@@ -62,10 +68,13 @@ L_b:
 		sc_start 30, 940000, 10;
 		sc_start 35, 100000, 5; 
 		sc_start 41, 30000, 5;
+                cutin "",255;
 		close;
 
 	L_nao2:
+        cutin "",255;
 	close;
+        
 
 //============================================================================
 //==== Estilista
@@ -130,6 +139,7 @@ Lwantsty:
 	next;
 	mes @npc$;
 	mes "Você está muito bem~!  Volte sempre, ok?";
+        cutin "",255;
 	close;
 
 Lbrowsesty:
@@ -199,6 +209,7 @@ Lwantcolor:
 	next;
 	mes @npc$;
 	mes "Você está muito bem~!  Volte sempre, ok?";
+        cutin "",255;
 	close;
 
 Lbrowsecolor:
@@ -223,11 +234,13 @@ Lstop:
 			set @enter, 0;
 	mes @npc$;
 	mes "Você está muito bem~!  Volte sempre, ok?";
+        cutin "",255;
 	close;
 
 LCancel:
 	mes @npc$;
 	mes "Volte sempre.";
+        cutin "",255;
 	close;
 
 Lcloth:
@@ -267,6 +280,7 @@ Lwantcloth:
 	next;
 	mes @npc$;
 	mes "Você está muito bem~!  Volte sempre, ok?";
+        cutin "",255;
 	close;
 
 Lbrowsecloth:
@@ -290,6 +304,7 @@ Lbrowseclothrep:
 L_NoMoney:
 	mes @npc$;
 	mes "Você precisa de dinheiro, meu caro!";
+        cutin "",255;
 	close;
 	
 L_GM:
@@ -362,6 +377,7 @@ L_Done:
 L_Def:
 		set $DieChanged, 0;
 		goto LCancel;
+cutin "",255;
 close;
 
 //============================================================================
@@ -430,7 +446,7 @@ L_d:
 		set @cardcount,getequipcardcnt(@part);
 		if(@cardcount > 1) goto CARDNUMMULTIMSG;
 	mes @npc$;
-	mes "Esse ítem tem tem " + @cardcount + " cartas.";
+	mes "Esse ítem tem " + @cardcount + " cartas.";
 		goto CARDNUMPOSTMSG;
 	CARDNUMMULTIMSG:
 	mes @npc$;
@@ -453,6 +469,7 @@ L_d:
 	mes @npc$;
 	mes "O processo foi um grande sucesso. Tome suas cartas e seus ítens.";
 		successremovecards @part;
+        cutin "",255;
 	close;
 
 	FAILREMOVECARD0:
@@ -460,6 +477,7 @@ L_d:
 	next;
 	mes @npc$;
 	mes "O processo foi uma falha total. Estou com muita pena, seus itens.";
+        cutin "",255;
 	close;
 
 	FAILREMOVECARD1:
@@ -467,6 +485,7 @@ L_d:
 	next;
 	mes "[^1E90FFOpções @npc$^000000]";
 	mes "Eu falhei tentando remover as cartas do seu ítem, suas cartas foram destruídas durante o processo. O ítem, está em perfeito estado.";
+        cutin "",255;
 	close;
 
 	FAILREMOVECARD2:
@@ -474,6 +493,7 @@ L_d:
 	next;
 	mes @npc$;
 	mes "Menos mal. Eu tive sucesso em remover as cartas, só que o ítem foi destruído no processo.";
+        cutin "",255;
 	close;
 
 	FAILREMOVECARD3:
@@ -481,17 +501,20 @@ L_d:
 	next;
 	mes @npc$;
 	mes "Eu falhei tentando remover as cartas. Sorte sua, os ítens e as cartas estão perfeitos.";
+        cutin "",255;
 	close;
 
 	DENYCARDCOUNT:
 	mes @npc$;
 	mes "Meu jovem não há cartas equipadas neste ítem. Não posso trabalhar assim.";
+        cutin "",255;
 	close;
 
 
 	CLOSEOUT:
 	mes @npc$;
 	mes "Tudo bem. Volte quando precisar dos meus serviços.";
+        cutin "",255;
 	close;
 	
 //============================================================================
@@ -507,9 +530,11 @@ L_e:
 
 	L_sim3:
 		atcommand "@repairall";
+        cutin "",255;
 	close;
 
 	L_nao3:
+        cutin "",255;
 	close;
 
 //============================================================================
@@ -529,17 +554,20 @@ L_f:
 	mes @npc$;
 	mes "Pontos de Atributos resetados!";
 		resetstatus;
+        cutin "",255;
 	close;
 
 	abi:
 	mes @npc$;
 	mes "Pontos de Habilidades resetados!";
 		resetskill;
+        cutin "",255;
 	close;
 
 	nao:
 	mes @npc$;
 	mes "Tudo bêm, volte quando quiser!.";
+        cutin "",255;
 	close;
 	
 //============================================================================
@@ -616,8 +644,8 @@ L_g:
 		"Caverna de Comodo",beach,
 		"Caverna de Ayothaya",wayodun,
 		"Caverna de Byalan",byalan,
-		"Torre do Relógio",clock,
-		"Minas de Carvão",coal,
+		"Torre do Relógio",relogio,
+		"Minas de Carvão",mcarvao,
 		"Esgotos de Prontera",culvert,
 		"Caverna de Einbroch",weindun,
 		"Gefenia",gefenia,
@@ -640,7 +668,7 @@ L_g:
 		"Torre de Thanatos",wthat,
 		"Vulcão de Thor",wthor,
 		"Fábrica de Brinquedos",toy,
-		"Caverna da Tataruga",turtle,
+		"Caverna da Tataruga",tartaruga,
 		"Caverna de Umbala",wumdun,
 		"Caverna de Moscovia",dmosk;
 
@@ -1006,7 +1034,7 @@ menu 	"Level 1",dbyalan1,
 	"Level 3",dbyalan3,
 	"Level 4",dbyalan4,
 	"Level 5",dbyalan5;
-clock:
+relogio:
 mes @npc$;
 mes "Por favor Selecione o Level, Você será teleportado em instantes.";
 next;
@@ -1019,7 +1047,7 @@ menu 	"Level 1",dclock1,
 	"Basement 3",dalde3,
 	"Basement 4",dalde4;
 
-coal:
+mcarvao:
 mes @npc$;
 mes "Por favor Selecione o Level, Você será teleportado em instantes.";
 next;
@@ -1142,11 +1170,11 @@ next;
 menu 	"Level 1",dtoy1,
 	"Level 2",dtoy2;
 
-turtle:
+tartaruga:
 mes @npc$;
 mes "Por favor Selecione o Level, Você será teleportado em instantes.";
 next;
-menu 	"Entrance",dturtleent,
+menu 	"Entranda",dturtleent,
 	"Level 1",dturtle1,
 	"Level 2",dturtle2,
 	"Level 3",dturtle3;
@@ -1540,6 +1568,7 @@ dvfild6:	warp "ve_fild06",150,223;	close;
 dvfild7:	warp "ve_fild07",149,307;	close;
 cmoscovia01:	warp	"mosk_fild01",0,0;	close;
 cmoscovia02:	warp	"mosk_fild02",0,0;	close;	
+cutin "",255;
 close;
 
 //============================================================================
@@ -1564,6 +1593,7 @@ L_h:
 		aldg_cas03:	warp "alde_gld.gat", 	140,	103;	end;
 		aldg_cas04:	warp "alde_gld.gat", 	96,	238;	end;
 		aldg_cas05:	warp "alde_gld.gat", 	47,	100;	end;
+        cutin "",255;
 	close;
 
 	L_i:
@@ -1607,6 +1637,7 @@ L_h:
 		gefg_cas03:	warp "gef_fild13.gat",	158,	241;	end;
 		gefg_cas04:	warp "gef_fild13.gat",	186,	272;	end;
 		gefg_cas05:	warp "gef_fild13.gat",	317,	101;	end;
+        cutin "",255;
 	close;
 
 //============================================================================
