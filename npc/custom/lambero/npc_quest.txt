@@ -1,15 +1,16 @@
-prontera,163,187,1	script	Quests LambeRO	106,{
+prontera,163,187,1	script	Sala de Rops/Quest	106,{
 	mes "Olá "+strcharinfo(0)+"!";
 	mes "Deseja ir para algum dos lugares abaixo?";
 	next;
-	switch(select("Sala de Quest")){
+	switch(select("Sala de Rops/Quest")){
 		case 1:
 			mes "Até mais!";
 			close2;
-			warp "guild_vs2",50,52;
+			warp "quiz_02",32,346;
 			end;
 	}
 }
+
 
 //=============================================
 //== Cronus Tools :: Gerador de Quest's =======
@@ -18,7 +19,7 @@ prontera,163,187,1	script	Quests LambeRO	106,{
 //== Autor: ===================================
 //== RoM
 //=============================================
-guild_vs2,49,50,0	script	Quests Rops	121,{
+quiz_02,35,339,0	script	Quests Rops	121,{
 	mes "[Quests Rops]";
 	mes "Olá "+strcharinfo(0)+"!";
 	mes "Eu tenho alguns itens interessantes aqui, deseja dar uma olhada?";

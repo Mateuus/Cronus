@@ -1,0 +1,13 @@
+//===Npc Sair Sala de Quest e Rops
+quiz_02,38,346,2	script	Sair da Sala	66,{
+	mes "Olá "+strcharinfo(0)+"!";
+	mes "Deseja Sair?";
+	next;
+	switch(select("Sair")){
+		case 1:
+			mes "Até mais!";
+			close2;
+			warp "prontera",156,191;
+			end;
+	}
+}
