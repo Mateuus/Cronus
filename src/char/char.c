@@ -116,7 +116,7 @@ char unknown_char_name[NAME_LENGTH] = "Unknown"; // Name to use when the request
 char char_name_letters[1024] = ""; // list of letters/symbols allowed (or not) in a character name. by [Yor]
 
 int char_del_level = 0; //From which level u can delete character [Lupus]
-int char_del_delay = 86400;
+int char_del_delay = 00000;
 
 int log_char = 1;  // logging char or not [devil]
 int log_inter = 1; // logging inter or not [devil]

@@ -66,7 +66,7 @@ arena_room	mapflag	noreturn
 //===================================
 
 
-prontera,0,0,0	script	War of Treasure	417,{
+quiz_02,365,345,4	script	War of Treasure	417,{
 
 query_sql "SELECT `baus` FROM `char` WHERE `char_id` = '"+getcharid(0)+"'", .@baus;
 
@@ -370,27 +370,83 @@ goto Player;
 close;
 }
 
-OnClock0045: callsub EventoWOT; //Wot 01:00
-OnClock0245: callsub EventoWOT; //Wot 03:00
-OnClock0445: callsub EventoWOT; //Wot 05:00
-OnClock0645: callsub EventoWOT; //Wot 07:00
-OnClock0845: callsub EventoWOT; //Wot 09:00
-OnClock1045: callsub EventoWOT; //Wot 11:00
-OnClock1245: callsub EventoWOT; //Wot 13:00
-OnClock1445: callsub EventoWOT; //Wot 15:00
-OnClock1645: callsub EventoWOT; //Wot 17:00
-OnClock1845: callsub EventoWOT; //Wot 19:00
-OnClock2045: callsub EventoWOT; //Wot 21:00
-OnClock2245: callsub EventoWOT; //Wot 23:00
+//OnClock0045: callsub EventoWOT; //Wot 01:00
+//OnClock0245: callsub EventoWOT; //Wot 03:00
+//OnClock0445: callsub EventoWOT; //Wot 05:00
+//OnClock0645: callsub EventoWOT; //Wot 07:00
+//OnClock0845: callsub EventoWOT; //Wot 09:00
+//OnClock1045: callsub EventoWOT; //Wot 11:00
+//OnClock1245: callsub EventoWOT; //Wot 13:00
+//OnClock1445: callsub EventoWOT; //Wot 15:00
+//OnClock1645: callsub EventoWOT; //Wot 17:00
+//OnClock1845: callsub EventoWOT; //Wot 19:00
+//OnClock2045: callsub EventoWOT; //Wot 21:00
+//OnClock2245: callsub EventoWOT; //Wot 23:00
 
+OnClock2336: callsub EventoWOT; //Wot 23:00
+OnClock2338: callsub EventoWOT; //Wot 23:00
+OnClock0115: callsub EventoWOT; //Wot 23:00
+OnClock0117: callsub EventoWOT; //Wot 23:00
+OnClock0119: callsub EventoWOT; //Wot 23:00
+OnClock0122: callsub EventoWOT; //Wot 23:00
+OnClock0124: callsub EventoWOT; //Wot 23:00
+OnClock0126: callsub EventoWOT; //Wot 23:00
+OnClock0128: callsub EventoWOT; //Wot 23:00
+OnClock0130: callsub EventoWOT; //Wot 23:00
+OnClock0132: callsub EventoWOT; //Wot 23:00
+OnClock0134: callsub EventoWOT; //Wot 23:00
+OnClock0136: callsub EventoWOT; //Wot 23:00
+OnClock0138: callsub EventoWOT; //Wot 23:00
+OnClock0140: callsub EventoWOT; //Wot 23:00
+OnClock0142: callsub EventoWOT; //Wot 23:00
+OnClock0144: callsub EventoWOT; //Wot 23:00
+OnClock0146: callsub EventoWOT; //Wot 23:00
+OnClock0148: callsub EventoWOT; //Wot 23:00
+OnClock0150: callsub EventoWOT; //Wot 23:00
+OnClock0152: callsub EventoWOT; //Wot 23:00
+OnClock0154: callsub EventoWOT; //Wot 23:00
+OnClock0156: callsub EventoWOT; //Wot 23:00
+OnClock0158: callsub EventoWOT; //Wot 23:00
+OnClock0200: callsub EventoWOT; //Wot 23:00
+
+OnClock0202: callsub EventoWOT; //Wot 23:00
+OnClock0204: callsub EventoWOT; //Wot 23:00
+OnClock0206: callsub EventoWOT; //Wot 23:00
+OnClock0208: callsub EventoWOT; //Wot 23:00
+OnClock0210: callsub EventoWOT; //Wot 23:00
+OnClock0212: callsub EventoWOT; //Wot 23:00
+OnClock0214: callsub EventoWOT; //Wot 23:00
+OnClock0216: callsub EventoWOT; //Wot 23:00
+OnClock0218: callsub EventoWOT; //Wot 23:00
+OnClock0220: callsub EventoWOT; //Wot 23:00
+OnClock0222: callsub EventoWOT; //Wot 23:00
+OnClock0224: callsub EventoWOT; //Wot 23:00
+OnClock0226: callsub EventoWOT; //Wot 23:00
+OnClock0228: callsub EventoWOT; //Wot 23:00
+OnClock0230: callsub EventoWOT; //Wot 23:00
+OnClock0232: callsub EventoWOT; //Wot 23:00
+OnClock0234: callsub EventoWOT; //Wot 23:00
+OnClock0236: callsub EventoWOT; //Wot 23:00
+OnClock0238: callsub EventoWOT; //Wot 23:00
+OnClock0240: callsub EventoWOT; //Wot 23:00
+OnClock0242: callsub EventoWOT; //Wot 23:00
+OnClock0244: callsub EventoWOT; //Wot 23:00
+OnClock0246: callsub EventoWOT; //Wot 23:00
+OnClock0248: callsub EventoWOT; //Wot 23:00
+OnClock0250: callsub EventoWOT; //Wot 23:00
+OnClock0252: callsub EventoWOT; //Wot 23:00
+OnClock0254: callsub EventoWOT; //Wot 23:00
+OnClock0256: callsub EventoWOT; //Wot 23:00
+OnClock0258: callsub EventoWOT; //Wot 23:00
+OnClock0300: callsub EventoWOT; //Wot 23:00
 
 EventoWOT:
-announce	"Guerra do Tesouro: Os tesouros irão surgir em 15 minutos!",8;
+announce	"Guerra do Tesouro: Os tesouros irão surgir em 1 minutos!",8;
 set $ligou,1;
 initnpctimer;
 end;
 
-OnTimer900000:
+OnTimer60000:
 if (getmapusers("prt_are_in") == 0 ){
 announce "[Wot] Os baús não apareceram por que não há jogadores suficientes na Wot",8;
 stopnpctimer;
@@ -407,12 +463,13 @@ stopnpctimer;
 
 OnThisMobDeath:
 set @char,getcharid(0);
+set @guild,getcharid(2);
 
 
 query_sql "UPDATE `char` SET `baus` = `baus` +1 WHERE `char_id`="+@char+"";
-for ( set @i, 0; $premio[@i]; set @i, @i + 1 )
-for ( set @i, 0; $qtd[@i]; set @i, @i + 1 )
-//getitem 607, 1;
+
+query_sql "UPDATE `guild` SET `baus` = `baus` +1 WHERE `guild_id`="+@guild+"";
+
 
 set .@GID,getcharid( 2 );
 announce "Guerra dos Tesouros: [" + strcharinfo( 0 ) + "] do clã [" + getguildname( .@GID ) + "] conquistou um dos baús.", 8;
