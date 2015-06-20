@@ -109,7 +109,7 @@ OnInit:                        						  	  // |
 //| Configurações:                                                        	     |
 //|                        						  	     |
 //|=> Nome do npc na janela.							     |
-set $@pvpm_name$,"[ ^FF0000 Arena ^000000 ]";				    	  // |
+set $@pvpm_name$,"[ ^FF0000 Arena da Morte ^000000 ]";				    	  // |
 //| 										     |
 //|=> Deseja usar o Ranking Ratio como principal? [ 1 = Sim ]			     |
 //|---> Nota: Ranking Ratio: Pontuação = Kills - Mortes				     |
@@ -788,19 +788,19 @@ function	script	pvpm_func	{
 function	script	getMesPM	{ return getd("$@PM_Lang"+PM_Lang+"$["+getarg(0)+"]"); }
 
 //================== DUPLICATE =====================
-prontera,151,193,4	duplicate(PM_source)	[PvP] Arena#1	899
-morocc,152,97,4	duplicate(PM_source)	[PvP] Arena#2	899
-geffen,127,65,4	duplicate(PM_source)	[PvP] Arena#3	899
-alberta,26,240,4	duplicate(PM_source)	[PvP] Arena#4	899
-izlude,122,119,4	duplicate(PM_source)	[PvP] Arena#5	899
-aldebaran,147,119,4	duplicate(PM_source)	[PvP] Arena#6	899
-xmas,145,136,4	duplicate(PM_source)	[PvP] Arena#7	899
-comodo,184,158,4	duplicate(PM_source)	[PvP] Arena#8	899
-gonryun,161,126,4	duplicate(PM_source)	[PvP] Arena#9	899
-louyang,226,106,4	duplicate(PM_source)	[PvP] Arena#10	899
-ayothaya,155,121,4	duplicate(PM_source)	[PvP] Arena#11	899
-hugel,87,164,4	duplicate(PM_source)	[PvP] Arena#12	899
-moscovia,209,190,5	duplicate(PM_source)	[PvP] Arena#13	899
+prontera,151,193,4	duplicate(PM_source)	Arena da Morte#1	420
+morocc,152,97,4	duplicate(PM_source)	Arena da Morte#2	420
+geffen,127,65,4	duplicate(PM_source)	Arena da Morte#3	420
+alberta,26,240,4	duplicate(PM_source)	Arena da Morte#4	420
+izlude,122,119,4	duplicate(PM_source)	Arena da Morte#5	420
+aldebaran,147,119,4	duplicate(PM_source)	Arena da Morte#6	420
+xmas,145,136,4	duplicate(PM_source)	Arena da Morte#7	420
+comodo,184,158,4	duplicate(PM_source)	Arena da Morte#8	420
+gonryun,161,126,4	duplicate(PM_source)	Arena da Morte#9	420
+louyang,226,106,4	duplicate(PM_source)	Arena da Morte#10	420
+ayothaya,155,121,4	duplicate(PM_source)	Arena da Morte#11	420
+hugel,87,164,4	duplicate(PM_source)	Arena da Morte#12	420
+moscovia,209,190,5	duplicate(PM_source)	Arena da Morte#13	420
 //================== WOE =====================
 
 //Necessário para ativar o sistema de contagem dos pontos na woe.

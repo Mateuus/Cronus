@@ -53,6 +53,8 @@ end;
 
 OnTimer900000: //15 Min Final
 //OnTimer60000: //1 Min Final
+
+
 if (getmapusers("prt_are_in") == 0 ){
 announce "[Wot] Os baús não apareceram por que não há jogadores suficientes na Wot",8;
 stopnpctimer;
