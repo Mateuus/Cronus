@@ -10,7 +10,7 @@
 bat_room,85,227,4	script	Registro::TV1R_Guillaume	418,{
 	end;
 OnInit:
-	waitingroom "Estação de Batalha 5 Jogadores",5,"Tierra_BG1::OnGuillaumeJoin",1;
+	waitingroom "Estação de Batalha 5 Jogadores",6,"Tierra_BG1::OnGuillaumeJoin",1;
 	end;
 OnEnterBG:
 	set $@TierraBG1_id1, waitingroom2bg("bat_a01",50,374,"Tierra_BG1::OnGuillaumeQuit","");
@@ -20,7 +20,7 @@ OnEnterBG:
 bat_room,85,204,0	script	Registro::TV1R_Croix	414,{
 	end;
 OnInit:
-	waitingroom "Estação de Batalha 5 Jogadores",5,"Tierra_BG1::OnCroixJoin",1;
+	waitingroom "Estação de Batalha 5 Jogadores",6,"Tierra_BG1::OnCroixJoin",1;
 	end;
 OnEnterBG:
 	set $@TierraBG1_id2, waitingroom2bg("bat_a01",42,16,"Tierra_BG1::OnCroixQuit","");
@@ -34,7 +34,7 @@ OnEnterBG:
 	end;
 
 OnInit:
-	disablenpc "Negociante de Croix#tv1";
+	disablenpc "Negociante Croix#tv1";
 	disablenpc "Negociante Guillaume#tv1";
 	disablenpc "Terapeuta#tv11";
 	disablenpc "Terapeuta#tv12";
