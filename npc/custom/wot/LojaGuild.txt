@@ -1,0 +1,86 @@
+izlude,139,221,4	script	Loja Wot [Clã]	462,{
+
+//======== Confs
+
+set .np$,"^FF1493[ Loja Wot - Clã ]^000000";		// Nome do NPC.
+setarray .@itens[1],14601,12218,12116,12117,12115,12114,12250,12251,12252,12253,12254,12255,12913,12914,12217,12220,12219,12121,12118,12119,12120,13989,7829,7828,1025,678;
+setarray .@pontos[1],5,2,4,4,4,4,5,5,5,5,5,5,30,30,4,4,4,4,4,4,4,200,10,10,4,4;; // Pontos por cada item.
+setarray .@dpontos[1],4,1,2,2,2,2,4,4,4,4,4,4,15,15,2,2,2,2,2,2,2,100,5,5,2,2; // Pontos com desconto por cada item.
+
+//======== Fim das Confs
+
+query_sql ("SELECT `pontosgwot` FROM `guild` WHERE `guild_id` = '"+getcharid(2)+"'", .@pontoswot);
+
+if(getcharid(2) == 0){ mes .np$; mes "Me desculpe mas você não possui um clãn."; close; }
+
+set @GID,getcharid(2);
+
+if(strcharinfo(0) != getguildmaster(@GID)){ mes .np$; mes "Me desculpe, mas eu posso vender itens apenas para o líder do seu clã."; close; }
+
+if(getgmlevel() > 1){
+
+mes .np$;
+mes "Olá ^0000FF"+strcharinfo(0)+"^000000, líder da guild ^0000FF"+ getguildname( @GID ) +"^000000.";
+mes "Seu clã tem ^0000FF"+.@pontoswot+"^000000 pontos, deseja trocar por qual item?";
+set .@menu$,"";
+
+for(set .@e,1;.@e < getarraysize(.@itens);set .@e,.@e + 1)
+set .@menu$,.@menu$ + "- " + getitemname(.@itens[.@e]) + ":";
+if(select(.@menu$+"- Cancelar") >= getarraysize(.@itens))close;
+
+next;
+set @escolha,@menu;
+mes .np$;
+mes "Digite a quantidade de "+getitemname(.@itens[@escolha])+" que deseja comprar.";
+input .@qntidade;
+next;
+mes .np$;
+mes "Jogador Vip possui desconto de ^FF000050%^000000 na minha loja.";
+mes "^CC0000"+.@qntidade+"^000000 ~ ^0000EE"+getitemname(.@itens[@escolha])+"^000000 custará ^00B2EE"+.@qntidade*.@pontos[@escolha]+"^000000 pontos, para jogadores vip custará ^FF0000"+.@qntidade*.@dpontos[@escolha]+"^000000 pontos.";
+mes "Quer mesmo comprá-lo?";
+if(select("- Sim:- Não") == 2) close;
+
+if(.@pontoswot < .@qntidade*.@dpontos[@escolha]){ next; mes .np$; mes "Você não tem os pontos necessários para compra."; close; }
+
+next;
+mes .np$;
+mes "Compra realizada com sucesso!";
+query_sql "UPDATE `guild` SET `pontosgwot`=`pontosgwot`-"+.@qntidade*.@dpontos[@escolha]+" WHERE `guild_id`="+getcharid(2)+"";
+getitem .@itens[@escolha],.@qntidade;
+query_sql ("SELECT `pontosgwot` FROM `guild` WHERE `guild_id` = '"+getcharid(2)+"'", .@pontoswot2);
+dispbottom "[Loja Wot]: Você ainda tem "+.@pontoswot2+" Pontos.";
+close;
+}
+
+mes .np$;
+mes "Olá ^00B2EE"+strcharinfo(0)+"^000000, lider da guild ^00B2EE"+getcharid(2)+"^000000.";
+mes "Seu clân tem "+.@pontoswot+" Pontos, deseja trocar por qual item?";
+set .@menu$,"";
+
+for(set .@e,1;.@e < getarraysize(.@itens);set .@e,.@e + 1)
+set .@menu$,.@menu$ + "- " + getitemname(.@itens[.@e]) + ":";
+if(select(.@menu$+"- Cancelar") >= getarraysize(.@itens))close;
+
+next;
+set @escolha,@menu;
+mes .np$;
+mes "Digite a quantidade de "+getitemname(.@itens[@escolha])+" que deseja comprar.";
+input .@qntidade;
+next;
+mes .np$;
+mes "^CC0000"+.@qntidade+"^000000 ~ ^0000EE"+getitemname(.@itens[@escolha])+"^000000 custa(m) ^CC0000"+.@qntidade*.@pontos[@escolha]+"^000000 Pontos.";
+mes "Quer mesmo compra-lo?";
+if(select("- Sim:- Não") == 2) close;
+
+if(.@pontoswot < .@qntidade*.@pontos[@escolha]){ next; mes .np$; mes "Você não tem os pontos necessários para compra."; close; }
+
+next;
+mes .np$;
+mes "Compra realizada com sucesso!";
+query_sql "UPDATE `guild` SET `pontosgwot`=`pontosgwot`-"+.@qntidade*.@pontos[@escolha]+" WHERE `guild_id`="+getcharid(2)+"";
+getitem .@itens[@escolha],.@qntidade;
+query_sql ("SELECT `pontosgwot` FROM `guild` WHERE `guild_id` = '"+getcharid(2)+"'", .@pontoswot2);
+dispbottom "[Loja Wot]: Você ainda tem "+.@pontoswot2+" Pontos.";
+close;
+}
+

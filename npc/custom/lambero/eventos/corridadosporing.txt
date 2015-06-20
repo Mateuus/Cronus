@@ -56,7 +56,7 @@ OnChequeo:
     OnClock1600: callsub OnCalll;
     OnClock1800: callsub OnCalll;
     OnClock2000: callsub OnCalll;
-    OnClock2355: callsub OnCalll;
+    OnClock2200: callsub OnCalll;
 
 
     OnCalll:

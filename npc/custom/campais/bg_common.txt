@@ -1173,13 +1173,13 @@ bat_room,160,150,3	script	Erundek	109,{
             mes "[Erundek]";
 			mes "Temos muitos itens; fique à vontade para olhar antes de comprar.";
 			close2;
-			Readbook 11010,1;
+			readbook 11010,1;
 			end;
 			case 2:
 			mes "[Erundek]";
 			mes "Temos muitos itens; fique à vontade para olhar antes de comprar.";
 			close2;
-			Readbook 11017,1;
+			readbook 11017,1;
 			end;
             }
 
