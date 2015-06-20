@@ -2,10 +2,11 @@ izlude,137,221,5	script	Loja Wot [Jogador]	461,{
 
 //======== Confs
 
-set .np$,"^FF1493[ Loja Wot - Jogador ]^000000";		// Nome do NPC.
-setarray .@itens[1],14601,12218,12116,12117,12115,12114,12250,12251,12252,12253,12254,12255,12913,12914,12217,12220,12219,12121,12118,12119,12120,13989,7829,7828,1025,678;
-setarray .@pontos[1],5,2,4,4,4,4,5,5,5,5,5,5,30,30,4,4,4,4,4,4,4,200,10,10,4,4; // Pontos por cada item.
-setarray .@dpontos[1],4,1,2,2,2,2,4,4,4,4,4,4,15,15,2,2,2,2,2,2,2,100,5,5,2,2; // Pontos com desconto por cada item.
+set .np$,"^FF1493[ Premiador Wot ]^000000";		// Nome do NPC.
+setarray .@itens[1],13517,13973,14172,12907,12906,12904,12908,12905,12903; 
+setarray .@kquant[1],5,30,10,10,10,10,10,10,10; // Quantidade que vem no Kit
+setarray .@pontos[1],4,32,5,15,15,15,15,15,15; // Pontos por cada item.
+setarray .@dpontos[1],2,16,2,7,7,7,7,7,7; // Pontos com desconto por cada item.
 
 //======== Fim das Confs
 
@@ -14,12 +15,23 @@ query_sql ("SELECT `pontoswot` FROM `login` WHERE `account_id` = '"+getcharid(3)
 if(getgmlevel() > 1){
 
 mes .np$;
+mes "Sou eu quem troca os pontos conquistados na WOT por prêmios, posso ajudar?";
+next;
+mes .np$;
 mes "Olá ^0000FF"+strcharinfo(0)+"^000000.";
 mes "Você tem ^FF1493"+.@pontoswot+"^000000 Pontos, deseja trocar por qual item?";
+next;
+mes .np$;
+mes "- ^006600Nome do item^000000";
+mes "- ^0000FFQuantidade de itens no kit^000000";
+mes "- ^FF0000Pontos cobrados por cada kit^000000";
+mes " ";
+mes "^FF0000Obs:^000000 O valor a ser pago com desconto para usuários VIP TOTAL é apresentado somente no final da troca! O desconto é de 50%, aplicado no valor final da troca!";
 set .@menu$,"";
 
+
 for(set .@e,1;.@e < getarraysize(.@itens);set .@e,.@e + 1)
-set .@menu$,.@menu$ + "- " + getitemname(.@itens[.@e]) + ":";
+set .@menu$,.@menu$ + "- ^006600" + getitemname(.@itens[.@e]) + "^000000 [^0000FF"+.@kquant[.@e]+"^000000] [^FF0000"+.@pontos[.@e]+"^000000]:";
 if(select(.@menu$+"- Cancelar") >= getarraysize(.@itens))close;
 
 next;
@@ -47,12 +59,23 @@ close;
 }
 
 mes .np$;
-mes "Olá ^00B2EE"+strcharinfo(0)+"^000000.";
-mes "Você tem "+.@pontoswot+" Pontos, deseja trocar por qual item?";
+mes "Sou eu quem troca os pontos conquistados na WOT por prêmios, posso ajudar?";
+next;
+mes .np$;
+mes "Olá ^0000FF"+strcharinfo(0)+"^000000.";
+mes "Você tem ^FF1493"+.@pontoswot+"^000000 Pontos, deseja trocar por qual item?";
+next;
+mes .np$;
+mes "- ^006600Nome do item^000000";
+mes "- ^0000FFQuantidade de itens no kit^000000";
+mes "- ^FF0000Pontos cobrados por cada kit^000000";
+mes " ";
+mes "^FF0000Obs:^000000 O valor a ser pago com desconto para usuários VIP TOTAL é apresentado somente no final da troca! O desconto é de 50%, aplicado no valor final da troca!";
 set .@menu$,"";
 
+
 for(set .@e,1;.@e < getarraysize(.@itens);set .@e,.@e + 1)
-set .@menu$,.@menu$ + "- " + getitemname(.@itens[.@e]) + ":";
+set .@menu$,.@menu$ + "- ^006600" + getitemname(.@itens[.@e]) + "^000000 [^0000FF"+.@kquant[.@e]+"^000000] [^FF0000"+.@pontos[.@e]+"^000000]:";
 if(select(.@menu$+"- Cancelar") >= getarraysize(.@itens))close;
 
 next;
