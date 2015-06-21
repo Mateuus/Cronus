@@ -11,7 +11,7 @@
 //=     Moved all Cooking related NPCs to their own section.
 //=     Re-alphabetized sections. Some of them were out of place.
 //=     Removed commented out shops.
-//= 2.0b Einbech tool dealer got lost somewhere along the way, re-added. [L0ne_W0lf]
+//= 2.0b Einbech Loja de Utilidades got lost somewhere along the way, re-added. [L0ne_W0lf]
 //= 2.1 Fixed missing item from "Fresh Fish" from cooking addition shops. [L0ne_W0lf]
 //= 2.1a Fixed the second "Line" selling in Comodo Weapon shop. (Should have been Whip) [L0ne_W0lf]
 //= 2.2 Added Veins shops. [L0ne_W0lf]
@@ -23,7 +23,7 @@
 //= 2.7 Added Trading merchants, (ninja& gunslinger) to Izlude and Alberta. [L0ne_W0lf]
 //=     Made Brasilis shop names unique, and uncommented.
 //=     Changed the whip sold in comodo weapon shop. (1956 ->1960)
-//=     Added Fire and Silver arrow to Einbroch tool dealer.
+//=     Added Fire and Silver arrow to Einbroch Loja de Utilidades.
 //=     Re-added Bill of Birds to Morroc Item Collectors.
 //= 2.7a Actually applied the right update to the comodo weapon shop. [L0ne_W0lf]
 //= 2.7b Corrected Brasilis Fruit Merchant. (bugreport:4278) [L0ne_W0lf]
@@ -40,7 +40,7 @@
 //=======================================================
 // Alberta
 //=======================================================
-alb2trea,87,65,5	trader	Tool Dealer#alb	4_M_01,{
+alb2trea,87,65,5	trader	Loja de Utilidades#alb	4_M_01,{
 OnInit:
 	sellitem Arrow;
 	sellitem Silver_Arrow;
@@ -60,7 +60,7 @@ OnInit:
 	sellitem Monster's_Feed;
 }
 
-alberta_in,182,97,0	trader	Tool Dealer#alb2	1_F_MERCHANT_01,{
+alberta_in,182,97,0	trader	Loja de Utilidades#alb2	1_F_MERCHANT_01,{
 OnInit:
 	sellitem Arrow;
 	sellitem Spectacles;
@@ -181,7 +181,7 @@ OnInit:
 	sellitem Cinquedea;
 }
 
-aldeba_in,94,56,5	trader	Tool Dealer#alde	4_M_01,{
+aldeba_in,94,56,5	trader	Loja de Utilidades#alde	4_M_01,{
 OnInit:
 	sellitem Red_Potion;
 	sellitem Orange_Potion;
@@ -244,7 +244,7 @@ OnInit:
 	sellitem Chain;
 }
 
-ama_in01,24,30,5	trader	Tool Dealer#ama	4_M_JPN,{
+ama_in01,24,30,5	trader	Loja de Utilidades#ama	4_M_JPN,{
 OnInit:
 	sellitem Arrow;
 	sellitem Iron_Arrow;
@@ -296,7 +296,7 @@ OnInit:
 //=======================================================
 // Ayothaya
 //=======================================================
-ayo_in01,18,182,1	trader	Tool Dealer#ayo	4_F_THAISHAMAN,{
+ayo_in01,18,182,1	trader	Loja de Utilidades#ayo	4_F_THAISHAMAN,{
 OnInit:
 	sellitem Arrow;
 	sellitem Iron_Arrow;
@@ -347,7 +347,7 @@ OnInit:
 //=======================================================
 // Brasilis
 //=======================================================
-brasilis,252,257,3	trader	Tool Dealer#bra	4_F_BRZ_WOMAN,{
+brasilis,252,257,3	trader	Loja de Utilidades#bra	4_F_BRZ_WOMAN,{
 OnInit:
 	sellitem Center_Potion;
 	sellitem Awakening_Potion;
@@ -419,7 +419,7 @@ OnInit:
 	sellitem Rante;
 }
 
-cmd_in01,79,182,5	trader	Tool Dealer#cmd	4_M_01,{
+cmd_in01,79,182,5	trader	Loja de Utilidades#cmd	4_M_01,{
 OnInit:
 	sellitem Iron_Arrow;
 	sellitem Red_Potion;
@@ -441,7 +441,7 @@ OnInit:
 	sellitem Crap_Shell;
 }
 
-cmd_fild07,257,126,5	trader	Tool Dealer#cmd2	4_M_01,{
+cmd_fild07,257,126,5	trader	Loja de Utilidades#cmd2	4_M_01,{
 OnInit:
 	sellitem Iron_Arrow;
 	sellitem Red_Potion;
@@ -562,7 +562,7 @@ OnInit:
 	sellitem Jujube_Dagger;
 }
 
-ein_in01,189,15,1	trader	Tool Dealer#ein	4_F_EINWOMAN,{
+ein_in01,189,15,1	trader	Loja de Utilidades#ein	4_F_EINWOMAN,{
 OnInit:
 	sellitem Arrow;
 	sellitem Fire_Arrow;
@@ -664,7 +664,7 @@ OnInit:
 	sellitem Zargon;
 }
 
-geffen_in,77,167,0	trader	Tool Dealer#gef	1_F_03,{
+geffen_in,77,167,0	trader	Loja de Utilidades#gef	1_F_03,{
 OnInit:
 	sellitem Arrow;
 	sellitem Spectacles;
@@ -692,7 +692,7 @@ OnInit:
 	sellitem Silver_Robe;
 }
 
-geffen_in,171,123,4	trader	Tool Dealer#gef2	1_M_WIZARD,{
+geffen_in,171,123,4	trader	Loja de Utilidades#gef2	1_M_WIZARD,{
 OnInit:
 	sellitem Empty_Cylinder;
 	sellitem Empty_Potion;
@@ -714,7 +714,7 @@ OnInit:
 //=======================================================
 // Gonryun
 //=======================================================
-gonryun,147,84,5	trader	Tool Dealer#gon	4_M_TWOLDMAN,{
+gonryun,147,84,5	trader	Loja de Utilidades#gon	4_M_TWOLDMAN,{
 OnInit:
 	sellitem Arrow;
 	sellitem Iron_Arrow;
@@ -780,7 +780,7 @@ OnInit:
 	sellitem Pumpkin;
 }
 
-hu_in01,241,368,2	trader	Tool Dealer#hu	1_M_INNKEEPER,{
+hu_in01,241,368,2	trader	Loja de Utilidades#hu	1_M_INNKEEPER,{
 OnInit:
 	sellitem Arrow;
 	sellitem Spectacles;
@@ -796,7 +796,7 @@ OnInit:
 	sellitem Booby_Trap;
 }
 
-hu_in01,252,368,3	trader	Tool Dealer#hu2	4_F_01,{
+hu_in01,252,368,3	trader	Loja de Utilidades#hu2	4_F_01,{
 OnInit:
 	sellitem Blue_Gemstone;
 	sellitem Sunglasses;
@@ -897,7 +897,7 @@ OnInit:
 //=======================================================
 // Juno
 //=======================================================
-yuno,218,97,5	trader	Tool Dealer#yuno	4_M_02,{
+yuno,218,97,5	trader	Loja de Utilidades#yuno	4_M_02,{
 OnInit:
 	sellitem Arrow;
 	sellitem Spectacles;
@@ -912,7 +912,7 @@ OnInit:
 	sellitem Wing_Of_Butterfly;
 }
 
-yuno,226,107,5	trader	Tool Dealer#yuno1	4_M_01,{
+yuno,226,107,5	trader	Loja de Utilidades#yuno1	4_M_01,{
 OnInit:
 	sellitem Scell;
 	sellitem Garlet;
@@ -965,7 +965,7 @@ OnInit:
 	sellitem Silver_Robe;
 }
 
-yuno_in01,25,34,5	trader	Tool Dealer#yuno2	4_M_01,{
+yuno_in01,25,34,5	trader	Loja de Utilidades#yuno2	4_M_01,{
 OnInit:
 	sellitem Arrow;
 	sellitem Spectacles;
@@ -1153,7 +1153,7 @@ OnInit:
 	sellitem Tuxedo;
 }
 
-lhz_in02,31,145,4	trader	Tool Dealer#lhz	4_F_01,{
+lhz_in02,31,145,4	trader	Loja de Utilidades#lhz	4_F_01,{
 OnInit:
 	sellitem Spectacles;
 	sellitem Yellow_Potion;
@@ -1183,7 +1183,7 @@ OnInit:
 	sellitem Granpa_Beard;
 }
 
-lhz_in03,239,106,5	trader	Tool Dealer#lhz2	4_F_EINWOMAN,{
+lhz_in03,239,106,5	trader	Loja de Utilidades#lhz2	4_F_EINWOMAN,{
 OnInit:
 	sellitem Red_Potion;
 	sellitem Orange_Potion;
@@ -1246,7 +1246,7 @@ OnInit:
 	sellitem Chain;
 }
 
-lou_in02,239,176,5	trader	Tool Dealer#lou	4_F_CHNWOMAN,{
+lou_in02,239,176,5	trader	Loja de Utilidades#lou	4_F_CHNWOMAN,{
 OnInit:
 	sellitem Arrow;
 	sellitem Iron_Arrow;
@@ -1267,7 +1267,7 @@ OnInit:
 //=======================================================
 // Lutie
 //=======================================================
-xmas_in,40,38,5	trader	Tool Dealer#xmas	4_M_01,{
+xmas_in,40,38,5	trader	Loja de Utilidades#xmas	4_M_01,{
 OnInit:
 	sellitem Red_Potion;
 	sellitem Orange_Potion;
@@ -1328,7 +1328,7 @@ OnInit:
 	sellitem Venom_Knife;
 }
 
-moc_ruins,91,128,4	trader	Tool Dealer#moc1	4_F_04,{
+moc_ruins,91,128,4	trader	Loja de Utilidades#moc1	4_F_04,{
 OnInit:
 	sellitem Arrow;
 	sellitem Spectacles;
@@ -1344,7 +1344,7 @@ OnInit:
 	sellitem Booby_Trap;
 }
 
-moc_ruins,114,63,6	trader	Tool Dealer#moc2	4W_M_03,{
+moc_ruins,114,63,6	trader	Loja de Utilidades#moc2	4W_M_03,{
 OnInit:
 	sellitem Arrow;
 	sellitem Spectacles;
@@ -1492,7 +1492,7 @@ OnInit:
 //=======================================================
 // Moscovia
 //=======================================================
-mosk_in,21,254,5	trader	Tool Dealer#mosk	4_M_RUSMAN2,{
+mosk_in,21,254,5	trader	Loja de Utilidades#mosk	4_M_RUSMAN2,{
 OnInit:
 	sellitem Spectacles;
 	sellitem Red_Potion;
@@ -1574,7 +1574,7 @@ OnInit:
 	sellitem Manteau;
 }
 
-nif_in,145,23,1	trader	Tool Dealer#nif	4_NFCOFFIN,{
+nif_in,145,23,1	trader	Loja de Utilidades#nif	4_NFCOFFIN,{
 OnInit:
 	sellitem Pumpkin;
 	sellitem Pumpkin_Head;
@@ -1639,7 +1639,7 @@ OnInit:
 	sellitem Novice_Armlet;
 }
 
-payon_in01,5,49,7	trader	Tool Dealer#pay	4_M_ORIENT01,{
+payon_in01,5,49,7	trader	Loja de Utilidades#pay	4_M_ORIENT01,{
 OnInit:
 	sellitem Arrow;
 	sellitem Spectacles;
@@ -1655,7 +1655,7 @@ OnInit:
 	sellitem Booby_Trap;
 }
 
-payon_in02,87,34,0	trader	Tool Dealer#pay2	1_F_ORIENT_01,{
+payon_in02,87,34,0	trader	Loja de Utilidades#pay2	1_F_ORIENT_01,{
 OnInit:
 	sellitem Arrow;
 	sellitem Silver_Arrow;
@@ -1672,7 +1672,7 @@ OnInit:
 	sellitem Booby_Trap;
 }
 
-payon,159,96,4	trader	Tool Dealer#pay3	4_M_ORIENT01,{
+payon,159,96,4	trader	Loja de Utilidades#pay3	4_M_ORIENT01,{
 OnInit:
 	sellitem Arrow;
 	sellitem Red_Potion;
@@ -1800,7 +1800,7 @@ OnInit:
 	sellitem Chain;
 }
 
-prt_fild05,290,221,2	trader	Tool Dealer#prt	4_M_01,{
+prt_fild05,290,221,2	trader	Loja de Utilidades#prt	4_M_01,{
 OnInit:
 	sellitem Arrow;
 	sellitem Spectacles;
@@ -1821,7 +1821,7 @@ OnInit:
 	sellitem Tuxedo;
 }
 
-prt_in,126,76,0	trader	Tool Dealer#prt1	1_M_INNKEEPER,{
+prt_in,126,76,0	trader	Loja de Utilidades#prt1	1_M_INNKEEPER,{
 OnInit:
 	sellitem Spectacles;
 	sellitem Arrow;
@@ -1927,7 +1927,7 @@ OnInit:
 	sellitem Novice_Armlet;
 }
 
-ra_in01,257,269,3	trader	Tool Dealer#ra	4_F_SHABBY,{
+ra_in01,257,269,3	trader	Loja de Utilidades#ra	4_F_SHABBY,{
 OnInit:
 	sellitem Red_Potion;
 	sellitem Orange_Potion;
@@ -1979,7 +1979,7 @@ OnInit:
 //=======================================================
 // Turtle Island
 //=======================================================
-tur_dun01,158,54,6	trader	Tool Dealer#tu	4W_M_03,{
+tur_dun01,158,54,6	trader	Loja de Utilidades#tu	4W_M_03,{
 OnInit:
 	sellitem Arrow;
 	sellitem Red_Potion;
@@ -1998,7 +1998,7 @@ OnInit:
 //=======================================================
 // Umbala
 //=======================================================
-um_in,104,124,3	trader	Tool Dealer#um	4_M_UMOLDMAN,{
+um_in,104,124,3	trader	Loja de Utilidades#um	4_M_UMOLDMAN,{
 OnInit:
 	sellitem Apple;
 	sellitem Carrot;
@@ -2066,7 +2066,7 @@ OnInit:
 	sellitem Novice_Armlet;
 }
 
-ve_in,243,303,5	trader	Tool Dealer#ve	4_M_DESERT,{
+ve_in,243,303,5	trader	Loja de Utilidades#ve	4_M_DESERT,{
 OnInit:
 	sellitem Red_Potion;
 	sellitem Orange_Potion;
@@ -2251,5 +2251,5 @@ OnInit:
 //= 1.9 Uncommented Homunculus shop, since Homunculus is working on trunk now. [Evera]
 //= 1.9a Pet Merchant -> Lighthalzen [erKURITA]
 //= 1.9b Added items to Chivas Regal
-//= 1.9c Slight update for Rachel shop: Tool Dealer -> Fruit Gardener [L0ne_W0lf]
+//= 1.9c Slight update for Rachel shop: Loja de Utilidades -> Fruit Gardener [L0ne_W0lf]
 //============================================================

@@ -6380,8 +6380,8 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 	switch (type) {
 	case SC_STUN:
 		sc_def = st->mdef*100;
-		sc_def2 = st->luk*10 + SCDEF_LVL_DIFF(bl, src, 99, 10);
-		tick_def = st->luk*150;
+		sc_def2 = st->int_*10 + SCDEF_LVL_DIFF(bl, src, 99, 10);
+		tick_def = st->int_*32;
 		break;
 	case SC_POISON:
 	case SC_DPOISON:
@@ -6448,7 +6448,7 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 	case SC_FREEZE:
 		sc_def = st->mdef*100;
 		sc_def2 = st->luk*10 + SCDEF_LVL_DIFF(bl, src, 99, 10);
-		tick_def = st->luk*32;
+		tick_def = st->luk*26 + st->mdef*21;
 		break;
 		//Tentativa 1 0%
 		/*sc_def = st->mdef*100;

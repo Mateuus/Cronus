@@ -1,581 +1,219 @@
-//###############################################################################################
-//######### NPC Desenvolvido por Odiney Kudelski Michalzeszen™ ##################################
-//############# ©Copy Saga Brasil Ragnarok Online ###############################################
-//################# Não retire os créditos, Modifiequem e adicione o nome de quem modificou. ####
-//#### Todos os direitos reservados® ####### Version 2.0 ########################################
-//############################################################################################### 
+//TABELA SQL: ALTER TABLE `login` ADD `poringsorte` INT( 11 ) NOT NULL DEFAULT '0';
 
 
 
-prontera,162,183,3	script	Eventos	893,{
-//Variaveis
-set .@npc$,"^00ff00EVENT POINTS^000000";
+prontera,153,179,3	script	Poring da Sorte [Event]	948,{
+//query_sql "SELECT `poringsorte` FROM `login` WHERE `account_id` = '"+getcharid(3)+"'", .@pontos;
 
-		if(getgmlevel() >= 90 ){ goto L_GM;} // Se for GM vai ao menu de configuração
-		if($ACCID == getcharid(3)) {goto L_REC; } //Se o GM der pontos ao player
+if(getgroupid() >= 80) goto ADM;
+if(.@pontos == 0) end;
+if(.@pontos <= $acess) goto sempontos;
 
-	if(!#EvPoints){
-		mes .@npc$;
-		mes "Você não tem pontos de eventos!";
-		mes "Gostaria de ver, os prêmios de eventos?";
-			if(select("Sim","não") == 2){ goto L_END; }
-			mes "^ff0000Ok. Vamos la.";
-			next;
-			
-			L_CUST:
-			mes .@npc$;
-			if(!$EvItem_01){ goto L_NCAD; }
-			mes "Veja os prêmios para quem participa de eventos no SAGA BRO!";
-			mes "^5C58FF||^000000 = Nome dos prêmios!";
-			mes "^F32420||^000000 = Pontos necessarios para ter!";
-			mes "_________________________________";
-			mes "^5C58FF"+getitemname($EvItem_01)+"^000000 - ^F32420"+$pontos1+"^000000";
-			mes "^5C58FF"+getitemname($EvItem_02)+"^000000 - ^F32420"+$pontos2+"^000000";
-			mes "^5C58FF"+getitemname($EvItem_03)+"^000000 - ^F32420"+$pontos3+"^000000";
-			mes "^5C58FF"+getitemname($EvItem_04)+"^000000 - ^F32420"+$pontos4+"^000000";
-			mes "^5C58FF"+getitemname($EvItem_05)+"^000000 - ^F32420"+$pontos5+"^000000";
-			mes "^5C58FF"+getitemname($EvItem_06)+"^000000 - ^F32420"+$pontos6+"^000000";
-			mes "^5C58FF"+getitemname($EvItem_07)+"^000000 - ^F32420"+$pontos7+"^000000";
-			mes "^5C58FF"+getitemname($EvItem_08)+"^000000 - ^F32420"+$pontos8+"^000000";
-			mes "^5C58FF"+getitemname($EvItem_09)+"^000000 - ^F32420"+$pontos9+"^000000";
-			mes "^5C58FF"+getitemname($EvItem_10)+"^000000 - ^F32420"+$pontos0+"^000000";
-			close;
-		
-	}
-	
-			mes .@npc$;
-			mes "Olá "+strcharinfo(0);
-			mes "Você tem ^BB58CF"+#EvPoints+"^000000 EventPoints";
-			next;
-			
-			mes .@npc$;
-			mes "Gostaria de trocar seus EventPoints?";
-			next;
-			if(select("- Quero trocar","- Agora não obrigado")== 2){ goto L_END; }
-					
-					if(!$EvItem_01){ goto L_NCAD; }
-					switch(select(
-						"- "+getitemname($EvItem_01)+" - ^F32420"+$pontos1+"^000000",
-						"- "+getitemname($EvItem_02)+" - ^F32420"+$pontos2+"^000000",
-						"- "+getitemname($EvItem_03)+" - ^F32420"+$pontos3+"^000000",
-						"- "+getitemname($EvItem_04)+" - ^F32420"+$pontos4+"^000000",
-						"- "+getitemname($EvItem_05)+" - ^F32420"+$pontos5+"^000000",
-						"- "+getitemname($EvItem_06)+" - ^F32420"+$pontos6+"^000000",
-						"- "+getitemname($EvItem_07)+" - ^F32420"+$pontos7+"^000000",
-						"- "+getitemname($EvItem_08)+" - ^F32420"+$pontos8+"^000000",
-						"- "+getitemname($EvItem_09)+" - ^F32420"+$pontos9+"^000000",
-						"- "+getitemname($EvItem_10)+" - ^F32420"+$pontos0+"^000000",
-						"- CANCELA POR ENQUANTO, DEPOIS EU VOLTO!"
-					)){
-						case 1:
-							mes .@npc$;
-							mes "Tem certeza que quer trocar... Seus pontos serao descontados!";
-							next;
-							if(select("- Vou trocar","- Vou pensar um pouco")== 2){goto L_END; }
-														
-							if(#EvPoints < $pontos1){
-							goto L_NTEM; 
-							}else{
-							mes .@npc$;
-							getitem $EvItem_01,1;
-							mes .@npc$;
-							mes "Parabéns!!! Você acaba de ganhar";
-							mes "==> "+getitemname($EvItem_01)+"...";
-							mes "Continue participando!";
-							set #EvPoints,#EvPoints-$pontos1;
-							close;
-							
-							}
-							
-						case 2:
-							mes .@npc$;
-							mes "Tem certeza que quer trocar... Seus pontos serao descontados!";
-							next;
-							if(select("- Vou trocar","- Vou pensar um pouco")== 2){goto L_END; }
-							
-							
-							mes .@npc$;
-							if(#EvPoints < $pontos2){
-							goto L_NTEM; 
-							}else{
-							getitem $EvItem_02,1;
-							mes .@npc$;
-							mes "Parabéns!!! Você acaba de ganhar";
-							mes "==> "+getitemname($EvItem_02)+"...";
-							mes "Continue participando!";
-							set #EvPoints,#EvPoints-$pontos2;
-							close;
-							}
-							
-						case 3:
-							mes .@npc$;
-							mes "Tem certeza que quer trocar... Seus pontos serao descontados!";
-							next;
-							if(select("- Vou trocar","- Vou pensar um pouco")== 2){goto L_END; }
-							
-							
-							mes .@npc$;
-							if(#EvPoints < $pontos3){
-							goto L_NTEM; 
-							}else{
-							getitem $EvItem_03,1;
-							mes .@npc$;
-							mes "Parabéns!!! Você acaba de ganhar";
-							mes "==> "+getitemname($EvItem_03)+"...";
-							mes "Continue participando!";
-							set #EvPoints,#EvPoints-$pontos3;
-							close;
-							}
-							
-						case 4:
-							mes .@npc$;
-							mes "Tem certeza que quer trocar... Seus pontos serao descontados!";
-							next;
-							if(select("- Vou trocar","- Vou pensar um pouco")== 2){goto L_END; }
-							
-							
-							mes .@npc$;
-							if(#EvPoints < $pontos4){
-							goto L_NTEM; 
-							}else{
-							getitem $EvItem_04,1;
-							mes .@npc$;
-							mes "Parabéns!!! Você acaba de ganhar";
-							mes "==> "+getitemname($EvItem_04)+"...";
-							mes "Continue participando!";
-							set #EvPoints,#EvPoints-$pontos4;
-							close;
-							}
-							
-						case 5:
-							mes .@npc$;
-							mes "Tem certeza que quer trocar... Seus pontos serao descontados!";
-							next;
-							if(select("- Vou trocar","- Vou pensar um pouco")== 2){goto L_END; }
-							
-							
-							mes .@npc$;
-							if(#EvPoints < $pontos5){
-							goto L_NTEM; 
-							}else{
-							getitem $EvItem_05,1;
-							mes .@npc$;
-							mes "Parabéns!!! Você acaba de ganhar";
-							mes "==> "+getitemname($EvItem_05)+"...";
-							mes "Continue participando!";
-							set #EvPoints,#EvPoints-$pontos5;
-							close;
-							}
-							
-						case 6:
-							mes .@npc$;
-							mes "Tem certeza que quer trocar... Seus pontos serao descontados!";
-							next;
-							if(select("- Vou trocar","- Vou pensar um pouco")== 2){goto L_END; }
-							
-							mes .@npc$;
-							if(#EvPoints < $pontos6){
-							goto L_NTEM; 
-							}else{
-							getitem $EvItem_06,1;
-							mes .@npc$;
-							mes "Parabéns!!! Você acaba de ganhar";
-							mes "==> "+getitemname($EvItem_06)+"...";
-							mes "Continue participando!";
-							set #EvPoints,#EvPoints-$pontos6;
-							close;
-							}
-							
-						case 7:
-							mes .@npc$;
-							mes "Tem certeza que quer trocar... Seus pontos serao descontados!";
-							next;
-							if(select("- Vou trocar","- Vou pensar um pouco")== 2){goto L_END; }
-							
-							mes .@npc$;
-							if(#EvPoints < $pontos7){
-							goto L_NTEM; 
-							}else{
-							getitem $EvItem_07,1;
-							mes .@npc$;
-							mes "Parabéns!!! Você acaba de ganhar";
-							mes "==> "+getitemname($EvItem_07)+"...";
-							mes "Continue participando!";
-							set #EvPoints,#EvPoints-$pontos7;
-							close;
-							}
-							
-						case 8:
-							mes .@npc$;
-							mes "Tem certeza que quer trocar... Seus pontos serao descontados!";
-							next;
-							if(select("- Vou trocar","- Vou pensar um pouco")== 2){goto L_END; }
-							
-							mes .@npc$;
-							if(#EvPoints < $pontos8){
-							goto L_NTEM; 
-							}else{
-							getitem $EvItem_08,1;
-							mes .@npc$;
-							mes "Parabéns!!! Você acaba de ganhar";
-							mes "==> "+getitemname($EvItem_08)+"...";
-							mes "Continue participando!";
-							set #EvPoints,#EvPoints-$pontos8;
-							close;
-							}
-							
-						case 9:
-							mes .@npc$;
-							mes "Tem certeza que quer trocar... Seus pontos serao descontados!";
-							next;
-							if(select("- Vou trocar","- Vou pensar um pouco")== 2){goto L_END; }
-							
-							mes .@npc$;
-							if(#EvPoints < $pontos9){
-							goto L_NTEM; 
-							}else{
-							getitem $EvItem_09,1;
-							mes .@npc$;
-							mes "Parabéns!!! Você acaba de ganhar";
-							mes "==> "+getitemname($EvItem_09)+"...";
-							mes "Continue participando!";
-							set #EvPoints,#EvPoints-$pontos9;
-							close;
-							}
-							
-						case 10:
-							mes .@npc$;
-							mes "Tem certeza que quer trocar... Seus pontos serao descontados!";
-							next;
-							if(select("- Vou trocar","- Vou pensar um pouco")== 2){goto L_END; }
-							
-							mes .@npc$;
-							if(#EvPoints < $pontos0){
-							goto L_NTEM; 
-							}else{
-							getitem $EvItem_10,1;
-							mes .@npc$;
-							mes "Parabéns!!! Você acaba de ganhar";
-							mes "==> "+getitemname($EvItem_10)+"...";
-							mes "Continue participando!";
-							set #EvPoints,#EvPoints-$pontos0;
-							close;
-							}
-							
-						case 11:
-						goto L_END;
-						end;
-						
-					}
-				
-			
-			L_NTEM:
-			mes "Você não tem pontos para trocar por este item!";
-			close;
 
-			L_REC:
-			mes .@npc$;
-			mes "Você acaba de receber ^BB58CF"+$gmPoints+"^000000 EventPoints";
-			set #EvPoints,#EvPoints+$gmPoints;
-			set $ACCID,0;
-			set $gmPoints,0;
-			mes "Você tem ^BB58CF"+#EvPoints+"^000000 EventPoints.";
-			close;
+Jogador:
+set .nome$,"[^FFD700Sorte Premiada^000000]";
 
-			
-			L_END:
-			mes .@npc$;
-			mes "Sempre teremos eventos.";
-			mes "Participe e garanta seus prêmios!";
-			close;
-			
-			
-			L_NCAD:
-			mes "Estou fazendo manuntencao nos prêmios por enquanto.";
-			mes "Obrigado pela visita!";
-			close;
-			
-			
-//////ESTA AREA PARA CADASTRO DOS ITENS PARA O GM OU ADM
+    mes .nome$;
+    mes "Olá ^FF4500"+strcharinfo(0)+"^000000, você tem "+ .@pontos +" pontos, o que deseja fazer?";
+    switch(select("Entrar no Evento","Trocar pontos Por ^6495ED"+ getitemname(@getitem)+ "^000000","Ver meus Pontos","Nada")){
 
-			L_GM:
-			mes .@npc$;
-			mes "Aqui você vai cadatrar e editar os itens";
-			next;
-			switch(select("- Cadastrar","- Editar","- Ver os itens")){
-				case 1:
-					mes .@npc$;
-					mes "Digite Somente o ID do item 1.";
-					input $EvItem_01;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 1.";
-					input $pontos1;
-					next;
-					if(select("- SIM","- não")== 2){goto L_CUST;}
-					
-					mes .@npc$;
-					mes "Digite Somente o ID do item 2.";
-					input $EvItem_02;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 2.";
-					input $pontos2;
-					next;
-					if(select("- SIM","- não")== 2){goto L_CUST;}
-					
-					mes .@npc$;
-					mes "Digite Somente o ID do item 3.";
-					input $EvItem_03;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 3.";
-					input $pontos3;
-					next;
-					if(select("- SIM","- não")== 2){goto L_CUST;}
-					
-					mes .@npc$;
-					mes "Digite Somente o ID do item 4.";
-					input $EvItem_04;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 4.";
-					input $pontos4;
-					next;
-					if(select("- SIM","- não")== 2){goto L_CUST;}
-					
-					mes .@npc$;
-					mes "Digite Somente o ID do item 5.";
-					input $EvItem_05;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 5.";
-					input $pontos5;
-					next;
-					if(select("- SIM","- não")== 2){goto L_CUST;}
-					
-					mes .@npc$;
-					mes "Digite Somente o ID do item 6.";
-					input $EvItem_06;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 6.";
-					input $pontos6;
-					next;
-					if(select("- SIM","- não")== 2){goto L_CUST;}
-					
-					mes .@npc$;
-					mes "Digite Somente o ID do item 7.";
-					input $EvItem_07;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 7.";
-					input $pontos7;
-					next;
-					if(select("- SIM","- não")== 2){goto L_CUST;}
-					
-					mes .@npc$;
-					mes "Digite Somente o ID do item 8.";
-					input $EvItem_08;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 8.";
-					input $pontos8;
-					next;
-					if(select("- SIM","- não")== 2){goto L_CUST;}
-					
-					mes .@npc$;
-					mes "Digite Somente o ID do item 9.";
-					input $EvItem_09;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 9.";
-					input $pontos9;
-					next;
-					if(select("- SIM","- não")== 2){goto L_CUST;}
-					
-					mes .@npc$;
-					mes "Digite Somente o ID do item 10.";
-					input $EvItem_10;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 10.";
-					input $pontos0;
-					next;
-						if(($EvItem_01 != 0) &&
-						($EvItem_02 != 0) &&
-						($EvItem_03 != 0) &&
-						($EvItem_04 != 0) &&
-						($EvItem_05 != 0) &&
-						($EvItem_06 != 0) &&
-						($EvItem_07 != 0) &&
-						($EvItem_08 != 0) &&
-						($EvItem_09 != 0) &&
-						($EvItem_10 != 0)){
-							mes .@npc$;
-							mes "Todos os itens foram cadastrados!!!";
-							mes "Veja os itens e corrija se necessario.";
-							next;
-							goto L_CUST;
-						}
-					
+case 1:
+    next;
+    mes .nome$;
+    if($sd_map == 1){ mes .nome$; mes "^ff6600Ok, boa sorte.^000000"; warp "pvp_y_1-1",0,0; end; }
+    if($sd_map == 0){ mes .nome$; mes "^ff6600O Evento não está aberto. Ele abre a cada meia hora.^000000"; close; }
 
-				case 2:
-				goto L_EDIT;
-				case 3:
-				goto L_CUST;
-			}
-			
-	L_EDIT:
-	mes .@npc$;
-	mes "Escolha o item que quer editar!!!";
-	next;
-	
-	switch(select("01 -"+$EvItem_01+" = "+getitemname($EvItem_01),
-	"02 -"+$EvItem_02+" = "+getitemname($EvItem_02),
-	"03 -"+$EvItem_03+" = "+getitemname($EvItem_03),
-	"04 -"+$EvItem_04+" = "+getitemname($EvItem_04),
-	"05 -"+$EvItem_05+" = "+getitemname($EvItem_05),
-	"06 -"+$EvItem_06+" = "+getitemname($EvItem_06),
-	"07 -"+$EvItem_07+" = "+getitemname($EvItem_07),
-	"08 -"+$EvItem_08+" = "+getitemname($EvItem_08),
-	"09 -"+$EvItem_09+" = "+getitemname($EvItem_09),
-	"10 -"+$EvItem_10+" = "+getitemname($EvItem_10))){
-	
-		case 1:
-					mes .@npc$;
-					mes "Digite Somente o ID do item 1.";
-					input $EvItem_01;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 1.";
-					input $pontos1;
-					next;
-					goto L_CUST;
-		case 2:
-					mes .@npc$;
-					mes "Digite Somente o ID do item 2.";
-					input $EvItem_02;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 2.";
-					input $pontos2;
-					next;
-					goto L_CUST;		
-		case 3:
-					mes .@npc$;
-					mes "Digite Somente o ID do item 3.";
-					input $EvItem_03;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 3.";
-					input $pontos3;
-					next;
-					goto L_CUST;		
-		case 4:
-					mes .@npc$;
-					mes "Digite Somente o ID do item 4.";
-					input $EvItem_04;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 4.";
-					input $pontos4;
-					next;
-					goto L_CUST;		
-		case 5:
-					mes .@npc$;
-					mes "Digite Somente o ID do item 5.";
-					input $EvItem_05;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 5.";
-					input $pontos5;
-					next;
-					goto L_CUST;		
-		case 6:
-					mes .@npc$;
-					mes "Digite Somente o ID do item 6.";
-					input $EvItem_06;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 6.";
-					input $pontos6;
-					next;
-					goto L_CUST;		
-		case 7:
-					mes .@npc$;
-					mes "Digite Somente o ID do item 7.";
-					input $EvItem_07;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 7.";
-					input $pontos7;
-					next;
-					goto L_CUST;		
-		case 8:
-					mes .@npc$;
-					mes "Digite Somente o ID do item 8.";
-					input $EvItem_08;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 8.";
-					input $pontos8;
-					next;
-					goto L_CUST;		
-		case 9:
-					mes .@npc$;
-					mes "Digite Somente o ID do item 9.";
-					input $EvItem_09;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 9.";
-					input $pontos9;
-					next;
-					goto L_CUST;
-		case 10:
-					mes .@npc$;
-					mes "Digite Somente o ID do item 10.";
-					input $EvItem_10;
-					next;
-					mes .@npc$;
-					mes "Digite o valor em pontos do item 10.";
-					input $pontos0;
-					next;
-					goto L_CUST;
-	}
-				
-			
-			 
-			
+    if($open == 0) goto aberto;
+    close;
+
+    aberto:
+    next;
+    mes .nome$;
+    mes "Bom evento";
+    next;
+    warp "pvp_y_1-1",0,0;
+    close;
+
+case 2:
+        next;
+        mes .nome$;
+        mes "Você deseja trocar seus pontos por "+ $qtd +"x ^6495ED"+ getitemname($getitem)+ "^000000, cada item desse lhe custará " + $pts + " pontos.";
+        if(select("Sim","Não")==2) close;
+        next;
+        mes .nome$;
+        mes "Ok, você está ciente disso, agora digite quantas vezes deseja pegar este item";
+        input @vezes;
+        next;
+        mes .nome$;
+        setarray $vezes[0],@vezes;
+
+        if(.@pontos << $pts*$vezes){
+        mes "Você não tem pontos para retirar essa quantia de ^6495ED"+ getitemname($getitem)+ "^000000.";
+        close;
+        }
+
+        next;
+        mes .nome$;
+        mes "Essa compra lhe custará "+ $pts*$vezes +" pontos.";
+        mes "Muito Bem aqui está seu premio, bom jogo!";
+        close2;
+        //query_sql "UPDATE `login` SET `poringsorte` = `poringsorte` -"+ $vezes*$pts +" WHERE `account_id`="+getcharid(3)+"";
+        getitem @getitem , $qtd*$vezes;
+        end;
+
+
+case 3:
+    next;
+    mes .nome$;
+    mes "Você possui "+ .@pontos +" pontos";
+    close;
+
+case 4:
+    next;
+    mes .nome$;
+    mes "Até a proxima";
+    close;
+
+sempontos:
+    mes .nome$;
+    mes "Desculpe, mas a quantidade necessária para acessar o npc é "+ $acess +".";
+    mes "Volte com mais pontos";
+    close;
+
+
+ADM:
+    mes .nome$;
+    mes "Olá ^FF4500"+strcharinfo(0)+"^000000 o que deseja fazer ?";
+    switch(select( "Entrar no evento","Mudar Premio","Ver Premio","Ir para modo Player","Quantidade de Pontos para Acesso")){
+
+
+
+case 1:
+    next;
+    if($sd_map == 1){ mes .nome$; mes "^ff6600bom evento.^000000"; warp "pvp_y_1-1",0,0; end; }
+    if($sd_map == 0){ mes .nome$; mes "^ff6600O evento Poring da Sorte não está aberto. Ele abre a cada meia hora.^000000"; close; }
+    mes .nome$;
+    mes "Bom evento";
+    next;
+    warp "pvp_y_1-1",0,0;
+    close;
+
+case 2:
+    mes .nome$;
+    mes "Digite o id do Premio desejado";
+    input @getitem; //id do item
+    setarray $getitem[0],@getitem;
+    next;
+    mes "O premio foi modificado para "+ getitemname($getitem) +".";
+    next;
+    mes .nome$;
+    mes "Selecione a quantidade deste item";
+    input @qtd;
+    setarray $qtd[0],@qtd;
+    next;
+    mes .nome$;
+    mes "Agora selecione a quantidade de pontos necessários para a compra desse item";
+    input @pts;
+    setarray $pts[0],@pts;
+    next;
+    mes .nome$;
+    mes "Ok, o premio ficou da seguinte forma:";
+    mes "^006400"+ @qtd +"x^000000 ^FF1493"+ getitemname($getitem) +"^000000 por ^FF0000"+ @pts +"^000000 pontos!";
+    close;
+
+case 3:
+    next;
+    mes .nome$;
+    mes "^006400"+ @qtd +"x^000000 ^FF1493"+ getitemname($getitem) +"^000000 por ^FF0000"+ @pts +"^000000 pontos!";
+    close;
+
+case 4:
+    next;
+    goto Jogador;
+    close;
+
+case 5:
+    next;
+    mes .nome$;
+    mes "Digite uma quantidade de pontos necessária para poder acessar o script";
+    input @acess;
+    setarray $acess[0],@acess;
+    close;
 
 }
-
--	script	evento	-1,{
-
-OnWhisperGlobal:
-
-	if(@whispervar0$ == "pontos"){
-		if(getgmlevel() < 30) goto LCLOSE;
-		mes "DIGITE O ACCOUNT_ID do PLAYER!";
-		mes "EM SEGUIDA COLOQUE QUANTOS PONTOS VAI DAR A ELE!";
-		input $ACCID;
-		input $gmPoints;
-			if($gmPoints > 20){
-			mes "Você so pode dar no maximo 20 pontos!";
-				MENOR:
-				input $gmPoints;
-				if($gmPoints > 20){
-					mes "Você so pode dar no maximo 20 pontos!";
-					goto MENOR; 
-				}else{ close; }
-			}else{
-				close;
-			}
-			
-			LCLOSE:
-			dispbottom "Você não é GM!!!";
-			end;
-							
-	}
-	end;
 }
+}
+
+
+pvp_y_1-1,76,110,5	script	SorteHide	-1,{
+
+    OnClock0000: callsub OnCalll;
+    OnClock0200: callsub OnCalll;
+    OnClock0400: callsub OnCalll;
+    OnClock0600: callsub OnCalll;
+    OnClock0800: callsub OnCalll;
+    OnClock1000: callsub OnCalll;
+    OnClock1200: callsub OnCalll;
+    OnClock1400: callsub OnCalll;
+    OnClock1515: callsub OnCalll;
+    OnClock1800: callsub OnCalll;
+    OnClock2000: callsub OnCalll;
+    OnClock2200: callsub OnCalll;
+
+
+OnCalll:
+announce "O Evento Poring da Sorte está aberto, e em 5 minutos ele começará!",8;
+initnpctimer; set $sd_map,1; set $status,0; end;
+
+    OnTimer60000:    announce "O Evento Poring da Sorte está aberto, e em 4 minutos ele começará!",8;    end;
+    OnTimer90000:    announce "O Evento Poring da Sorte está aberto, e em 3 minutos ele começará!",8;    end;
+    OnTimer120000:    announce "O Evento Poring da Sorte está aberto, e em 2 minutos ele começará!",8;    end;
+    OnTimer150000:    announce "O Evento Poring da Sorte está aberto, e em 1 minuto ele começará!",8;    end;
+    OnTimer180000:    announce "O Evento Poring da Sorte começou (100 porings de 1 ponto foi solto) !",8;
+    set $sd_map,0; set $mob,100;
+    monster "pvp_y_1-1",0,0,"Poring da Sorte",1002,100,"SorteHide::OnMobMorte"; end;
+
+            OnMobMorte: if(status ==1) end; set $mob,$mob-1;
+            //query_sql "UPDATE `login` SET `poringsorte` = `poringsorte` +1 WHERE `account_id`="+getcharid(3)+"";
+            if($mob == 50) mapannounce "pvp_y_1-1","Faltam 50 porings para começar o 2º round",8;
+            if($mob == 25) mapannounce "pvp_y_1-1","Faltam 25 porings para começar o 2º round",8;
+            if($mob == 0) mapannounce "pvp_y_1-1","Todos os porings de 1 ponto foram mortos, começou o 2º round",8;
+            if($mob == 0) goto OnSorte02; end;
+
+                OnSorte02: if(status ==1) end; set $mob,50;
+                monster "pvp_y_1-1",0,0,"Poring da Sorte",1002,50,"SorteHide::OnMobMorte2"; end;
+
+                    OnMobMorte2: if(status ==1) end; set $mob,$mob-1;
+                    //query_sql "UPDATE `login` SET `poringsorte` = `poringsorte` +5 WHERE `account_id`="+getcharid(3)+"";
+                    if($mob == 25) mapannounce "pvp_y_1-1","Faltam 25 porings para começar o 3º round",8;
+                    if($mob == 5) mapannounce "pvp_y_1-1","Faltam 5 porings para começar o 3º round",8;
+                    if($mob == 0) mapannounce "pvp_y_1-1","Todosm os porings de 5 pontos forão mortos, começou o 3º round",8;
+                    if($mob == 0) goto OnSorte03; end;
+
+                    OnSorte03: if(status ==1) end; set $mob,25;
+                    monster "pvp_y_1-1",0,0,"Poring da Sorte",1002,25,"SorteHide::OnMobMorte3"; end;
+
+                        OnMobMorte3: set $mob,$mob-1;
+                       // query_sql "UPDATE `login` SET `poringsorte` = `poringsorte` +15 WHERE `account_id`="+getcharid(3)+"";
+                        if($mob == 10) mapannounce "pvp_y_1-1","Faltam 10 porings para começar o 4º round",8;
+                        if($mob == 5) mapannounce "pvp_y_1-1","Faltam 5 porings para começar o 3º round",8;
+                        if($mob == 0) mapannounce "pvp_y_1-1","Todos os porings de 15 pontos foram mortos, começou o 3º round",8;
+                        if($mob == 0) goto OnSorte04; end;
+
+                            OnSorte04: set $mob,1;
+                            monster "pvp_y_1-1",0,0,"Poring da Sorte",1002,1,"SorteHide::OnMobMorte4"; end;
+
+                                OnMobMorte4: set $mob,$mob-1;
+                               // query_sql "UPDATE `login` SET `poringsorte` = `poringsorte` +100 WHERE `account_id`="+getcharid(3)+"";
+                                announce "pvp_y_1-1","o Player "+strcharinfo(0)+" Achou o Poring de 100 pontos. Parabéns --- O evento Terminou !",8; end;
+
+}
+// Map-Flags
+pvp_y_1-1	mapflag	nowarp
+pvp_y_1-1	mapflag	nowarpto
+pvp_y_1-1	mapflag	noteleport
+pvp_y_1-1	mapflag	nosave
+pvp_y_1-1	mapflag	nomemo
+pvp_y_1-1	mapflag	nobranch
+pvp_y_1-1	mapflag	nopenalty
+pvp_y_1-1	mapflag	monster_noteleport

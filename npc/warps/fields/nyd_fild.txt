@@ -1,0 +1,28 @@
+//===== Hercules Script ======================================
+//= A Grande Ferida Portais
+//===== By: ==================================================
+//= Mateuus
+//===== Current Version: =====================================
+//= 1.0
+//===== Description: =========================================
+//= Portais para as Carvernas da Grande Ferida
+//===== Additional Comments: =================================
+//= 1.0 Inicio do Script
+
+//============================================================
+
+nyd_dun01,62,231,0	warp	A Grande Ferida	1,1,spl_fild01,376,65 //A Grande Ferida Entrada spl_fild01
+nyd_dun01,255,142,0	warp	A Grande Ferida#1	1,1,nyd_dun02,62,265 //A Grande Ferida Saida nyd_dun02
+
+nyd_dun02,56,264,0	warp	A Grande Ferida#2	1,1,nyd_dun01,249,143 //A Grande Ferida Saida nyd_dun01
+
+
+nyd_dun02,99,199,0	warp	Ninho do Nidhogg	1,1,1@nyd,32,38 //Ninho do Nidhogg Entrada 2@nyd
+1@nyd,32,34,0	warp	Ninho do Nidhogg#2	1,1,nyd_dun02,96,196 //Ninho do Nidhogg Entrada nyd_dun02
+
+1@nyd,199,322,0	warp	Ninho do Nidhogg#3	1,1,2@nyd,199,11 //Ninho do Nidhogg Entrada 2@nyd
+2@nyd,199,8,0	warp	Ninho do Nidhogg#4	1,1,1@nyd,199,319 //Ninho do Nidhogg Entrada nyd_dun02
+
+
+2@nyd,199,178,0	warp	Ninho do Nidhogg#5	1,1,2@nyd,199,257 //MVP MAPA ENTRADA
+2@nyd,199,253,0	warp	Ninho do Nidhogg#6	1,1,2@nyd,199,174 //MVP MAPA SAIDA

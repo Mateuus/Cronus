@@ -22,7 +22,7 @@ mes "Olá ^CD3333"+strcharinfo(0)+"^000000!";
 mes "Seu passe esta confirmado.";
 mes "Diga-me o que deseja.";
 next;
-menu "- Curar",L_a,"- Encantamentos",L_b,"- Estilista",L_c,"- Removedor de Cartas",L_d,"- Reparador de Equipamentos",L_e,"- Resetador de Pontos",L_f,"- Teleportador VIP",L_g,"- Teleportador WOE",L_h,"- Administração",L_ADM;
+menu "- Curar",L_a,"- Encantamentos",L_b,"- Teleportador",L_g,"- Removedor de Cartas",L_d,"- Reparador de Equipamentos",L_e,"- Resetador de Pontos",L_f,"- Estilista",L_c,"- Teleportador WOE",L_h,"- Administração",L_ADM;
 
 //============================================================================
 //==== CURA
@@ -89,8 +89,8 @@ L_c:
 	mes "O que você deseja?";
 	if (!$DieChanged) {
 		set $@maxstyle, 23;		//== Número Máximo de Cortes de Cabelo (Default: 23)
-		set $@maxcolor, 100;		//== Número Máximo de Cores de Cabelo (Default: 40)
-		set $@maxccolor, 200;		//== Número Máximo de Cores de Roupa (Default: 88)
+		set $@maxcolor, 40;		//== Número Máximo de Cores de Cabelo (Default: 40)
+		set $@maxccolor, 300;		//== Número Máximo de Cores de Roupa (Default: 88)
 		set $@styleprice, 0;	//== Preço da Mudança de Corte (Default: 20000)
 		set $@colorprice, 0;	//== Preço da Mudança de Cor (Default: 10000)
 		set $@ccolorprice, 0;	//== Preço da Mudança de Cor da Roupa (Default: 15000)
@@ -575,46 +575,100 @@ L_f:
 //============================================================================
 
 L_g:
-	mes @npc$;
-	mes "Olá";
-	mes "Seja bem vindo ao meu serviço de";
-	mes "teleporte!!";
-	mes "Esse serviço teleporta qualquer";
-	mes "player ao lugar que queria.";
-	mes "Por favor selecione o serviço:";
-	next;
-	menu	"- Cidades",town,"- Cavernas",dungeon,"- Campos",field;
 
-	town:
-	menu 	"Prontera",wprontera,
-		"Alberta",walberta,
-		"Aldebaran",waldebaran,
-		"Amatsu",wamatsu,
-		"Ayothaya",wayot,
-		"Comodo",wcomodo,
-		"Einbech",weinbech,
-		"Einbroch",weinbroch,
-		"Geffen",wgeffen,
-		"Gonryun",wgonryun,
-		"Hugel",whugel,
-		"Izlude",wizlude,
-		"Jawaii",wjawaii,
-		"Lighthalzen",wlighthalzen,
-		"Louyang",wlouyang,
-		"Lutie",wxmas,	
-		"Morroc",wmorroc,
-		"Ilha Esquecida",wnameless,
-		"Niflheim",wniflheim,
-		"Payon",wpayon,
-		"Moscovia",wmoscovia,
-		"Rachel",wafeltz,
-		"Thor",wthorcamp,
-		"Veins",wveins,
-		"Yuno",wyuno,
-		"Umbala",wumbala;
+set .npcname$,"[^FF8000Teleporter^000000]";
+mes .npcname$;
+mes "Olá ^0000CD"+strcharinfo(0)+"^000000!";
+mes "Seja bem vindo ao Nosso Serviço de Teleporte.";
+mes "";
+mes "Para onde deseja ir hoje?";
+emotion e_no1;
+next;
+menu "Cidades",-,"Carvenas",L_dungeon,"Campos",L_campos;
+next;
+mes .npcname$;
+mes "Por favor";
+mes "Agora Selecione seu Destino.";
+emotion e_hmm;
+next;
+menu  "Prontera ( ^FF0000"+getmapusers("prontera.gat")+" ^000000)",wprontera,
+  "Alberta (^FF0000 "+getmapusers("alberta.gat")+" ^000000)",walberta,
+  "Aldebaran ( ^FF0000"+getmapusers("aldebaran.gat")+" ^000000)",waldebaran,
+  "Amatsu ( ^FF0000"+getmapusers("amatsu.gat")+" ^000000)",wamatsu,
+  "Ayothaya ( ^FF0000"+getmapusers("ayothaya.gat")+" ^000000)",wayothaya,
+  "Comodo ( ^FF0000"+getmapusers("comodo.gat")+" ^000000)",wcomodo,
+  "Einbroch ( ^FF0000"+getmapusers("einbroch.gat")+" ^000000)",weinbroch,
+  "Einbech ( ^FF0000"+getmapusers("einbech.gat")+" ^000000)",weinbech,
+  "Geffen ( ^FF0000"+getmapusers("geffen.gat")+" ^000000)",wgeffen,
+  "Juno ( ^FF0000"+getmapusers("yuno.gat")+" ^000000)",wyuno,
+  "Kunlun ( ^FF0000"+getmapusers("gonryun.gat")+" ^000000)",wgonryun,
+  "Izlude ( ^FF0000"+getmapusers("izlude.gat")+" ^000000)",wizlude,
+  "Louyang ( ^FF0000"+getmapusers("louyang.gat")+" ^000000)",wlouyang,
+  "Lutie ( ^FF0000"+getmapusers("xmas.gat")+" ^000000)",wxmas,
+  "Morroc ( ^FF0000"+getmapusers("morocc.gat")+" ^000000)",wmorroc,
+  "Niflheim ( ^FF0000"+getmapusers("niflheim.gat")+" ^000000)",wniflheim,
+  "Payon ( ^FF0000"+getmapusers("payon.gat")+" ^000000)",wpayon,
+  "Umbala ( ^FF0000"+getmapusers("umbala.gat")+" ^000000)",wumbala,
+  "Lighthalzen ( ^FF0000"+getmapusers("lighthalzen.gat")+" ^000000)",wlighthalzen,
+  "Hugel ( ^FF0000"+getmapusers("hugel.gat")+" ^000000)",whugel,
+  "Rachel ( ^FF0000"+getmapusers("rachel.gat")+" ^000000)",wrachel,
+  "Veins ( ^FF0000"+getmapusers("veins.gat")+" ^000000)",wveins,
+  "Ilha Esquecida ( ^FF0000"+getmapusers("nameless_i.gat")+" ^000000)",wnameless,
+  "Moscóvia ( ^FF0000"+getmapusers("moscovia.gat")+" ^000000)",wmoscovia,
+  "Splendide ( ^FF0000"+getmapusers("splendide.gat")+" ^000000)",wsplendide,
+  "Manuk ( ^FF0000"+getmapusers("manuk.gat")+" ^000000)",wmanuk,
+  "Brasilis ( ^FF0000"+getmapusers("brasilis.gat")+" ^000000)",wbrasilis;
+L_dungeon:
+mes .npcname$;
+mes "Por favor";
+mes "Agora Selecione seu Destino.";
+emotion e_hmm;
+next;
+menu 
+  "A Grande Ferida", nyddun,
+  "Calabouço de Einbech",dein,
+  "Calabouço de Magma",dmag,
+  "Caverna de Comodo",mcomodo,
+  "Caverna de Payon",dpayon,
+  "Caverna de Louyang",dlouy,
+  "Caverna de Geffen",dgeff,
+  "Caverna de Umbala",dumba,
+  "Gefenia",dgef,
+  "Esfinge",dsphinx,
+  "Esgoto de Prontera",dculvert,
+  "Labirinto da Floresta",dlflor,
+  "Fábrica de Brinquedos",dbrinquedos,
+  "Formigueiro Infernal",dant,
+  "Glast Heim",dglast,
+  "Ilha Byalan",dbibilan,
+  "Ilha das Tartarugas",dturtle,
+  "Labirinto de Tatames",damatsu,
+  "Mina de Carvão",dcoal,
+  "Montanhas dos Manuk",montman,
+  "Navio Fantasma",dsunken,
+  "Pirâmide",dpyramids,
+  "Praia das Focas",dfocas,
+  "Poringlândia",dporinglandia,
+  "Torre do Relógio",dclo,
+  "Torre de Thanatos",dtha,
+  "Vila dos Orcs",dorc,
+  "Bio Laboratório de Lighthalzen",dlighthalzen,
+  "O Lago do Abismo",dabbys,
+  "Calabouço de Kunlun",dgonryun,
+  "Desfiladeiro de El Mes",djuperos,
+  "Caverna de Gelo",cavegelo,
+  "Vulcão de Thor",vulcaoth,
+  "Campos de Ayothaya",campayo,
+  "Monastério",monasterio,
+  "Floresta Encantada",floenca;
 
-	field:
-	menu 	"Campos de Amatsu",wamafild,
+L_campos:
+mes .npcname$;
+mes "Por favor";
+mes "Agora Selecione seu Destino.";
+emotion e_hmm;
+next;
+menu            "Campos de Amatsu",wamafild,
 		"Campos de Ayothaya",wayofild,
 		"Campos de Comodo",wcmdfild,
 		"Campos de Einbroch",weinfild,
@@ -636,42 +690,7 @@ L_g:
 		"Campos de Yuno",wyunofild,
 		"Campos de Moscovia",mmoscovia;
 
-	dungeon:
-	menu 	"Caverna Abbey",wabbey,
-		"Ilha do Abismo",wabyss,
-		"Caverna de Amatsu",ama,
-		"Formigueiro Infernal",ant,
-		"Caverna de Comodo",beach,
-		"Caverna de Ayothaya",wayodun,
-		"Caverna de Byalan",byalan,
-		"Torre do Relógio",relogio,
-		"Minas de Carvão",mcarvao,
-		"Esgotos de Prontera",culvert,
-		"Caverna de Einbroch",weindun,
-		"Gefenia",gefenia,
-		"Caverna de Geffen",geffen,
-		"Glast Heim",glast,
-		"Caverna de Gonryun",gon,
-		"Labirintos de Prontera",hidden,
-		"Caverna de Gelo",iced,
-		"Caverna de Juperos",wjuper,
-		"Caverna de Kiel",wkieldun,
-		"Lighthalzen",wlhzdun,
-		"Caverna de Louyang",wloudun,
-		"Caverna de Magma",magma,
-		"Caverna dos Orcs",orc,
-		"Caverna de Payon",payon,
-		"Pirâmides",pyramids,
-		"Santuário de Rachel",rachels,
-		"Esfinge",sphinx,
-		"Navio Fantasma",sunken,
-		"Torre de Thanatos",wthat,
-		"Vulcão de Thor",wthor,
-		"Fábrica de Brinquedos",toy,
-		"Caverna da Tataruga",tartaruga,
-		"Caverna de Umbala",wumdun,
-		"Caverna de Moscovia",dmosk;
-
+// ==============Campos
 
 //-------------------------------
 //          Campos
@@ -878,543 +897,55 @@ L_g:
 	mes @npc$;
 	mes "Por favor selecione o Campo, Você será teleportado para o centro do mapa..";
 	next;
-	menu 	"Campos de Einbroch 1",deinfild1,
-		"Campos de Einbroch 2",deinfild2,
-		"Campos de Einbroch 3",deinfild3,
-		"Campos de Einbroch 4",deinfild4,
-		"Campos de Einbroch 5",deinfild5,
-		"Campos de Einbroch 6",deinfild6,
-		"Campos de Einbroch 7",deinfild7,
-		"Campos de Einbroch 8",deinfild8,
-		"Campos de Einbroch 9",deinfild9,
-		"Campos de Einbroch 10",deinfild10;
+        menu	"Campos de Einbroch 1 ( ^FF0000"+getmapusers("ein_fild01")+"^000000 )",deinfild1,
+                "Campos de Einbroch 2 ( ^FF0000"+getmapusers("ein_fild02")+"^000000 )",deinfild2,
+                "Campos de Einbroch 3 ( ^FF0000"+getmapusers("ein_fild03")+"^000000 )",deinfild3,
+                "Campos de Einbroch 4 ( ^FF0000"+getmapusers("ein_fild04")+"^000000 )",deinfild4,
+                "Campos de Einbroch 5 ( ^FF0000"+getmapusers("ein_fild05")+"^000000 )",deinfild5,
+                "Campos de Einbroch 6 ( ^FF0000"+getmapusers("ein_fild06")+"^000000 )",deinfild6,
+                "Campos de Einbroch 7 ( ^FF0000"+getmapusers("ein_fild07")+"^000000 )",deinfild7,
+                "Campos de Einbroch 8 ( ^FF0000"+getmapusers("ein_fild08")+"^000000 )",deinfild8,
+                "Campos de Einbroch 9 ( ^FF0000"+getmapusers("ein_fild09")+"^000000 )",deinfild9,
+                "Campos de Einbroch 10 ( ^FF0000"+getmapusers("ein_fild10")+"^000000 )",deinfild10;
 
 	wlhzfild:
 	mes @npc$;
 	mes "Por favor selecione o Campo, Você será teleportado para o centro do mapa..";
 	next;
-	menu 	"Campos de Lighthalzen 1",dlhzfild1,
-		"Campos de Lighthalzen 2",dlhzfild2,
-		"Campos de Lighthalzen 3",dlhzfild3;
+	menu 	"Campos de Lighthalzen 1 ( ^FF0000"+getmapusers("lhz_fild01")+"^000000 )",dlhzfild1,
+                "Campos de Lighthalzen 2 ( ^FF0000"+getmapusers("lhz_fild02")+"^000000 )",dlhzfild2,
+                "Campos de Lighthalzen 3 ( ^FF0000"+getmapusers("lhz_fild03")+"^000000 )",dlhzfild3;
 
 	whufild:
 	mes @npc$;
 	mes "Por favor selecione o Campo, Você será teleportado para o centro do mapa..";
 	next;
-	menu 	"Campos de Hugel 1",dhufild1,
-		"Campos de Hugel 2",dhufild2,
-		"Campos de Hugel 3",dhufild3,
-		"Campos de Hugel 4",dhufild4,
-		"Campos de Hugel 5",dhufild5,
-		"Campos de Hugel 6",dhufild6,
-		"Campos de Hugel 7",dhufild7;
+	menu	"Campos de Hugel 1 ( ^FF0000"+getmapusers("hu_fild01")+"^000000 )",dhufild1,
+                "Campos de Hugel 2 ( ^FF0000"+getmapusers("hu_fild02")+"^000000 )",dhufild2,
+                "Campos de Hugel 3 ( ^FF0000"+getmapusers("hu_fild03")+"^000000 )",dhufild3,
+                "Campos de Hugel 4 ( ^FF0000"+getmapusers("hu_fild04")+"^000000 )",dhufild4,
+                "Campos de Hugel 5 ( ^FF0000"+getmapusers("hu_fild05")+"^000000 )",dhufild5,
+                "Campos de Hugel 6 ( ^FF0000"+getmapusers("hu_fild06")+"^000000 )",dhufild6,
+                "Campos de Hugel 7 ( ^FF0000"+getmapusers("hu_fild07")+"^000000 )",dhufild7;
 
 	wveinsfild:
 	mes @npc$;
 	mes "Por favor selecione o Campo, Você será teleportado para o centro do mapa..";
-	next;
-	menu	"Campos de Veins 1",dvfild1,
-		"Campos de Veins 2",dvfild2,
-		"Campos de Veins 3",dvfild3,
-		"Campos de Veins 4",dvfild4,
-		"Campos de Veins 5",dvfild5,
-		"Campos de Veins 6",dvfild6,
-		"Campos de Veins 7",dvfild7;
+	next; 
+	menu	"Campos de Veins 1 ( ^FF0000"+getmapusers("ve_fild01")+"^000000 )",dvfild1,
+                "Campos de Veins 2 ( ^FF0000"+getmapusers("ve_fild02")+"^000000 )",dvfild2,
+                "Campos de Veins 3 ( ^FF0000"+getmapusers("ve_fild03")+"^000000 )",dvfild3,
+                "Campos de Veins 4 ( ^FF0000"+getmapusers("ve_fild04")+"^000000 )",dvfild4,
+                "Campos de Veins 5 ( ^FF0000"+getmapusers("ve_fild05")+"^000000 )",dvfild5,
+                "Campos de Veins 6 ( ^FF0000"+getmapusers("ve_fild06")+"^000000 )",dvfild6,
+                "Campos de Veins 7 ( ^FF0000"+getmapusers("ve_fild07")+"^000000 )",dvfild7;
 
 	mmoscovia:
 	mes @npc$;
 	mes "Por favor selecione o Campo, Você será teleportado para o centro do mapa..";
 	next;
-	menu	"Campos de Moscovia 1",cmoscovia01,
-		"Campos de Moscovia 2",cmoscovia02;
-
-//-------------------------------
-//          Dungeons
-//-------------------------------
-
-	wjuper:
-	mes @npc$;
-	mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-	next;
-	menu 	"Level 1",djuperos1,
-		"Level 2",djuperos3,
-		"Core",djuperos2;
-
-	wumdun:
-	mes @npc$;
-	mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-	next;
-	menu 	"Carpenter's Shop in the Tree",dumdun1,
-		"Passage to a Foreign World",dumdun2,
-		"Hvergermil's Fountain",dyggdrasil1;
-
-	wloudun:
-	mes @npc$;
-	mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-	next;
-	menu 	"The Royal Tomb",dloudun1,
-		"Inside the Royal Tomb",dloudun2,
-		"Suei Long Gon",dloudun3;
-
-	wayodun:
-	mes @npc$;
-	mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-	next;
-	menu 	"Ancient Shrine Maze",dayodun1,
-		"Inside Ancient Shrine",dayodun2;
-
-	weindun:
-	mes @npc$;
-	mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-	next;
-	menu 	"Level 1",deindun1,
-		"Level 2",deindun2;
-
-	wlhzdun:
-	mes @npc$;
-	mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-	next;
-	menu 	"Level 1",dlhzdun1,
-		"Level 2",dlhzdun2,
-		"Level 3",dlhzdun3;
-
-wabyss:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dabyss1,
-	"Level 2",dabyss2,
-	"Level 3",dabyss3;
-
-wthat:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-	next;
-menu 	"Level 1",dthat1,
-	"Level 2",dthat2,
-	"Level 3",dthat3,
-	"Level 4",dthat4,
-	"Level 5",dthat5,
-	"Level 6",dthat6,
-	"Level 7",dthat7,
-	"Level 8",dthat8,
-	"Level 9",dthat9,
-	"Level 10",dthat10,
-	"Level 11",dthat11,
-	"Level 12",dthat12;
-
-wkieldun:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dkieldun1,
-	"Level 2",dkieldun2;
-
-ant:
-	mes @npc$;
-	mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-	next;
-menu 	"Level 1",danthell1,
-	"Level 2",danthell2;
-
-beach:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dbeach1,
-	"Level 2",dbeach2,
-	"Level 3",dbeach3;
-
-byalan:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dbyalan1,
-	"Level 2",dbyalan2,
-	"Level 3",dbyalan3,
-	"Level 4",dbyalan4,
-	"Level 5",dbyalan5;
-relogio:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dclock1,
-	"Level 2",dclock2,
-	"Level 3",dclock3,
-	"Level 4",dclock4,
-	"Basement 1",dalde1,
-	"Basement 2",dalde2,
-	"Basement 3",dalde3,
-	"Basement 4",dalde4;
-
-mcarvao:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dcoal1,
-	"Level 2",dcoal2,
-	"Level 3",dcoal3;
-
-culvert:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dculvert1,
-	"Level 2",dculvert2,
-	"Level 3",dculvert3,
-	"Level 4",dculvert4;
-
-geffen:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dgeffen1,
-	"Level 2",dgeffen2,
-	"Level 3",dgeffen3,
-	"Level 4",dgeffen4;
-
-glast:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Entrance",dglastent,
-	"Castle 1",dglastcast1,
-	"Castle 2",dglastcast2,
-	"Chivalry 1",dglastchiv1,
-	"Chivalry 2",dglastchiv2,
-	"Churchyard",dglastyard,
-	"Culvert 1",dglastcul1,
-	"Culvert 2",dglastcul1,
-	"Culvert 3",dglastcul3,
-	"Culvert 4",dglastcul4,
-	"St.Abbey",dglastchur,
-	"Staircase Dungeon",dglaststep,
-	"Underground Cave 1",dglastcave1,
-	"Underground Cave 2",dglastcave2,
-	"Underground Prison 1",dglastpris1,
-	"Underground Prison 2",dglastpris2;
-
-hidden:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dhidden1,
-	"Level 2",dhidden2,
-	"Level 3",dhidden3;
-
-iced:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",diced1,
-	"Level 2",diced2,
-	"Level 3",diced3,
-	"Level 4",diced4;
-
-magma:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dmagma1,
-	"Level 2",dmagma2;
-
-orc:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dorc1,
-	"Level 2",dorc2;
-
-payon:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dpayon1,
-	"Level 2",dpayon2,
-	"Level 3",dpayon3,
-	"Level 4",dpayon4,
-	"Level 5",dpayon5;
-
-pyramids:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dpyramids1,
-	"Level 2",dpyramids2,
-	"Level 3",dpyramids3,
-	"Level 4",dpyramids4,
-	"Basement 1",dpyramidsb1,
-	"Basement 2",dpyramidsb2;
-
-sphinx:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dsphinx1,
-	"Level 2",dsphinx2,
-	"Level 3",dsphinx3,
-	"Level 4",dsphinx4,
-	"Level 5",dsphinx5;
-
-sunken:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dsunken1,
-	"Level 2",dsunken2;
-
-toy:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dtoy1,
-	"Level 2",dtoy2;
-
-tartaruga:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Entranda",dturtleent,
-	"Level 1",dturtle1,
-	"Level 2",dturtle2,
-	"Level 3",dturtle3;
-
-ama:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dama1,
-	"Level 2",dama2,
-	"Level 3",dama3;
-
-gon:
-mes "[BAtendente]";
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dgon1,
-	"Level 2",dgon2,
-	"Level 3",dgon3;
-
-gefenia:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dgefenia1,
-	"Level 2",dgefenia2,
-	"Level 3",dgefenia3,
-	"Level 4",dgefenia4;
-
-wthor:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dthor1,
-	"Level 2",dthor2,
-	"Level 3",dthor3;
-
-rachels:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",drachel1,
-	"Level 2",drachel2,
-	"Level 3",drachel3,
-	"Level 4",drachel4,		
-	"Level 5",drachel5;
-
-wabbey:
-mes @npc$;
-mes "Por favor Selecione o Level, Você será teleportado em instantes.";
-next;
-menu 	"Level 1",dabbey1,
-	"Level 2",dabbey2,
-	"Level 3",dabbey3;
-
-dmosk:
-mes @npc$;
-mes "Por favor selecione o level, Você será teleportado em instantes.";
-next;
-menu	"Level 1",dmosk01,
-	"Level 2",dmosk02,
-	"Level 3",dmosk03;
-
-//-------------------------------
-//          Town Warps
-//-------------------------------
-
-wafeltz:	warp "rachel.gat",130,137;		close;
-walberta:	warp "alberta.gat",28,234;		close;
-waldebaran:	warp "aldebaran.gat",140,131;		close;
-wamatsu:	warp "amatsu.gat",198,84;		close;
-wayot:		warp "ayothaya.gat",150,163;		close;
-wcomodo:	warp "comodo.gat",209,143;		close;
-weinbech:	warp "einbech.gat",70,95;		close;
-weinbroch:	warp "einbroch.gat",64,200;		close;
-whugel:		warp "hugel.gat",96,145;		close;
-wlighthalzen:	warp "lighthalzen.gat",158,92;		close;
-wgonryun:	warp "gonryun.gat",160,121;		close;
-wgeffen:	warp "geffen.gat",119,59;		close;
-wizlude:	warp "izlude.gat",128,114;		close;
-wxmas:		warp "xmas.gat",147,134;		close;
-wjawaii:	warp "jawaii.gat",213,230;		close;
-wmorroc:	warp "morocc.gat",156,93;		close;
-wnameless:	warp	"nameless_n.gat",256,215;	close;
-wniflheim:	warp "niflheim.gat",85,154;		close;
-wpayon:		warp "payon.gat",152,75;		close;
-wprontera:	warp "prontera.gat",155,183;		close;
-wyuno:		warp "yuno.gat",157,51;			close;
-wumbala:	warp "umbala.gat",145,155;		close;
-wlouyang:	warp "louyang.gat",210,108;		close;
-wthorcamp:	warp "thor_camp.gat",254,90;		close;
-wveins:		warp "veins.gat",216,123;		close;
-wmoscovia:	warp	"moscovia",223,184;		close;
-
-//-------------------------------
-//        Dungeon Warps
-//-------------------------------
-
-
-dkieldun1:	warp "kh_dun01.gat",28,226;	close;
-dkieldun2:	warp "kh_dun02.gat",41,198;	close;
-djuperos1:	warp "juperos_01.gat",53,247;	close;
-djuperos3:	warp "juperos_02.gat",37,63;	close;
-djuperos2:	warp "jupe_core.gat",150,285;	close;
-dumdun1:	warp "um_dun01.gat",42,31;	close;
-dumdun2:	warp "um_dun01.gat",48,30;	close;
-dloudun1:	warp "lou_dun01.gat",218,196;	close;
-dloudun2:	warp "lou_dun02.gat",282,20;	close;
-dloudun3:	warp "lou_dun03.gat",165,38;	close;
-dayodun1:	warp "ayo_dun01.gat",275,19;	close;
-dayodun2:	warp "ayo_dun02.gat",24,26;	close;
-deindun1:	warp "ein_dun01.gat",22,14;	close;
-deindun2:	warp "ein_dun02.gat",292,290;	close;
-dlhzdun1:	warp "lhz_dun01.gat",150,288;	close;
-dlhzdun2:	warp "lhz_dun02.gat",150,18;	close;
-dlhzdun3:	warp "lhz_dun03.gat",140,137;	close;
-dabyss1:	warp "abyss_01.gat",192,207;	close;
-dabyss2:	warp "abyss_02.gat",275,270;	close;
-dabyss3:	warp "abyss_03.gat",116,27;	close;
-dthat1:		warp "tha_t01.gat",150,39;	close;
-dthat2:		warp "tha_t02.gat",150,136;	close;
-dthat3:		warp "tha_t03.gat",220,158;	close;
-dthat4:		warp "tha_t04.gat",59,143;	close;
-dthat5:		warp "tha_t05.gat",62,11;	close;
-dthat6:		warp "tha_t06.gat",89,221;	close;
-dthat7:		warp "tha_t07.gat",35,166;	close;
-dthat8:		warp "tha_t08.gat",93,148;	close;
-dthat9:		warp "tha_t09.gat",29,107;	close;
-dthat10:	warp "tha_t10.gat",159,138;	close;
-dthat11:	warp "tha_t11.gat",19,20;	close;
-dthat12:	warp "tha_t12.gat",130,52;	close;
-danthell1:	warp "anthell01.gat",35,262;	close;
-danthell2:	warp "anthell02.gat",168,170;	close;
-dbeach1:	warp "beach_dun.gat",266,67;	close;
-dbeach2:	warp "beach_dun2.gat",255,244;	close;
-dbeach3:	warp "beach_dun3.gat",23,260;	close;
-dbyalan1:	warp "iz_dun00.gat",168,168;	close;
-dbyalan2:	warp "iz_dun01.gat",253,252;	close;
-dbyalan3:	warp "iz_dun02.gat",236,204;	close;
-dbyalan4:	warp "iz_dun03.gat",32,63;	close;
-dbyalan5:	warp "iz_dun04.gat",26,27;	close;
-dalde1:		warp "alde_dun01.gat",297,25;	close;
-dalde2:		warp "alde_dun02.gat",127,169;	close;
-dalde3:		warp "alde_dun03.gat",277,178;	close;
-dalde4:		warp "alde_dun04.gat",268,74;	close;
-dclock1:	warp "c_tower1.gat",199,159;	close;
-dclock2:	warp "c_tower2.gat",148,283;	close;
-dclock3:	warp "c_tower3.gat",65,147;	close;
-dclock4:	warp "c_tower4.gat",56,155;	close;
-dcoal1:		warp "mjo_dun01.gat",52,17;	close;
-dcoal2:		warp "mjo_dun02.gat",381,343;	close;
-dcoal3:		warp "mjo_dun03.gat",302,262;	close;
-dculvert1:	warp "prt_sewb1.gat",131,247;	close;
-dculvert2:	warp "prt_sewb2.gat",19,19;	close;
-dculvert3:	warp "prt_sewb3.gat",180,169;	close;
-dculvert4:	warp "prt_sewb4.gat",100,92;	close;
-dgeffen1:	warp "gef_dun00.gat",104,99;	close;
-dgeffen2:	warp "gef_dun01.gat",115,236;	close;
-dgeffen3:	warp "gef_dun02.gat",106,132;	close;
-dgeffen4:	warp "gef_dun03.gat",203,200;	close;
-dglastent:	warp "glast_01.gat",375,304;	close;
-dglastcast1:	warp "gl_cas01.gat",199,29;	close;
-dglastcast2:	warp "gl_cas02.gat",104,25;	close;
-dglastchiv1:	warp "gl_knt01.gat",150,15;	close;
-dglastchiv2:	warp "gl_knt02.gat",157,287;	close;
-dglastyard:	warp "gl_chyard.gat",147,15;	close;
-dglastcul1:	warp "gl_sew01.gat",258,255;	close;
-dglastcul2:	warp "gl_sew02.gat",108,291;	close;
-dglastcul3:	warp "gl_sew03.gat",171,283;	close;
-dglastcul4:	warp "gl_sew04.gat",68,277;	close;
-dglastchur:	warp "gl_church.gat",156,7;	close;
-dglaststep:	warp "gl_step.gat",12,7;	close;
-dglastcave1:	warp "gl_dun01.gat",133,271;	close;
-dglastcave2:	warp "gl_dun02.gat",224,274;	close;
-dglastpris1:	warp "gl_prison.gat",14,70;	close;
-dglastpris2:	warp "gl_prison1.gat",150,14;	close;
-dhidden1:	warp "prt_maze01.gat",176,7;	close;
-dhidden2:	warp "prt_maze02.gat",94,9;	close;
-dhidden3:	warp "prt_maze03.gat",23,8;	close;
-diced1:		warp "ice_dun01.gat",157,14;	close;
-diced2:		warp "ice_dun02.gat",151,155;	close;
-diced3:		warp "ice_dun03.gat",149,22;	close;
-diced4:		warp "ice_dun04.gat",33,158;	close;
-dmagma1:	warp "mag_dun01.gat",126,68;	close;
-dmagma2:	warp "mag_dun02.gat",47,30;	close;
-dorc1:		warp "orcsdun01.gat",32,170;	close;
-dorc2:		warp "orcsdun02.gat",21,185;	close;
-dpayon1:	warp "pay_dun00.gat",21,183;	close;
-dpayon2:	warp "pay_dun01.gat",19,33;	close;
-dpayon3:	warp "pay_dun02.gat",19,63;	close;
-dpayon4:	warp "pay_dun03.gat",155,159;	close;
-dpayon5:	warp "pay_dun04.gat",201,204;	close;
-dpyramids1:	warp "moc_pryd01.gat",192,9;	close;
-dpyramids2:	warp "moc_pryd02.gat",10,192;	close;
-dpyramids3:	warp "moc_pryd03.gat",100,92;	close;
-dpyramids4:	warp "moc_pryd04.gat",181,11;	close;
-dpyramidsb1:	warp "moc_pryd05.gat",94,96;	close;
-dpyramidsb2:	warp "moc_pryd06.gat",192,8;	close;
-dsphinx1:	warp "in_sphinx1.gat",288,9;	close;
-dsphinx2:	warp "in_sphinx2.gat",149,81;	close;
-dsphinx3:	warp "in_sphinx3.gat",210,54;	close;
-dsphinx4:	warp "in_sphinx4.gat",10,222;	close;
-dsphinx5:	warp "in_sphinx5.gat",100,99;	close;
-dsunken1:	warp "treasure01.gat",69,24;	close;
-dsunken2:	warp "treasure02.gat",102,27;	close;
-dtoy1:		warp "xmas_dun01.gat",205,15;	close;
-dtoy2:		warp "xmas_dun02.gat",129,133;	close;
-dturtleent:	warp "tur_dun01.gat",154,49;	close;
-dturtle1:	warp "tur_dun02.gat",148,261;	close;
-dturtle2:	warp "tur_dun03.gat",132,189;	close;
-dturtle3:	warp "tur_dun04.gat",100,192;	close;
-dama1:		warp "ama_dun01.gat",228,11;	close;
-dama2:		warp "ama_dun02.gat",34,41;	close;
-dama3:		warp "ama_dun03.gat",119,14;	close;
-dgon1:		warp "gon_dun01.gat",153,53;	close;
-dgon2:		warp "gon_dun02.gat",28,113;	close;
-dgon3:		warp "gon_dun03.gat",68,16;	close;
-dgefenia1:	warp "gefenia01.gat",40,103;	close;
-dgefenia2:	warp "gefenia02.gat",203,34;	close;
-dgefenia3:	warp "gefenia03.gat",266,168;	close;
-dgefenia4:	warp "gefenia04.gat",130,272;	close;
-dgldun1:	warp "gld_dun01.gat",119,93;	close;
-dgldun2:	warp "gld_dun02.gat",39,161;	close;
-dgldun3:	warp "gld_dun03.gat",50,44;	close;
-dgldun4:	warp "gld_dun04.gat",116,45;	close;
-casino:		warp "cmd_in02.gat",179,129;	close;
-dthor1:		warp "thor_v01.gat",21,228;	close;
-dthor2:		warp "thor_v02.gat",75,205;	close;
-dthor3:		warp "thor_v03.gat",34,272;	close;
-drachel1:	warp "ra_san01.gat",140,11;	close;
-drachel2:	warp "ra_san02.gat",32,21;	close;
-drachel3:	warp "ra_san03.gat",4,149;	close;
-drachel4:	warp "ra_san04.gat",204,218;	close;
-drachel5:	warp "ra_san05.gat",150,9;	close;
-dabbey1:	warp "abbey01.gat",51,14;	close;
-dabbey2:	warp "abbey02.gat",150,11;	close;
-dabbey3:	warp "abbey03.gat",120,10;	close;
-dmosk01:	warp	"mosk_dun01",0,0;	close;
-dmosk02:	warp	"mosk_dun02",0,0;	close;
-dmosk03:	warp	"mosk_dun03",0,0;	close;
+	menu	"Campos de Moscovia 1 ( ^FF0000"+getmapusers("mosk_fild01")+"^000000 )",cmoscovia01,
+                "Campos de Moscovia 2 ( ^FF0000"+getmapusers("mosk_fild02")+"^000000 )",cmoscovia02;
 
 //-------------------------------
 //         Field Warps
@@ -1568,9 +1099,607 @@ dvfild6:	warp "ve_fild06",150,223;	close;
 dvfild7:	warp "ve_fild07",149,307;	close;
 cmoscovia01:	warp	"mosk_fild01",0,0;	close;
 cmoscovia02:	warp	"mosk_fild02",0,0;	close;	
-cutin "",255;
-close;
 
+
+
+// ==================== Cidades
+walberta: warp "alberta", 27, 236; end;
+waldebaran: warp "aldebaran", 145, 120; end;
+wamatsu: warp "amatsu", 197, 86; end;
+wcomodo:    warp "comodo", 188, 161;    end;
+weinbroch:    warp "einbroch", 64,  200; end;
+weinbech:    warp "einbech", 70,  95; end;
+wgeffen: warp "geffen", 119, 66; end;
+wgonryun: warp "gonryun", 150,    130;  end;
+wizlude: warp "izlude", 128, 111; end;
+wmorroc: warp "morocc", 159, 93; end;
+wprontera: warp "prontera", 156, 187; end;
+wpayon:  warp "payon", 152, 75; end;
+wumbala: warp "umbala", 130,    130;  end;
+wxmas:  warp "xmas", 148, 131; end;
+wyuno:    warp "yuno", 160, 168;    end;
+wniflheim: warp "niflheim", 35, 161; end;
+wlouyang: warp "louyang", 210, 108; end;
+wayothaya: warp "ayothaya", 149, 118; end;
+wlighthalzen: warp "lighthalzen", 158, 92; end;
+whugel: warp "hugel", 96, 145; end;
+wrachel: warp "rachel", 130, 110; end;
+wveins: warp "veins", 216, 123; end;
+wnameless: warp "nameless_i", 175, 256; end;
+wmoscovia: warp "moscovia", 223, 184; end;
+wsplendide: warp "splendide", 197, 175; end;
+wmanuk:  warp "manuk", 288, 187; end;
+wbrasilis: warp "brasilis", 195, 217; end;
+// ==================== Dungeons ==================== \\
+//-------------- A Grande Ferida ---------------\\
+nyddun:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu      "A Grande Ferida 01 ( ^FF0000"+getmapusers("nyd_dun01")+"^000000 )",nydlv1,
+	  "A Grande Ferida 02 ( ^FF0000"+getmapusers("nyd_dun02")+"^000000 )",nydlv2,
+          "Ninho de Nidhogg 01 ( ^FF0000"+getmapusers("1@nyd")+"^000000 )",nydlv3,
+	  "Ninho de Nidhogg 02 ( ^FF0000"+getmapusers("2@nyd")+"^000000 )",nydlv4;
+  nydlv1:
+   warp "nyd_dun01",61,222; end;
+  nydlv2:
+   warp "nyd_dun02",62,265; end;
+  nydlv3:
+   warp "1@nyd",32,38; end;
+  nydlv4:
+   warp "2@nyd",200,170; end;
+
+//-------------- Caverna de Comodo --------------\\
+mcomodo:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("beach_dun")+"^000000 )",beachlv1,
+	  "Level 2 ( ^FF0000"+getmapusers("beach_dun2")+"^000000 )",beachlv2,
+	  "Level 3 ( ^FF0000"+getmapusers("beach_dun3")+"^000000 )",beachlv3;
+  beachlv1:
+   warp "beach_dun",266,67; end;
+  beachlv2:
+   warp "beach_dun2",255,244; end;
+  beachlv3:
+   warp "beach_dun3",23,260; end;
+
+//-------------- O Lago do Abismo --------------\\
+dabbys:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu
+	 "Entrada ( ^FF0000"+getmapusers("hu_fild05.gat")+"^000000 )",entbs,
+	 "Level 1 ( ^FF0000"+getmapusers("abyss_01.gat")+"^000000 )",wabs1,
+	 "Level 2 ( ^FF0000"+getmapusers("abyss_02.gat")+"^000000 )",wabs2,
+	 "Level 3 ( ^FF0000"+getmapusers("abyss_03.gat")+"^000000 )",wabs3;
+   entbs: 
+    warp "hu_fild05.gat", 189, 207; end;
+   wabs1: 
+    warp "abyss_01.gat",264,272; end;
+   wabs2: 
+    warp "abyss_02.gat",274,269; end;
+   wabs3: 
+    warp "abyss_03.gat",116,27; end;
+
+//-------------- Calabouço de Einbech --------------\\
+dein:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu  "Level 1 ( ^FF0000"+getmapusers("ein_dun01.gat")+"^000000 )",weinbech1,
+  "Level 2 ( ^FF0000"+getmapusers("ein_dun02.gat")+"^000000 )",weinbech2;
+   weinbech1:
+    warp "ein_dun01.gat",22,18; end;
+   weinbech2:
+    warp "ein_dun02.gat",292,290; end;
+//-------------- Amatsu --------------\\
+damatsu:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu
+"Lv 1 ( ^FF0000"+getmapusers("ama_dun01.gat")+" ^000000)" ,ama1lv,
+"Lv 2 ( ^FF0000"+getmapusers("ama_dun02.gat")+" ^000000)",ama2lv,
+"Lv 3 ( ^FF0000"+getmapusers("ama_dun03.gat")+" ^000000)",ama3lv;
+  ama1lv:
+   warp "ama_dun01.gat", 229, 12; end;
+  ama2lv:
+   warp "ama_dun02.gat", 34, 41; end;
+  ama3lv:
+   warp "ama_dun03.gat", 119, 14; end;
+//---------- Formigueiro Infernal --------\\
+dant: 
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu
+"Entrada ( ^FF0000"+getmapusers("moc_fild20.gat")+" ^000000)",form1lv,
+"Level 1 ( ^FF0000"+getmapusers("anthell01.gat")+" ^000000)",form2lv,
+"Level 2 ( ^FF0000"+getmapusers("anthell02.gat")+" ^000000)",form3lv;
+  form1lv:
+   warp "moc_fild20.gat", 143, 144; end;
+  form2lv:
+   warp "anthell01.gat", 35, 262; end;
+  form3lv:
+   warp "anthell02.gat",168, 170; end;
+
+//---------- Caverna de Geffen --------\\
+dgeff:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu
+"Level 1 ( ^FF0000"+getmapusers("gef_dun00.gat")+" ^000000)" ,wgeffenlv1,
+"Level 2 ( ^FF0000"+getmapusers("gef_dun01.gat")+" ^000000)",wgeffenlv2,
+"Level 3 ( ^FF0000"+getmapusers("gef_dun02.gat")+" ^000000)",wgeffenlv3,
+"Level 4 ( ^FF0000"+getmapusers("gef_dun03.gat")+" ^000000)",wgeffenlv4;
+  wgeffenlv1:
+   warp "gef_dun00.gat",104,99; end;
+  wgeffenlv2:
+   warp "gef_dun01.gat",115,236; end;
+  wgeffenlv3:
+   warp "gef_dun02.gat",106,132; end;
+  wgeffenlv4:
+   warp "gef_dun03.gat",203,200; end;
+//---------- Labirinto da Floresta --------\\
+dlflor:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("prt_maze01.gat")+" ^000000)",whidden1,
+	  "Level 2 ( ^FF0000"+getmapusers("prt_maze02")+" ^000000)",whidden2,
+	  "Level 3 ( ^FF0000"+getmapusers("prt_maze03.gat")+" ^000000)",whidden3;
+  whidden1:
+   warp "prt_maze01.gat",176,7; end;
+  whidden2:
+   warp "prt_maze02.gat",94,49; end;
+  whidden3:
+   warp "prt_maze03.gat",23,8; end;
+
+//---------- Gefenia --------\\
+dgef:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu  "Level 1 ( ^FF0000"+getmapusers("gefenia01.gat")+" ^000000)",wgefenia1,
+  "Level 2 ( ^FF0000"+getmapusers("gefenia02.gat")+" ^000000)",wgefenia2,
+  "Level 3 ( ^FF0000"+getmapusers("gefenia03.gat")+" ^000000)",wgefenia3,
+  "Level 4 ( ^FF0000"+getmapusers("gefenia04.gat")+" ^000000)",wgefenia4;
+  wgefenia1:
+   warp "gefenia01.gat",59,167; end;
+  wgefenia2:
+   warp "gefenia02.gat",201,35; end;
+  wgefenia3:
+   warp "gefenia03.gat",264,236; end;
+  wgefenia4:
+   warp "gefenia04.gat",33,270; end;
+//---------- Ilha Byalan --------\\
+dbibilan: warp "izlu2dun", 106, 88; end;
+//---------- Esgoto de Prontera --------\\
+dculvert:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu
+"Level 1 ( ^FF0000"+getmapusers("prt_sewb1.gat")+" ^000000)" ,sewb1lv,
+"Level 2 ( ^FF0000"+getmapusers("prt_sewb2.gat")+" ^000000)",sewb2lv,
+"Level 3 ( ^FF0000"+getmapusers("prt_sewb3.gat")+" ^000000)",sewb3lv,
+"Level 4 ( ^FF0000"+getmapusers("prt_sewb4.gat")+" ^000000)",sewb4lv;
+ 
+  sewb1lv:
+   warp "prt_sewb1.gat", 131, 247; end;
+  sewb2lv:
+   warp "prt_sewb2.gat", 19, 19; end;
+  sewb3lv:
+   warp "prt_sewb3.gat", 180, 169; end;
+  sewb4lv:
+   warp "prt_sewb4.gat", 100, 92; end;
+//-------------- Mina de Carvão --------------\\
+dcoal:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("mjo_dun01.gat")+" ^000000)",coalv1,
+	  "Level 2 ( ^FF0000"+getmapusers("mjo_dun02.gat")+" ^000000)",coalv2,
+	  "Level 3 ( ^FF0000"+getmapusers("mjo_dun03.gat")+" ^000000)",coalv3;
+  coalv1: 
+   warp "mjo_dun01.gat",52,17; end;
+  coalv2: 
+   warp "mjo_dun02.gat",381,343; end;
+  coalv3: 
+   warp "mjo_dun03.gat",302,262; end;
+//-------------- Glast Heim --------------\\
+dglast:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Castelo de Glast Heim 1 ( ^FF0000"+getmapusers("gl_cas01.gat")+" ^000000)",glastcast1,
+	  "Castelo de Glast Heim 2 ( ^FF0000"+getmapusers("gl_cas02.gat")+" ^000000)",glastcast2,
+	  "Cavalaria de Glast Heim 1 ( ^FF0000"+getmapusers("gl_knt01.gat")+" ^000000)",glastchiv1,
+	  "Cavalaria de Glast Heim 2 ( ^FF0000"+getmapusers("gl_knt02.gat")+" ^000000)",glastchiv2,
+	  "Cemitério de Glast Heim ( ^FF0000"+getmapusers("gl_chyard.gat")+" ^000000)",glastyard,
+	  "Esgoto de Glast Heim 1 ( ^FF0000"+getmapusers("gl_sew01.gat")+" ^000000)",glastcul1,
+	  "Esgoto de Glast Heim 2 ( ^FF0000"+getmapusers("gl_sew02.gat")+" ^000000)",glastcul1,
+	  "Esgoto de Glast Heim 3 ( ^FF0000"+getmapusers("gl_sew03.gat")+" ^000000)",glastcul3,
+	  "Esgoto de Glast Heim 4 ( ^FF0000"+getmapusers("gl_sew04.gat")+" ^000000)",glastcul4,
+	  "Abadia de Glast Heim ( ^FF0000"+getmapusers("gl_church.gat")+" ^000000)",glastchur,
+	  "Staircase Dungeon ( ^FF0000"+getmapusers("gl_step.gat")+" ^000000)",glaststep,
+	  "Caverna Sub Terranea 1 ( ^FF0000"+getmapusers("gl_dun01.gat")+" ^000000)",glastcave1,
+	  "Caverna Sub Terranea 2 ( ^FF0000"+getmapusers("gl_dun02.gat")+" ^000000)",glastcave2,
+	  "Prisão Sub Terranea 1 ( ^FF0000"+getmapusers("gl_prison.gat")+" ^000000)",glastpris1,
+	  "Prisão Sub Terranea 2 ( ^FF0000"+getmapusers("gl_prison1.gat")+" ^000000)",glastpris2;
+  glastcast1:
+   warp "gl_cas01.gat",199,29; end;
+  glastcast2:
+   warp "gl_cas02.gat",104,25; end;
+  glastchiv1:
+   warp "gl_knt01.gat",150,15; end;
+  glastchiv2:
+   warp "gl_knt02.gat",157,287; end;
+  glastyard:
+   warp "gl_chyard.gat",147,15; end;
+  glastcul1:
+   warp "gl_sew01.gat",258,255; end;
+  glastcul2:
+   warp "gl_sew02.gat",108,291; end;
+  glastcul3:
+   warp "gl_sew03.gat",171,283; end;
+  glastcul4:
+   warp "gl_sew04.gat",68,277; end;
+  glastchur:
+   warp "gl_church.gat",156,7; end;
+  glaststep:
+   warp "gl_step.gat",12,7; end;
+  glastcave1:
+   warp "gl_dun01.gat",133,271; end;
+  glastcave2:
+   warp "gl_dun02.gat",224,274; end;
+  glastpris1:
+   warp "gl_prison.gat",14,70; end;
+  glastpris2:
+   warp "gl_prison1.gat",150,14; end;
+//-------------- Calabouço dos Orc --------------\\
+dorc:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("orcsdun01.gat")+" ^000000)",worc1,
+	  "Level 2 ( ^FF0000"+getmapusers("orcsdun02.gat")+" ^000000)",worc2;
+  worc1:
+   warp "orcsdun01.gat",32,170; end;
+  worc2:
+   warp "orcsdun02.gat",21,185; end;
+//-------------- Caverna de Payon --------------\\
+dpayon: 
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu
+"Entrada ( ^FF0000"+getmapusers("pay_arche.gat")+" ^000000)" ,dpayent,
+"Level 1 ( ^FF0000 "+getmapusers("pay_dun00.gat")+" ^000000)" ,dpay1lv,
+"Level 2 ( ^FF0000"+getmapusers("pay_dun01.gat")+" ^000000)",dpay2lv,
+"Level 3 ( ^FF0000"+getmapusers("pay_dun02.gat")+" ^000000)",dpay3lv,
+"Level 4 ( ^FF0000"+getmapusers("pay_dun03.gat")+" ^000000)",dpay4lv,
+"Level 5 ( ^FF0000"+getmapusers("pay_dun04.gat")+" ^000000)",dpay5lv;
+  dpayent:
+   warp "pay_arche.gat", 43, 132; end;
+  dpay1lv:
+   warp "pay_dun00.gat", 21, 183; end;
+  dpay2lv:
+   warp "pay_dun01.gat", 19, 33; end;
+  dpay3lv:
+   warp "pay_dun02.gat", 19, 63; end;
+  dpay4lv:
+   warp "pay_dun03.gat", 155, 159; end;
+  dpay5lv:
+   warp "pay_dun04.gat", 201, 204; end;
+ 
+//----------Pirâmide--------\\
+dpyramids:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu
+"Entrada ( ^FF0000"+getmapusers("moc_ruins.gat")+" ^000000)" ,Pyrent,
+"Level 1 ( ^FF0000"+getmapusers("moc_pryd01.gat")+" ^000000)" ,Pyr1lv,
+"Level 2 ( ^FF0000"+getmapusers("moc_pryd02.gat")+" ^000000)",Pyr2lv,
+"Level 3 ( ^FF0000"+getmapusers("moc_pryd03.gat")+" ^000000)",Pyr3lv,
+"Level 4 ( ^FF0000"+getmapusers("moc_pryd04.gat")+" ^000000)",Pyr4lv,
+"Sub Terraneo 1 ( ^FF0000"+getmapusers("moc_pryd05.gat")+" ^000000)",Pyr5lv,
+"Sub Terraneo 2 ( ^FF0000"+getmapusers("moc_pryd06.gat")+" ^000000)",Pyr6lv;
+  Pyrent:
+   warp "moc_ruins.gat", 62, 162; end;
+  Pyr1lv:
+   warp "moc_pryd01.gat", 192, 9; end;
+  Pyr2lv:
+   warp "moc_pryd02.gat", 10, 192; end;
+  Pyr3lv:
+   warp "moc_pryd03.gat", 100, 92; end;
+  Pyr4lv:
+   warp "moc_pryd04.gat", 181, 11; end;
+  Pyr5lv:
+   warp "moc_pryd05.gat", 94, 96; end;
+  Pyr6lv:
+   warp "moc_pryd06.gat", 192, 8; end;
+//---------- Esfinge --------\\
+dsphinx:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("in_sphinx1")+" ^000000)",wsphinx1,
+	  "Level 2 ( ^FF0000"+getmapusers("in_sphinx2")+" ^000000)",wsphinx2,
+	  "Level 3 ( ^FF0000"+getmapusers("in_sphinx3")+" ^000000)",wsphinx3,
+	  "Level 4 ( ^FF0000"+getmapusers("in_sphinx4")+" ^000000)",wsphinx4,
+	  "Level 5 ( ^FF0000"+getmapusers("in_sphinx5")+" ^000000)",wsphinx5;
+  wsphinx1:
+   warp "in_sphinx1",288,9; end;
+  wsphinx2:
+   warp "in_sphinx2",149,81; end;
+  wsphinx3:
+   warp "in_sphinx3",210,54; end;
+  wsphinx4:
+   warp "in_sphinx4",10,222; end;
+  wsphinx5:
+   warp "in_sphinx5",100,99; end;
+//---------- Torre do Relógio --------\\
+dclo:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("c_tower1")+" ^000000)",wclock1,
+	  "Level 2 ( ^FF0000"+getmapusers("c_tower2")+" ^000000)",wclock2,
+	  "Level 3 ( ^FF0000"+getmapusers("c_tower3")+" ^000000)",wclock3,
+	  "Level 4 ( ^FF0000"+getmapusers("c_tower4")+" ^000000)",wclock4,
+	  "Sub Terraneo 1 ( ^FF0000"+getmapusers("alde_dun01")+" ^000000)",walde1,
+	  "Sub Terraneo 2 ( ^FF0000"+getmapusers("alde_dun02")+" ^000000)",walde2,
+	  "Sub Terraneo 3 ( ^FF0000"+getmapusers("alde_dun03")+" ^000000)",walde3,
+	  "Sub Terraneo 4 ( ^FF0000"+getmapusers("alde_dun04")+" ^000000)",walde4;
+walde1:  warp "alde_dun01",297,25; end;
+walde2:  warp "alde_dun02",127,169; end;
+walde3:  warp "alde_dun03",277,178; end;
+walde4:  warp "alde_dun04",268,74; end;
+wclock1: warp "c_tower1",199,159; end;
+wclock2: warp "c_tower2",148,283; end;
+wclock3: warp "c_tower3",65,147; end;
+wclock4: warp "c_tower4",56,155; end;
+//---------- Navio Fantasma --------\\
+dsunken:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("treasure01")+" ^000000)",wsunken1,
+	  "Level 2 ( ^FF0000"+getmapusers("treasure02")+" ^000000)",wsunken2;
+  wsunken1:
+   warp "treasure01",69,24; end;
+  wsunken2:
+   warp "treasure02",102,27; end;
+//---------- Ilha das Tartarugas --------\\
+dturtle:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Entrada ( ^FF0000"+getmapusers("tur_dun01")+" ^000000)",turtleent,
+	  "Level 1 ( ^FF0000"+getmapusers("tur_dun02")+" ^000000)",turtlelv1,
+	  "Level 2 ( ^FF0000"+getmapusers("tur_dun03")+" ^000000)",turtlelv2,
+	  "Level 3 ( ^FF0000"+getmapusers("tur_dun04")+" ^000000)",turtlelv3;
+  turtleent:
+   warp "tur_dun01",154,49; end;
+  turtlelv1:
+   warp "tur_dun02",148,261; end;
+  turtlelv2:
+   warp "tur_dun03",132,189; end;
+  turtlelv3:
+   warp "tur_dun04",100,192; end;
+//---------- Caverna de Ayothaya --------\\
+dayothaya:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("ayo_dun01")+" ^000000)",wayo1,
+	  "Level 2 ( ^FF0000"+getmapusers("ayo_dun02")+" ^000000)",wayo2;
+  wayo1:
+   warp "ayo_dun01",11,149;  end;
+  wayo2
+:  warp "ayo_dun02",77,239;  end;
+
+dfocas:  warp "cmd_fild02", 222, 372; end;
+//---------- Fábrica de Brinquedos --------\\
+dbrinquedos:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("xmas_dun01")+" ^000000)",wtoy1,
+	  "Level 2 ( ^FF0000"+getmapusers("xmas_dun02")+" ^000000)",wtoy2;
+wtoy1:  warp "xmas_dun01",205,15; end;
+wtoy2:  warp "xmas_dun02",129,133; end;
+//---------- Poringlandia --------\\
+dporinglandia: warp "pay_fild04.gat", 20, 165; end;
+//---------- Caverna de Magma --------\\
+dmag:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("mag_dun01.gat")+" ^000000)",wmagma1,
+	  "Level 2 ( ^FF0000"+getmapusers("mag_dun02.gat")+" ^000000)",wmagma2;
+  wmagma1:
+   warp "mag_dun01.gat",126,68; end;
+  wmagma2:
+   warp "mag_dun02.gat",47,30; end;
+
+//---------- Bio Lab --------\\
+dlighthalzen:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu  "Entrada ( ^FF0000"+getmapusers("lhz_dun01.gat")+" ^000000)",wlightent,
+  "Level 1 ( ^FF0000"+getmapusers("lhz_dun01.gat")+" ^000000)",wlight1,
+  "Level 2 ( ^FF0000"+getmapusers("lhz_dun02.gat")+" ^000000)",wlight2;
+  wlight1:
+   warp "lhz_dun01.gat",151,286; end;
+  wlight2:
+   warp "lhz_dun02.gat",18,148; end;
+  wlightent:
+   warp "lighthalzen.gat", 158, 285; end;
+
+//---------- Calabouço de Kunlun --------\\
+dgonryun:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("gon_dun01.gat")+" ^000000)",wgon1,
+	  "Level 2 ( ^FF0000"+getmapusers("gon_dun02.gat")+" ^000000)",wgon2,
+	  "Level 3 ( ^FF0000"+getmapusers("gon_dun03.gat")+" ^000000)",wgon3;
+  wgon1:
+   warp "gon_dun01.gat",153,53; end;
+  wgon2:
+   warp "gon_dun02.gat",28,113; end;
+  wgon3:
+   warp "gon_dun03.gat",68,16; end;
+//---------- Desfiladeiro de El Mes (Juperos) --------\\
+djuperos:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu  "Level 1 ( ^FF0000"+getmapusers("juperos_01.gat")+" ^000000)",wjuperos1,
+  "Level 2 ( ^FF0000"+getmapusers("juperos_02.gat")+" ^000000)",wjuperos2,
+  "Level 3 ( ^FF0000"+getmapusers("jupe_cave.gat")+" ^000000)",wjuperos3;
+  wjuperos1:
+   warp "juperos_01.gat",99,92; end;
+  wjuperos2:
+   warp "juperos_02.gat",34,59; end;
+  wjuperos3:
+   warp "jupe_cave.gat",77,50; end;
+//---------- Caverna de Louyang --------\\
+dlouy:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu  "Level 1 ( ^FF0000"+getmapusers("lou_dun01.gat")+" ^000000)",wlou1,
+  "Level 2 ( ^FF0000"+getmapusers("lou_dun02.gat")+" ^000000)",wlou2,
+  "Level 3 ( ^FF0000"+getmapusers("lou_dun03.gat")+" ^000000)",wlou3;
+  wlou1:
+   warp "lou_dun01.gat",218,196; end;
+  wlou2:
+   warp "lou_dun02.gat",282,20; end;
+  wlou3:
+   warp "lou_dun03.gat",165,37; end;
+//---------- Caverna de Umbala --------\\
+dumba:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Lojas de Umbala ( ^FF0000"+getmapusers("um_dun01")+" ^000000)",wum1,
+	  "Passagem a um outro mundo ( ^FF0000"+getmapusers("um_dun02")+" ^000000)",wum2,
+	  "Yggdrasil ( ^FF0000"+getmapusers("yggdrasil01")+" ^000000)",wygg1;
+  wum1:
+   warp "um_dun01",205,16; end;
+  wum2:
+   warp "um_dun02",48, 30; end;
+  wygg1:
+   warp "yggdrasil01",40,63; end;
+//---------- Torre de Thanatos --------\\
+dtha:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("tha_t01")+" ^000000)",wtha1,
+	  "Level 2 ( ^FF0000"+getmapusers("tha_t02")+" ^000000)",wtha2,
+	  "Level 3 ( ^FF0000"+getmapusers("tha_t03")+" ^000000)",wtha3,
+	  "Level 4 ( ^FF0000"+getmapusers("tha_t04")+" ^000000)",wtha4,
+	  "Level 5 ( ^FF0000"+getmapusers("tha_t05")+" ^000000)",wtha5,
+	  "Level 6 ( ^FF0000"+getmapusers("tha_t06")+" ^000000)",wtha6,
+	  "Level 7 ( ^FF0000"+getmapusers("tha_t07")+" ^000000)",wtha7,
+	  "Level 8 ( ^FF0000"+getmapusers("tha_t08")+" ^000000)",wtha8,
+	  "Level 9 ( ^FF0000"+getmapusers("tha_t09")+" ^000000)",wtha9;
+  wtha1:
+   warp "tha_t01",150,35; end;
+  wtha2:
+   warp "tha_t02",150,31; end;
+  wtha3:
+   warp "tha_t03",220,158; end;
+  wtha4:
+   warp "tha_t04",59,139; end;
+  wtha5:
+   warp "tha_t05",62,11; end;
+  wtha6:
+   warp "tha_t06",119,232; end;
+  wtha7:
+   warp "tha_t07",29,165; end;
+  wtha8:
+   warp "tha_t08",106,44; end;
+  wtha9:
+   warp "tha_t09",88,145; end;
+//---------- Caverna de Gelo --------\\
+cavegelo:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("ra_fild01")+" ^000000)",cavg1;
+  cavg1:
+   warp "ra_fild01",233,326; end;
+//---------- Vulcão de Thor --------\\
+vulcaoth:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Entrada ( ^FF0000"+getmapusers("ve_fild03")+" ^000000)",vulcth1,
+  "Level 1 ( ^FF0000"+getmapusers("thor_v01")+" ^000000)",vulcth2,
+  "Level 2 ( ^FF0000"+getmapusers("thor_v02")+" ^000000)",vulcth3,
+  "Level 3 ( ^FF0000"+getmapusers("thor_v03")+" ^000000)",vulcth4;
+  vulcth1:
+   warp "ve_fild03",168,235; end;
+  vulcth2:
+   warp "thor_v01",21,231; end;
+  vulcth3:
+   warp "thor_v02",79,204; end;
+  vulcth4:
+   warp "thor_v03",43,256; end;
+//---------- Campos de Ayothaya --------\\
+campayo:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("ayo_fild02")+" ^000000)",campyo1;
+  campyo1:
+   warp "ayo_fild02",280,149; end;
+//--------- Campos de Brasilis------------\\
+campobra:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("bra_fild01")+" ^000000)",campobra1;
+  campobra1:
+   warp "bra_fild01",77,33; end;
+
+
+
+//---------- Monastério --------\\
+monasterio:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("nameless_n")+" ^000000)",monas1;
+  monas1:
+   warp "nameless_n",160,183; end;
+//---------- Floresta Encantada --------\\
+floenca:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("mosk_fild02")+" ^000000)",floenc1;
+  floenc1:
+   warp "mosk_fild02",190,252; end;
+//---------- Floresta Encantada --------\\
+montman:
+next;
+mes .npcname$;
+mes "Por favor, Selecione o Level Desejado.";
+menu "Level 1 ( ^FF0000"+getmapusers("man_fild02")+" ^000000)",montman1;
+  montman1:
+   warp "man_fild02",132,56; end;
+close;
 //============================================================================
 //==== TELEPORTADOR WOE
 //============================================================================
