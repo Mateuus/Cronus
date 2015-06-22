@@ -1,4 +1,4 @@
-prontera,170,190,3	script	Assistente VIP	91,{
+-	script	Assistente VIP::warpvip	91,{
 cutin "katsua01",2;
 
 //----------------------------------------------------------------------------
@@ -22,7 +22,142 @@ mes "Olá ^CD3333"+strcharinfo(0)+"^000000!";
 mes "Seu passe esta confirmado.";
 mes "Diga-me o que deseja.";
 next;
-menu "- Curar",L_a,"- Encantamentos",L_b,"- Teleportador",L_g,"- Removedor de Cartas",L_d,"- Reparador de Equipamentos",L_e,"- Resetador de Pontos",L_f,"- Estilista",L_c,"- Teleportador WOE",L_h,"- Administração",L_ADM;
+menu "- Curar",L_a,"- Arenas MVP",L_m,"- Encantamentos",L_b,"- Teleportador",L_g,"- Removedor de Cartas",L_d,"- Reparador de Equipamentos",L_e,"- Resetador de Pontos",L_f,"- Estilista",L_c,"- Teleportador WOE",L_h,"- Administração",L_ADM;
+
+//============================================================================
+//==== ARENA MVP
+//============================================================================
+L_m:
+
+	mes @npc$;
+	mes "Bem-Vindo ao meu serviço.";
+	mes "Em qual Arena deseja entrar?.";
+        next;
+	menu "- Desafio Adiante",L_Adiante,
+             "- Tetra",L_Treta,
+             "- Encruzilhada", L_Encru,
+             "- Bússola", L_Busso,
+             "- Sair",L_naomvp;
+       
+  
+        L_naomvp:
+        cutin "",255;   
+	close;
+      
+   
+        
+
+	L_Adiante:
+        mes @npc$;
+	mes "Qual dos andares você deseja entrar?";
+        menu 
+              "Andar 1 [ ^0000FF"+getmapusers("pvp_n_1-2")+"^000000 / ^FF000050^000000]",adiantelv1,
+              "Andar 2 [ ^0000FF"+getmapusers("pvp_n_2-2")+"^000000 / ^FF000015^000000]",adiantelv2,
+              "Andar 3 [ ^0000FF"+getmapusers("pvp_n_3-2")+"^000000 / ^FF000015^000000]",adiantelv3,
+              "Andar 4 [ ^0000FF"+getmapusers("pvp_n_4-2")+"^000000 / ^FF000015^000000]",adiantelv4,
+              "Andar 5 [ ^0000FF"+getmapusers("pvp_n_5-2")+"^000000 / ^FF000015^000000]",adiantelv5,
+              "Andar 6 [ ^0000FF"+getmapusers("pvp_n_6-2")+"^000000 / ^FF000015^000000]",adiantelv6,
+              "Andar 7 [ ^0000FF"+getmapusers("pvp_n_7-2")+"^000000 / ^FF000015^000000]",adiantelv7,
+              "Andar 8 [ ^0000FF"+getmapusers("pvp_n_8-2")+"^000000 / ^FF000015^000000]",adiantelv8,
+              "Sair",L_sairmvp;
+              
+              L_sairmvp:
+              cutin "",255;   
+	      close;
+      
+
+        adiantelv1: warp "pvp_n_1-2", 102,102; end;
+        adiantelv2: warp "pvp_n_2-2", 102,102; end;
+        adiantelv3: warp "pvp_n_3-2", 102,102; end;
+        adiantelv4: warp "pvp_n_4-2", 102,102; end;
+        adiantelv5: warp "pvp_n_5-2", 102,102; end;
+        adiantelv6: warp "pvp_n_6-2", 102,102; end;
+        adiantelv7: warp "pvp_n_7-2", 102,102; end;
+        adiantelv8: warp "pvp_n_8-2", 102,102; end;
+
+        L_Treta:
+        mes @npc$;
+	mes "Qual dos andares você deseja entrar?";
+        menu 
+              "Andar 1 [ ^0000FF"+getmapusers("pvp_n_1-3")+"^000000 / ^FF000050^000000]",tretalv1,
+              "Andar 2 [ ^0000FF"+getmapusers("pvp_n_2-3")+"^000000 / ^FF000015^000000]",tretalv2,
+              "Andar 3 [ ^0000FF"+getmapusers("pvp_n_3-3")+"^000000 / ^FF000015^000000]",tretalv3,
+              "Andar 4 [ ^0000FF"+getmapusers("pvp_n_4-3")+"^000000 / ^FF000015^000000]",tretalv4,
+              "Andar 5 [ ^0000FF"+getmapusers("pvp_n_5-3")+"^000000 / ^FF000015^000000]",tretalv5,
+              "Andar 6 [ ^0000FF"+getmapusers("pvp_n_6-3")+"^000000 / ^FF000015^000000]",tretalv6,
+              "Andar 7 [ ^0000FF"+getmapusers("pvp_n_7-3")+"^000000 / ^FF000015^000000]",tretalv7,
+              "Andar 8 [ ^0000FF"+getmapusers("pvp_n_8-3")+"^000000 / ^FF000015^000000]",tretalv8,
+              "Sair",L_sairmvp1;
+              
+              L_sairmvp1:
+              cutin "",255;   
+	      close;
+      
+
+        tretalv1: warp "pvp_n_1-3", 102,102; end;
+        tretalv2: warp "pvp_n_2-3", 102,102; end;
+        tretalv3: warp "pvp_n_3-3", 102,102; end;
+        tretalv4: warp "pvp_n_4-3", 102,102; end;
+        tretalv5: warp "pvp_n_5-3", 102,102; end;
+        tretalv6: warp "pvp_n_6-3", 102,102; end;
+        tretalv7: warp "pvp_n_7-3", 102,102; end;
+        tretalv8: warp "pvp_n_8-3", 102,102; end;
+
+        L_Encru:
+        mes @npc$;
+	mes "Qual dos andares você deseja entrar?";
+        menu 
+              "Andar 1 [ ^0000FF"+getmapusers("pvp_n_1-4")+"^000000 / ^FF000050^000000]",encrulv1,
+              "Andar 2 [ ^0000FF"+getmapusers("pvp_n_2-4")+"^000000 / ^FF000015^000000]",encrulv2,
+              "Andar 3 [ ^0000FF"+getmapusers("pvp_n_3-4")+"^000000 / ^FF000015^000000]",encrulv3,
+              "Andar 4 [ ^0000FF"+getmapusers("pvp_n_4-4")+"^000000 / ^FF000015^000000]",encrulv4,
+              "Andar 5 [ ^0000FF"+getmapusers("pvp_n_5-4")+"^000000 / ^FF000015^000000]",encrulv5,
+              "Andar 6 [ ^0000FF"+getmapusers("pvp_n_6-4")+"^000000 / ^FF000015^000000]",encrulv6,
+              "Andar 7 [ ^0000FF"+getmapusers("pvp_n_7-4")+"^000000 / ^FF000015^000000]",encrulv7,
+              "Andar 8 [ ^0000FF"+getmapusers("pvp_n_8-4")+"^000000 / ^FF000015^000000]",encrulv8,
+              "Sair",L_sairmvp2;
+              
+              L_sairmvp2:
+              cutin "",255;   
+	      close;
+      
+
+        encrulv1: warp "pvp_n_1-4", 102,102; end;
+        encrulv2: warp "pvp_n_2-4", 102,102; end;
+        encrulv3: warp "pvp_n_3-4", 102,102; end;
+        encrulv4: warp "pvp_n_4-4", 102,102; end;
+        encrulv5: warp "pvp_n_5-4", 102,102; end;
+        encrulv6: warp "pvp_n_6-4", 102,102; end;
+        encrulv7: warp "pvp_n_7-4", 102,102; end;
+        encrulv8: warp "pvp_n_8-4", 102,102; end;
+
+        L_Busso:
+        mes @npc$;
+	mes "Qual dos andares você deseja entrar?";
+        menu 
+              "Andar 1 [ ^0000FF"+getmapusers("pvp_n_1-5")+"^000000 / ^FF000050^000000]",bussolv1,
+              "Andar 2 [ ^0000FF"+getmapusers("pvp_n_2-5")+"^000000 / ^FF000015^000000]",bussolv2,
+              "Andar 3 [ ^0000FF"+getmapusers("pvp_n_3-5")+"^000000 / ^FF000015^000000]",bussolv3,
+              "Andar 4 [ ^0000FF"+getmapusers("pvp_n_4-5")+"^000000 / ^FF000015^000000]",bussolv4,
+              "Andar 5 [ ^0000FF"+getmapusers("pvp_n_5-5")+"^000000 / ^FF000015^000000]",bussolv5,
+              "Andar 6 [ ^0000FF"+getmapusers("pvp_n_6-5")+"^000000 / ^FF000015^000000]",bussolv6,
+              "Andar 7 [ ^0000FF"+getmapusers("pvp_n_7-5")+"^000000 / ^FF000015^000000]",bussolv7,
+              "Andar 8 [ ^0000FF"+getmapusers("pvp_n_8-5")+"^000000 / ^FF000015^000000]",bussolv8,
+              "Sair",L_sairmvp3;
+              
+              L_sairmvp3:
+              cutin "",255;   
+	      close;
+      
+
+        bussolv1: warp "pvp_n_1-5", 102,102; end;
+        bussolv2: warp "pvp_n_2-5", 102,102; end;
+        bussolv3: warp "pvp_n_3-5", 102,102; end;
+        bussolv4: warp "pvp_n_4-5", 102,102; end;
+        bussolv5: warp "pvp_n_5-5", 102,102; end;
+        bussolv6: warp "pvp_n_6-5", 102,102; end;
+        bussolv7: warp "pvp_n_7-5", 102,102; end;
+        bussolv8: warp "pvp_n_8-5", 102,102; end;
 
 //============================================================================
 //==== CURA
@@ -2040,3 +2175,256 @@ if(.@diasvip == 0){ end; }
 dispbottom "Olá "+strcharinfo(0)+" você possui "+.@diasvip+" dias vip.";
 end;
 }
+
+//============================================================================
+//==== MVPS
+//============================================================================
+//==== Desafio de Adiante
+
+pvp_n_1-2,0,0,0,0	monster	Sapo-Cururu	1089,1,120000,150000
+pvp_n_1-2,0,0,0,0	monster	Abelha-Rainha	1059,1,120000,150000
+pvp_n_1-2,0,0,0,0	monster	Atroce	1785,1,120000,150000
+
+// --- Segundo Alpha-MVP area
+pvp_n_2-2,0,0,0,0	monster	Sapo-Cururu	1089,2,120000,150000
+pvp_n_2-2,0,0,0,0	monster	Abelha-Rainha	1059,1,120000,150000
+pvp_n_2-2,0,0,0,0	monster	Flor do Luar	1150,1,120000,150000
+
+// --- Terceiro Alpha-MVP area
+pvp_n_3-2,0,0,0,0	monster	Abelha-Rainha	1059,1,120000,150000
+pvp_n_3-2,0,0,0,0	monster	Flor do Luar	1150,1,120000,150000
+pvp_n_3-2,0,0,0,0	monster	Maya	1147,1,120000,150000
+pvp_n_3-2,0,0,0,0	monster	Quimera	1283,1,120000,150000
+
+// --- Quarto Alpha-MVP area
+pvp_n_4-2,0,0,0,0	monster	Eddga	1115,1,120000,150000
+pvp_n_4-2,0,0,0,0	monster	Abelha-Rainha	1059,1,120000,150000
+pvp_n_4-2,0,0,0,0	monster	Atroce	1785,1,120000,150000
+pvp_n_4-2,0,0,0,0	monster	Maya	1147,1,120000,150000
+
+// --- Quinto Alpha-MVP area
+pvp_n_5-2,0,0,0,0	monster	Eddga	1115,1,120000,150000
+pvp_n_5-2,0,0,0,0	monster	Abelha-Rainha	1059,1,120000,150000
+pvp_n_5-2,0,0,0,0	monster	Flor do Luar	1150,2,120000,150000
+pvp_n_5-2,0,0,0,0	monster	Maya	1147,2,120000,150000
+// --- Sexto Alpha-MVP area
+pvp_n_6-2,0,0,0,0	monster	Sapo-Cururu	1089,2,120000,150000
+pvp_n_6-2,0,0,0,0	monster	Abelha-Rainha	1059,2,120000,150000
+pvp_n_6-2,0,0,0,0	monster	Flor do Luar	1150,1,120000,150000
+pvp_n_6-2,0,0,0,0	monster	Maya	1147,2,120000,150000
+// --- Sétimo Alpha-MVP area
+pvp_n_7-2,0,0,0,0	monster	Sapo-Cururu	1089,2,120000,150000
+pvp_n_7-2,0,0,0,0	monster	Eddga	1115,3,120000,150000
+pvp_n_7-2,0,0,0,0	monster	Abelha-Rainha	1059,2,120000,150000
+pvp_n_7-2,0,0,0,0	monster	Flor do Luar	1150,2,120000,150000
+pvp_n_7-2,0,0,0,0	monster	Maya	1147,2,120000,150000
+// --- Oitavo Alpha-MVP area
+pvp_n_8-2,0,0,0,0	monster	Eddga	1115,3,120000,150000
+pvp_n_8-2,0,0,0,0	monster	Abelha-Rainha	1059,3,120000,150000
+pvp_n_8-2,0,0,0,0	monster	Flor do Luar	1150,3,120000,150000
+pvp_n_8-2,0,0,0,0	monster	Maya	1147,3,120000,150000
+
+//==== Treta
+// --- Primeiro Treta-MVP area
+pvp_n_1-3,0,0,0,0	monster	Freeoni	1159,1,120000,150000
+pvp_n_1-3,0,0,0,0	monster	Cochicho	1186,1,60000,66000
+pvp_n_1-3,0,0,0,0	monster	Orc Herói	1087,1,120000,150000
+// --- Segundo Treta-MVP area
+pvp_n_2-3,0,0,0,0	monster	Freeoni	1159,2,120000,150000
+pvp_n_2-3,0,0,0,0	monster	Cochicho	1186,1,60000,66000
+pvp_n_2-3,0,0,0,0	monster	Orc Herói	1087,1,120000,150000
+// --- Terceiro Treta-MVP area
+pvp_n_3-3,0,0,0,0	monster	Freeoni	1159,1,120000,150000
+pvp_n_3-3,0,0,0,0	monster	Líder Goblin	1299,1,60000,66000
+pvp_n_3-3,0,0,0,0	monster	Orc Herói	1087,1,120000,150000
+pvp_n_3-3,0,0,0,0	monster	Senhor dos Orcs	1190,1,120000,150000
+// --- Quarto Treta-MVP area
+pvp_n_4-3,0,0,0,0	monster	Freeoni	1159,1,120000,150000
+pvp_n_4-3,0,0,0,0	monster	Líder Goblin	1299,1,60000,66000
+pvp_n_4-3,0,0,0,0	monster	Orc Herói	1087,1,120000,150000
+pvp_n_4-3,0,0,0,0	monster	Senhor dos Orcs	1190,1,120000,150000
+
+// --- Quinto Treta-MVP area
+pvp_n_5-3,0,0,0,0	monster	Freeoni	1159,2,120000,180000
+pvp_n_5-3,0,0,0,0	monster	Líder Goblin	1299,1,60000,66000
+pvp_n_5-3,0,0,0,0	monster	Orc Herói	1087,2,120000,150000
+pvp_n_5-3,0,0,0,0	monster	Senhor dos Orcs	1190,1,120000,150000
+// --- Sexto Treta-MVP area
+pvp_n_6-3,0,0,0,0	monster	Sapo de Thara	1034,4,60000,66000
+pvp_n_6-3,0,0,0,0	monster	Freeoni	1159,2,120000,200000
+pvp_n_6-3,0,0,0,0	monster	Líder Goblin	1299,1,60000,66000
+pvp_n_6-3,0,0,0,0	monster	Orc Herói	1087,1,120000,150000
+pvp_n_6-3,0,0,0,0	monster	Senhor dos Orcs	1190,1,60000,66000
+// --- Sétimo Treta-MVP area
+pvp_n_7-3,0,0,0,0	monster	Sapo de Thara	1034,4,60000,66000
+pvp_n_7-3,0,0,0,0	monster	Líder Goblin	1299,1,60000,66000
+pvp_n_7-3,0,0,0,0	monster	Orc Herói	1087,2,60000,66000
+pvp_n_7-3,0,0,0,0	monster	Senhor dos Orcs	1190,1,120000,150000
+// --- Oitavo Treta-MVP area
+pvp_n_8-3,0,0,0,0	monster	Sapo de Thara	1034,4,60000,66000
+pvp_n_8-3,0,0,0,0	monster	Líder Goblin	1299,2,120000,150000
+pvp_n_8-3,0,0,0,0	monster	Orc Herói	1087,1,120000,150000
+pvp_n_8-3,0,0,0,0	monster	Senhor dos Orcs	1190,1,120000,150000
+
+//=====Encruzilhada
+// --- Primeiro Encruzilhada-MVP area
+pvp_n_1-4,0,0,0,0	monster	Drake	1112,1,120000,150000
+pvp_n_1-4,0,0,0,0	monster	Osíris	1038,1,120000,150000
+// --- Segundo Encruzilhada-MVP area
+pvp_n_2-4,0,0,0,0	monster	Drake	1112,2,120000,150000
+pvp_n_2-4,0,0,0,0	monster	Osíris	1038,1,60000,66000
+pvp_n_2-4,0,0,0,0	monster	Doppelganger	1046,1,120000,150000
+// --- Terceiro Encruzilhada-MVP area
+pvp_n_3-4,0,0,0,0	monster	Egnigem Cenia(Chefe)	1658,1,120000,150000
+pvp_n_3-4,0,0,0,0	monster	Drake	1112,1,120000,150000
+pvp_n_3-4,0,0,0,0	monster	Osíris	1038,1,120000,150000
+pvp_n_3-4,0,0,0,0	monster	Doppelganger	1046,1,120000,150000
+pvp_n_3-4,0,0,0,0	monster	Senhor dos Mortos	1373,1,120000,150000
+// --- Quarto Encruzilhada-MVP area
+pvp_n_4-4,0,0,0,0	monster	Egnigem Cenia(Chefe)	1658,1,120000,150000
+pvp_n_4-4,0,0,0,0	monster	Drake	1112,2,120000,150000
+pvp_n_4-4,0,0,0,0	monster	Osíris	1038,1,60000,66000
+pvp_n_4-4,0,0,0,0	monster	Doppelganger	1046,2,120000,150000
+pvp_n_4-4,0,0,0,0	monster	Senhor dos Mortos	1373,1,120000,150000
+// --- Quinto Encruzilhada-MVP area
+pvp_n_5-4,0,0,0,0	monster	Egnigem Cenia(Chefe)	1658,1,120000,150000	
+pvp_n_5-4,0,0,0,0	monster	Drake	1112,2,60000,66000
+pvp_n_5-4,0,0,0,0	monster	Osíris	1038,1,120000,150000
+pvp_n_5-4,0,0,0,0	monster	Doppelganger	1046,2,120000,150000
+pvp_n_5-4,0,0,0,0	monster	Senhor dos Mortos	1373,1,120000,150000
+pvp_n_5-4,0,0,0,0	monster	Kiel D-01	1734,1,120000,200000
+// --- Sexto Encruzilhada-MVP area
+pvp_n_6-4,0,0,0,0	monster	Egnigem Cenia(Chefe)	1658,1,120000,150000
+pvp_n_6-4,0,0,0,0	monster	Drake	1112,2,120000,150000
+pvp_n_6-4,0,0,0,0	monster	Osíris	1038,2,120000,150000
+pvp_n_6-4,0,0,0,0	monster	Doppelganger	1046,2,120000,150000
+pvp_n_6-4,0,0,0,0	monster	Senhor dos Mortos	1373,2,120000,150000
+pvp_n_6-4,0,0,0,0	monster	Kiel D-01	1734,2,120000,210000
+// --- Sétimo Encruzilhada-MVP area
+pvp_n_7-4,0,0,0,0	monster	Egnigem Cenia(Chefe)	1658,1,120000,150000	
+pvp_n_7-4,0,0,0,0	monster	Drake	1112,3,120000,150000
+pvp_n_7-4,0,0,0,0	monster	Osíris	1038,2,120000,150000
+pvp_n_7-4,0,0,0,0	monster	Doppelganger	1046,3,120000,150000
+pvp_n_7-4,0,0,0,0	monster	Senhor dos Mortos	1373,2,120000,150000
+pvp_n_7-4,0,0,0,0	monster	Kiel D-01	1734,1,120000,200000
+// --- Oitavo Encruzilhada-MVP area
+pvp_n_8-4,0,0,0,0	monster	Egnigem Cenia(Chefe)	1658,1,120000,150000	
+pvp_n_8-4,0,0,0,0	monster	Drake	1112,2,120000,150000
+pvp_n_8-4,0,0,0,0	monster	Osíris	1038,2,120000,150000
+pvp_n_8-4,0,0,0,0	monster	Doppelganger	1046,2,120000,150000
+pvp_n_8-4,0,0,0,0	monster	Senhor dos Mortos	1373,2,120000,150000
+
+//==== Bússola
+// --- Bússola-MVP area
+pvp_n_1-5,0,0,0,0	monster	Samurai Encarnado	1492,3,60000,66000
+pvp_n_1-5,0,0,0,0	monster	Faraó	1157,1,60000,66000
+// --- First Epsilon-MVP area
+pvp_n_2-5,0,0,0,0	monster	Samurai Encarnado	1492,2,60000,66000
+pvp_n_2-5,0,0,0,0	monster	Faraó	1157,1,60000,66000
+pvp_n_2-5,0,0,0,0	monster	Senhor das Trevas	1272,1,60000,66000
+// --- First Epsilon-MVP area
+pvp_n_3-5,0,0,0,0	monster	Samurai Encarnado	1492,1,60000,66000
+pvp_n_3-5,0,0,0,0	monster	Faraó	1157,1,60000,66000
+pvp_n_3-5,0,0,0,0	monster	Senhor das Trevas	1272,1,60000,66000
+pvp_n_3-5,0,0,0,0	monster	Bafomé	1039,1,60000,66000
+// --- First Epsilon-MVP area
+pvp_n_4-5,0,0,0,0	monster	Samurai Encarnado	1492,3,60000,66000
+pvp_n_4-5,0,0,0,0	monster	Faraó	1157,1,60000,66000
+pvp_n_4-5,0,0,0,0	monster	Senhor das Trevas	1272,1,60000,66000
+pvp_n_4-5,0,0,0,0	monster	Bafomé	1039,1,60000,66000
+// --- First Epsilon-MVP area
+pvp_n_5-5,0,0,0,0	monster	Samurai Encarnado	1492,2,60000,66000
+pvp_n_5-5,0,0,0,0	monster	Faraó	1157,2,60000,66000
+pvp_n_5-5,0,0,0,0	monster	Senhor das Trevas	1272,2,60000,66000
+pvp_n_5-5,0,0,0,0	monster	Bafomé	1039,1,60000,66000
+// --- First Epsilon-MVP area
+pvp_n_6-5,0,0,0,0	monster	Samurai Encarnado	1492,2,60000,66000
+pvp_n_6-5,0,0,0,0	monster	Faraó	1157,2,60000,66000
+pvp_n_6-5,0,0,0,0	monster	Senhor das Trevas	1272,2,60000,66000
+pvp_n_6-5,0,0,0,0	monster	Bafomé	1039,1,60000,66000
+// --- First Epsilon-MVP area
+pvp_n_7-5,0,0,0,0	monster	Samurai Encarnado	1492,2,60000,66000
+pvp_n_7-5,0,0,0,0	monster	Faraó	1157,2,60000,66000
+pvp_n_7-5,0,0,0,0	monster	Senhor das Trevas	1272,2,60000,66000
+pvp_n_7-5,0,0,0,0	monster	Bafomé	1039,2,60000,66000
+// --- First Epsilon-MVP area
+pvp_n_8-5,0,0,0,0	monster	Samurai Encarnado	1492,3,60000,66000
+pvp_n_8-5,0,0,0,0	monster	Faraó	1157,2,60000,66000
+pvp_n_8-5,0,0,0,0	monster	Senhor das Trevas	1272,2,60000,66000
+pvp_n_8-5,0,0,0,0	monster	Bafomé	1039,2,60000,66000
+
+//============================================================================
+
+//Cidades
+prontera,170,190,3	duplicate(warpvip)	Assistente VIP#01	91
+aldebaran,134,123,4	duplicate(warpvip)	Assistente VIP#02	91
+amatsu,200,80,4	duplicate(warpvip)	Assistente VIP#03	91
+ayothaya,155,111,4	duplicate(warpvip)	Assistente VIP#04	91
+comodo,188,162,4	duplicate(warpvip)	Assistente VIP#05	91
+einbroch,56,203,4	duplicate(warpvip)	Assistente VIP#06	91
+einbech,84,101,4	duplicate(warpvip)	Assistente VIP#07	91
+geffen,121,61,4	duplicate(warpvip)	Assistente VIP#08	91
+yuno,152,186,4	duplicate(warpvip)	Assistente VIP#09	91
+gonryun,164,130,4	duplicate(warpvip)	Assistente VIP#10	91
+izlude,125,118,4	duplicate(warpvip)	Assistente VIP#11	91
+louyang,225,103,4	duplicate(warpvip)	Assistente VIP#12	91
+xmas,149,136,4	duplicate(warpvip)	Assistente VIP#13	91
+morocc,159,96,4	duplicate(warpvip)	Assistente VIP#14	91
+niflheim,29,160,4	duplicate(warpvip)	Assistente VIP#15	91
+payon,180,105,4	duplicate(warpvip)	Assistente VIP#16	91
+lighthalzen,166,100,4	duplicate(warpvip)	Assistente VIP#17	91
+hugel,93,151,4	duplicate(warpvip)	Assistente VIP#18	91
+rachel,130,117,4	duplicate(warpvip)	Assistente VIP#19	91
+veins,211,125,4	duplicate(warpvip)	Assistente VIP#20	91
+nameless_i,172,150,4	duplicate(warpvip)	Assistente VIP#21	91
+moscovia,219,192,4	duplicate(warpvip)	Assistente VIP#22	91
+manuk,293,194,4	duplicate(warpvip)	Assistente VIP#23	91
+splendide,212,185,4	duplicate(warpvip)	Assistente VIP#24	91
+mid_camp,204,235,4	duplicate(warpvip)	Assistente VIP#25	91
+brasilis,184,220,4	duplicate(warpvip)	Assistente VIP#26	91
+
+//Lugares
+pay_arche,44,138,4	duplicate(warpvip)	Assistente VIP#30	91
+mjolnir_02,86,359,4	duplicate(warpvip)	Assistente VIP#31	91
+gef_fild14,78,337,4	duplicate(warpvip)	Assistente VIP#32	91
+
+//==========================Salas MVPS
+//Desafio de Adiante
+pvp_n_1-2,100,100,4	duplicate(warpvip)	Assistente VIP#101	91
+pvp_n_2-2,100,100,4	duplicate(warpvip)	Assistente VIP#102	91
+pvp_n_3-2,100,100,4	duplicate(warpvip)	Assistente VIP#103	91
+pvp_n_4-2,100,100,4	duplicate(warpvip)	Assistente VIP#104	91
+pvp_n_5-2,100,100,4	duplicate(warpvip)	Assistente VIP#105	91
+pvp_n_6-2,100,100,4	duplicate(warpvip)	Assistente VIP#106	91
+pvp_n_7-2,100,100,4	duplicate(warpvip)	Assistente VIP#107	91
+pvp_n_8-2,100,100,4	duplicate(warpvip)	Assistente VIP#108	91
+
+//Treta
+pvp_n_1-3,100,100,4	duplicate(warpvip)	Assistente VIP#109	91
+pvp_n_2-3,100,100,4	duplicate(warpvip)	Assistente VIP#110	91
+pvp_n_3-3,100,100,4	duplicate(warpvip)	Assistente VIP#111	91
+pvp_n_4-3,100,100,4	duplicate(warpvip)	Assistente VIP#112	91
+pvp_n_5-3,100,100,4	duplicate(warpvip)	Assistente VIP#113	91
+pvp_n_6-3,100,100,4	duplicate(warpvip)	Assistente VIP#114	91
+pvp_n_7-3,100,100,4	duplicate(warpvip)	Assistente VIP#115	91
+pvp_n_8-3,100,100,4	duplicate(warpvip)	Assistente VIP#116	91
+
+//Encruzilhada
+pvp_n_1-4,100,100,4	duplicate(warpvip)	Assistente VIP#117	91
+pvp_n_2-4,100,100,4	duplicate(warpvip)	Assistente VIP#118	91
+pvp_n_3-4,100,100,4	duplicate(warpvip)	Assistente VIP#119	91
+pvp_n_4-4,100,100,4	duplicate(warpvip)	Assistente VIP#120	91
+pvp_n_5-4,100,100,4	duplicate(warpvip)	Assistente VIP#121	91
+pvp_n_6-4,100,100,4	duplicate(warpvip)	Assistente VIP#122	91
+pvp_n_7-4,100,100,4	duplicate(warpvip)	Assistente VIP#123	91
+pvp_n_8-4,100,100,4	duplicate(warpvip)	Assistente VIP#124	91
+
+//Bússola
+pvp_n_1-5,100,100,4	duplicate(warpvip)	Assistente VIP#125	91
+pvp_n_2-5,100,100,4	duplicate(warpvip)	Assistente VIP#126	91
+pvp_n_3-5,100,100,4	duplicate(warpvip)	Assistente VIP#127	91
+pvp_n_4-5,100,100,4	duplicate(warpvip)	Assistente VIP#128	91
+pvp_n_5-5,100,100,4	duplicate(warpvip)	Assistente VIP#129	91
+pvp_n_6-5,100,100,4	duplicate(warpvip)	Assistente VIP#130	91
+pvp_n_7-5,100,100,4	duplicate(warpvip)	Assistente VIP#131	91
+pvp_n_8-5,100,100,4	duplicate(warpvip)	Assistente VIP#132	91
