@@ -2316,8 +2316,8 @@ pvp_n_8-4,0,0,0,0	monster	Senhor dos Mortos	1373,2,120000,150000
 
 //==== Bússola
 // --- Bússola-MVP area
-pvp_n_1-5,0,0,0,0	monster	Samurai Encarnado	1492,3,60000,66000
-pvp_n_1-5,0,0,0,0	monster	Faraó	1157,1,60000,66000
+pvp_n_1-5,0,0,0,0	monster	Samurai Encarnado	1492,2,60000,66000
+pvp_n_1-5,0,0,0,0	monster	Faraó	1157,2,60000,66000
 // --- First Epsilon-MVP area
 pvp_n_2-5,0,0,0,0	monster	Samurai Encarnado	1492,2,60000,66000
 pvp_n_2-5,0,0,0,0	monster	Faraó	1157,1,60000,66000
@@ -2348,7 +2348,7 @@ pvp_n_7-5,0,0,0,0	monster	Faraó	1157,2,60000,66000
 pvp_n_7-5,0,0,0,0	monster	Senhor das Trevas	1272,2,60000,66000
 pvp_n_7-5,0,0,0,0	monster	Bafomé	1039,2,60000,66000
 // --- First Epsilon-MVP area
-pvp_n_8-5,0,0,0,0	monster	Samurai Encarnado	1492,3,60000,66000
+pvp_n_8-5,0,0,0,0	monster	Samurai Encarnado	1492,2,60000,66000
 pvp_n_8-5,0,0,0,0	monster	Faraó	1157,2,60000,66000
 pvp_n_8-5,0,0,0,0	monster	Senhor das Trevas	1272,2,60000,66000
 pvp_n_8-5,0,0,0,0	monster	Bafomé	1039,2,60000,66000
