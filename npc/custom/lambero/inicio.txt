@@ -4,7 +4,7 @@ OnPCLoginEvent:
 //set @item, ;           // -- Item 1
 //set @quant, 1;         // -- Quanntidade 1
 set @item2, 607;         // -- Ygg'sdrasil
-set @quant2, 30;         // -- Quanntidade 2
+set @quant2, 100;         // -- Quanntidade 2
 set @item3, 12210;       // -- Goma de Mascar
 set @quant3, 1;          // -- Quanntidade 3
 
@@ -21,6 +21,15 @@ mes "Aqui estão alguns itens, para começar sua jornada...";
 //getitem @item,@quant;
 getitem @item2,@quant2;
 getitem @item3,@quant3;
+next;
+
+mes "[^FF8000Seja Bem Vindo ao LambeRO '-'^000000]";
+set .@ACC,getcharid(3); //Account ID
+mes "E aqui está 15 dias VIP TOTAL, divirta-se...";
+next;
+query_sql "UPDATE `login` SET `group_id`='1',`diasvip`='15' WHERE `account_id`='"+.@ACC+"'";
+
+mes "Agora Relogue, E entre novamente para Habilitar seus dias VIP Total...";
 set #welcome,1; //-- para setar apenas cada char novo use welcome$
 close;
 }
