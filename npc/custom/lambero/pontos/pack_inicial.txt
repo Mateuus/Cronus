@@ -1,0 +1,67 @@
+///////////////////////////////////////////////////////////////
+//
+//      Entrega para players iniciante
+//
+//////////////////////////////////////////////////////////////
+
+prontera,156,179,4	script	Pack Iniciante	480,{
+
+set .npc$, "[^FF8000Pack Iniciante^000000]";
+
+
+
+    mes .npc$;
+	mes "Olá ^0000FF"+strcharinfo(0)+"^000000 seja bem vindo ao LambeRO";
+	
+      set @ContaID, getcharid(3);
+	  query_sql "SELECT `account_id` FROM `pack_inicial` WHERE `account_id` = '"+getcharid(3)+"'", @accid;
+	  next;
+                 if(@accid != @ContaID){
+				 
+                 query_sql "SELECT `last_ip` FROM `login` WHERE `account_id` = '"+getcharid(3)+"'",@LIP$;
+                 query_sql "SELECT `ip` FROM  `pack_inicial` WHERE  `ip` = '"+@LIP$+"'",@GIP$;
+				 
+                 if(@GIP$ != @LIP$){
+				 
+				    mes .npc$;
+				    mes "^0000FF"+strcharinfo(0)+"^000000 gostaria de Receber seu Pack Iniciante ?";
+					next;
+					mes .npc$;
+					mes "^0000FF"+strcharinfo(0)+"^000000 ^FF0000verifique seu peso, Caso contrário seus itens irão cair no chão^000000";
+					next;
+					if(select("- Sim:- Não")==2)close;
+					
+					getitem 607,1000;
+					getitem 12103,2;
+					getitem 14533,2;
+					getitem 13588,1;
+	
+					announce "[LambeRO] O Player ["+strcharinfo(0)+"] acaba de Receber o seu Pack Iniciante.",bc_all;
+					
+					
+					set @time$, gettimestr("%Y-%m/%d %H:%M:%S",21);
+					query_sql "INSERT INTO `pack_inicial` (`account_id`, `data`, `ip`) VALUES ("+getcharid(3)+", '"+@time$+"', '"+@LIP$+"')";
+					mes .npc$;
+					mes "Parabéns ^FF0000"+strcharinfo(0)+"^000000 voçê recebeu seu Pack Iniciante";
+					mes "Divirta-se em nosso servidor...";
+					close;
+                }
+                else
+                { 
+				    mes .npc$;
+					mes "Você recebeu o Pack Iniciante Recentemente.";
+					close;
+                }
+
+                }
+				else
+				{
+					mes .npc$;
+					mes "Sua Conta já recebeu o Pack Iniciante.";
+					close;
+				}
+
+OnInit:
+	waitingroom "Pack Iniciante",0;
+end;
+}
