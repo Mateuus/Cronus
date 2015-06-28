@@ -44,7 +44,7 @@
   ´¯`º¤ø,¸¸,ø¤°¯`º¤ø,¸¸,ø¤°¯`º¤ø,¸¸,ø¤°¯º¤ø,¸¸,ø¤º´¯´*/
 
 
-prontera,152,152,2	script	Evento Jogo da Memória	437,{
+prontera,143,176,4	script	Evento Jogo da Memória	437,{
 
 	if( .gameon != 0 )
 	{

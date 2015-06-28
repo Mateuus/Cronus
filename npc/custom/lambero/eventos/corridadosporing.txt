@@ -1,12 +1,12 @@
 //====== Teleporte: ============================================
-prontera,174,202,4	script	Corrida de Poring	882,{
+prontera,141,176,4	script	Corrida de Poring	882,{
     
     if($prace_gate == 0){
-    mes "[Poring Race]";
+    mes "[Corrida dos Porings]";
     mes "Desculpe, mas a Corrida dos Porings está fechada.";
     close;
     }
-    mes "[Poring Race]";
+    mes "[Corrida dos Porings]";
     mes "Olá ^0000CD"+strcharinfo(0)+"^000000!, você quer ir";
     mes "para a Corrida dos Porings?";
     if(select("Sim, claro.:Não, obrigado.") == 2) close;

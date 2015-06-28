@@ -22,7 +22,7 @@ mes "Olá ^CD3333"+strcharinfo(0)+"^000000!";
 mes "Seu passe esta confirmado.";
 mes "Diga-me o que deseja.";
 next;
-menu "- Curar",L_a,"- Arenas MVP",L_m,"- Encantamentos",L_b,"- Teleportador",L_g,"- Removedor de Cartas",L_d,"- Reparador de Equipamentos",L_e,"- Resetador de Pontos",L_f,"- Estilista",L_c,"- Teleportador WOE",L_h,"- Administração",L_ADM;
+menu "- Curar/Encantamentos",L_a,"- Arenas MVP",L_m,"- Teleportador",L_g,"- Removedor de Cartas",L_d,"- Reparador de Equipamentos",L_e,"- Resetador de Pontos",L_f,"- Estilista",L_c,"- Teleportador WOE",L_h,"- Administração",L_ADM;
 
 //============================================================================
 //==== ARENA MVP
@@ -166,7 +166,7 @@ L_a:
 
 	mes @npc$;
 	mes "Bem-Vindo ao meu serviço.";
-	mes "Posso recuperar seu HP e SP.";
+	mes "Posso recuperar seu HP,SP e encantar com buffs.";
 	mes "Deseja continuar?";
 	next;
 	menu "- Sim",L_sim1,"- Não",L_nao1;
@@ -175,6 +175,11 @@ L_a:
 	mes @npc$;
 	mes "Pronto! Volte quando precisar dos meus servoços.";
 		percentheal 100,100; 
+                sc_start 32,540000,10;
+		sc_start 29, 300000, 10;
+		sc_start 30, 940000, 10;
+		sc_start 35, 100000, 5; 
+		sc_start 41, 30000, 5;
                 cutin "",255;     
 		close;          
 	
