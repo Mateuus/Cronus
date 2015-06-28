@@ -38,15 +38,16 @@
 //= 1.6 - Horário modificado: de 2 em 2h. [Mara]
 //============================================================
  
-prontera,157,185,5	script	Sala dos Cristais	988,{
+izlude,136,119,4	script	Sala dos Cristais	988,{
  
+
 set .n$, "[^CD3333Sala dos Cristais^000000]";
 set $msu, 10; // Máximo de Player na Sala 1.
 set $msd, 10; // Máximo de Players na Sala 2.
-set $mnu, 10; // Cristais na Sala 1.
-set $mnd, 10; // Cristais na Sala 2.
+set $mnu, 1; // Cristais na Sala 1.
+set $mnd, 1; // Cristais na Sala 2.
  
-        dispbottom "Script por Mara.";
+        //dispbottom "Script por Mara.";
         if($scg == false){
         mes .n$;
         mes "A sala dos cristais está fechada no momento.";
@@ -55,14 +56,14 @@ set $mnd, 10; // Cristais na Sala 2.
         mes .n$;
         mes "Olá ^0000CD"+strcharinfo(0)+"^000000 !";
         mes "Escolha a sala que você deseja entrar:";
-        mes "Sala 1: [^FF0000"+getmapusers("hunter_1-1.gat")+"^000000/^008B00"+$msu+"^000000]";
-        mes "Sala 2: [^FF0000"+getmapusers("hunter_2-1.gat")+"^000000/^008B00"+$msd+"^000000]";
+        mes "Sala 1: [^FF0000"+getmapusers("bif_fild01.gat")+"^000000/^008B00"+$msu+"^000000]";
+        mes "Sala 2: [^FF0000"+getmapusers("bif_fild01.gat")+"^000000/^008B00"+$msd+"^000000]";
  
         switch(select("- Sala 1","- Sala 2","- Cancelar")){
  
         case 1:
                 if(getgmlevel() > 0) callsub OnEnteru;
-                if(getmapusers("hunter_1-1.gat") == $msu){
+                if(getmapusers("bif_fild01.gat") == $msu){
                 next;
                 mes .n$;
                 mes "Desculpe, mas a sala está lotada, tente novamente mais tarde.";
@@ -78,12 +79,12 @@ set $mnd, 10; // Cristais na Sala 2.
                         close;
                         }
                         close2;
-                        warp "hunter_1-1.gat", 0, 0;
+                        warp "bif_fild01.gat", 0, 0;
                         end;
  
         case 2:
                 if(getgmlevel() > 0) callsub OnEnterd;
-                if(getmapusers("hunter_2-1.gat") == $msu){
+                if(getmapusers("bif_fild01.gat") == $msu){
                 next;
                 mes .n$;
                 mes "Desculpe, mas a sala está lotada, tente novamente mais tarde.";
@@ -99,13 +100,17 @@ set $mnd, 10; // Cristais na Sala 2.
                         close;
                         }
                         close2;
-                        warp "hunter_2-1.gat", 0, 0;
+                        warp "bif_fild01.gat", 0, 0;
                         end;
  
         case 3:
                 close;
 }
- 
+
+OnClock1629: callsub OnOpenRoom;
+OnClock1640: callsub OnClosRoom; 
+
+
 OnClock0000: callsub OnOpenRoom;
 OnClock0010: callsub OnClosRoom; 
 
@@ -146,14 +151,18 @@ OnClock2210: callsub OnClosRoom;
 OnOpenRoom:
         set $scg,1;
         announce "O portão para a Sala dos Cristais está aberto !",bc_yellow;
-        monster "knight_1-1.gat",98,100,"Cristal LambeRO",1396,10,"OKC::OnCSE";
+        monster "knight_1-1.gat",98,100,"Cristal LambeRO",1877,10,"OKC::OnCSE";
         monster "bif_fild01.gat",0,0,"Cristal LambeRO",1877,$mnu,"OKC::OnCSE";
         monster "bif_fild01.gat",0,0,"Cristal LambeRO",1877,$mnd,"OKC::OnCSE";
         end;
  
 OnClosRoom:
         set $scg,0;
+        atcommand "@killmonster";
         announce "O portão para a Sala dos Cristais foi fechado !",bc_yellow|bc_all;
+        mapwarp "knight_1-1.gat","izlude.gat",95,102;
+        mapwarp "bif_fild01.gat","izlude.gat",95,102;
+        atcommand "@killmonster";
         set $sct, $sct + 1;
         end;
 }
@@ -161,7 +170,7 @@ OnClosRoom:
 -	script	OKC	-1,{OnCSE: end;}
  
 function	script	Kill_Monster	{
- 
+OnClock1640: atcommand "@killmonster2"; end;
 OnClock0010: atcommand "@killmonster2"; end;
 OnClock0210: atcommand "@killmonster2"; end;
 OnClock0410: atcommand "@killmonster2"; end;
@@ -177,20 +186,172 @@ OnClock2210: atcommand "@killmonster2"; end;
 }
  
 hunter_1-1.gat,0,0,0	script	Timer#1	-1,{callfunc "Kill_Monster";}
-hunter_2-1.gat,0,0,0	script	Timer#2	-1,{callfunc "Kill_Monster";}
+bif_fild01.gat,0,0,0	script	Timer#2	-1,{callfunc "Kill_Monster";}
 knight_1-1.gat,0,0,0	script	Timer#3	-1,{callfunc "Kill_Monster";}
  
-hunter_1-1.gat,0,0,0	script	Armadilha#1	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#1"; OnTouch: callfunc "ADisp";}
-hunter_1-1.gat,0,0,0	script	Armadilha#2	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#2"; OnTouch: callfunc "ADisp";}
-hunter_1-1.gat,0,0,0	script	Armadilha#3	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#3"; OnTouch: callfunc "ADisp";}
-hunter_1-1.gat,0,0,0	script	Armadilha#4	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#4"; OnTouch: callfunc "ADisp";}
-hunter_1-1.gat,0,0,0	script	Armadilha#5	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#5"; OnTouch: callfunc "ADisp";}
- 
-hunter_2-1.gat,0,0,0	script	Armadilha#6	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#6"; OnTouch: callfunc "ADisp";}
-hunter_2-1.gat,0,0,0	script	Armadilha#7	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#7"; OnTouch: callfunc "ADisp";}
-hunter_2-1.gat,0,0,0	script	Armadilha#8	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#8"; OnTouch: callfunc "ADisp";}
-hunter_2-1.gat,0,0,0	script	Armadilha#9	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#9"; OnTouch: callfunc "ADisp";}
-hunter_2-1.gat,0,0,0	script	Armadilha#0	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#0"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#1	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#1"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#2	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#2"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#3	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#3"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#4	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#4"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#5	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#5"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#6	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#6"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#7	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#7"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#8	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#8"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#9	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#9"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#10	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#10"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#11	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#11"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#12	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#12"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#13	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#13"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#14	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#14"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#15	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#15"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#16	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#16"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#17	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#17"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#18	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#18"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#19	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#19"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#20	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#20"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#21	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#21"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#22	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#22"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#23	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#23"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#24	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#24"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#25	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#25"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#26	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#26"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#27	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#27"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#28	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#28"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#29	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#29"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#30	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#30"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#31	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#31"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#32	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#32"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#33	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#33"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#34	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#34"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#35	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#35"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#36	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#36"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#37	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#37"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#38	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#38"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#39	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#39"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#40	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#40"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#41	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#41"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#42	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#42"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#43	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#43"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#44	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#44"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#45	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#45"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#46	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#46"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#47	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#47"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#48	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#48"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#49	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#49"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#50	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#50"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#51	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#51"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#52	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#52"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#53	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#53"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#54	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#54"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#55	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#55"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#56	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#56"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#57	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#57"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#58	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#58"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#59	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#59"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#60	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#60"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#61	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#61"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#62	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#62"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#63	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#63"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#64	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#64"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#65	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#65"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#66	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#66"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#67	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#67"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#68	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#68"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#69	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#69"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#70	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#70"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#71	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#71"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#72	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#72"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#73	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#73"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#74	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#74"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#75	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#75"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#76	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#76"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#77	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#77"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#78	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#78"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#79	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#79"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#80	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#80"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#81	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#81"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#82	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#82"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#83	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#83"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#84	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#84"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#85	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#85"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#86	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#86"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#87	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#87"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#88	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#88"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#89	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#89"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#90	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#90"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#91	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#91"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#92	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#92"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#93	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#93"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#94	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#94"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#95	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#95"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#96	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#96"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#97	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#97"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#98	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#98"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#99	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#99"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#100	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#100"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#101	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#101"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#102	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#102"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#103	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#103"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#104	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#104"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#105	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#105"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#106	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#106"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#107	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#107"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#108	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#108"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#109	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#109"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#110	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#110"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#111	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#110"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#112	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#112"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#113	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#113"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#114	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#114"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#115	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#115"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#116	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#116"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#117	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#117"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#118	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#118"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#119	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#119"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#120	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#120"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#121	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#121"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#122	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#122"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#123	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#123"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#124	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#124"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#125	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#125"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#126	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#126"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#127	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#127"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#128	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#128"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#129	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#129"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#130	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#130"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#131	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#131"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#132	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#132"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#133	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#133"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#134	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#134"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#135	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#135"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#136	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#136"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#137	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#137"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#138	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#138"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#139	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#139"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#140	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#140"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#141	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#141"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#142	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#142"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#143	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#143"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#144	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#144"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#145	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#145"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#146	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#146"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#147	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#147"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#148	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#148"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#149	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#149"; OnTouch: callfunc "ADisp";}
+bif_fild01.gat,0,0,0	script	Armadilha#150	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#150"; OnTouch: callfunc "ADisp";}
+
+
+hunter_1-1.gat,0,0,0	script	Armadilha#200	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#200"; OnTouch: callfunc "ADisp";}
+hunter_1-1.gat,0,0,0	script	Armadilha#201	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#201"; OnTouch: callfunc "ADisp";}
+hunter_1-1.gat,0,0,0	script	Armadilha#202	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#202"; OnTouch: callfunc "ADisp";}
+hunter_1-1.gat,0,0,0	script	Armadilha#203	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#203"; OnTouch: callfunc "ADisp";}
+hunter_1-1.gat,0,0,0	script	Armadilha#204	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#204"; OnTouch: callfunc "ADisp";}
+hunter_1-1.gat,0,0,0	script	Armadilha#205	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#205"; OnTouch: callfunc "ADisp";}
+hunter_1-1.gat,0,0,0	script	Armadilha#206	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#206"; OnTouch: callfunc "ADisp";}
+hunter_1-1.gat,0,0,0	script	Armadilha#207	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#207"; OnTouch: callfunc "ADisp";}
+hunter_1-1.gat,0,0,0	script	Armadilha#208	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#208"; OnTouch: callfunc "ADisp";}
+hunter_1-1.gat,0,0,0	script	Armadilha#209	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#209"; OnTouch: callfunc "ADisp";}
+hunter_1-1.gat,0,0,0	script	Armadilha#210	-1,3,3,{OnInit: callfunc "TrapAct","Armadilha#210"; OnTouch: callfunc "ADisp";}
  
 function	script	TrapAct	{
  
@@ -205,13 +366,15 @@ set @rand, rand(1,100);
 if(@rand <= 50){
 specialeffect2 69;
 announce "Você caiu em uma armadilha...você será retirado da sala.",bc_yellow|bc_self;
-warp getsavepoint(0),getsavepoint(1),getsavepoint(2); end;
+//warp getsavepoint(0),getsavepoint(1),getsavepoint(2); end;
+warp "izlude.gat", 95, 102; end;
 }
 set @rane, rand(1,100);
-if(@rane <= 10){
+if(@rane <= 1){
 specialeffect2 69;
 announce "Você caiu em uma armadilha...você será retirado da sala por esta rodada.",bc_yellow|bc_self;
-warp getsavepoint(0),getsavepoint(1),getsavepoint(2); set #trap, 1; set #sct, $sct; end;
+//warp getsavepoint(0),getsavepoint(1),getsavepoint(2); set #trap, 1; set #sct, $sct; end;
+warp "izlude.gat", 95, 102; end;
 }
 set @raed, rand(1,100);
 if(@raed <= 6){
@@ -236,7 +399,8 @@ if(@ranf <= 3){
 if(countitem($cid) == false){
 specialeffect2 69;
 announce "Você caiu em uma armadilha...você será retirado da sala.",bc_yellow|bc_self;
-warp getsavepoint(0),getsavepoint(1),getsavepoint(2); end;
+//warp getsavepoint(0),getsavepoint(1),getsavepoint(2); end;
+warp "izlude.gat", 95, 102; end;
 }
 specialeffect2 62;
 announce "Você caiu em uma armadilha...e perdeu 1 Bandeira Nacional.",bc_yellow|bc_self;
@@ -251,8 +415,8 @@ warp "knight_1-1.gat",0,0; end;
 }
 
 knight_1-1.gat,0,0,0,0	monster	Cristal LambeRO	1877,10,20000,30000,0
-bif_fild01.gat,0,0,0,0	monster	Cristal LambeRO	1877,30,20000,30000,0
-bif_fild01.gat,0,0,0,0	monster	Cristal LambeRO	1877,30,20000,30000,0
+bif_fild01.gat,0,0,0,0	monster	Cristal LambeRO	1877,60,20000,30000,0
+//bif_fild01.gat,0,0,0,0	monster	Cristal LambeRO	1877,40,20000,30000,0
  
 knight_1-1.gat	mapflag	nobranch
 bif_fild01.gat	mapflag	nobranch
@@ -273,4 +437,4 @@ knight_1-1.gat	mapflag	nowarp
 bif_fild01.gat	mapflag	nowarp
 
 knight_1-1.gat	mapflag	pvp
-bif_fild01.gat	mapflag	pvp
+//bif_fild01.gat	mapflag	nopvp
