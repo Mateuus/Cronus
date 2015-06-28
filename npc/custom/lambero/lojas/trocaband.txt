@@ -1,0 +1,141 @@
+-	shop	quest_shop	139,501:-1 
+-	script	shop_conf#01	-1,{
+end;
+ 
+OnInit:
+setarray $qitens3[0],5137,5132,2236,5141,5377;
+setarray $qquant[0],0,0,0,0,0,0;
+ 
+        npcshopdelitem "quest_shop",501;
+        if(getarraysize($qitens3) >= 1) {
+        npcshopitem "quest_shop",$qitens3[0],$qquant[0];
+        for (set .@i,1; .@i < getarraysize($qitens3); set .@i,.@i+1) {
+        npcshopadditem "quest_shop",$qitens3[.@i],$qquant[.@i];
+                }
+        }
+        end;
+}
+ 
+ 
+ 
+prontera,150,150,6	script	Trocar Bandeiras	57,{
+ 
+//configuração dos itens:
+
+/* Aqui abaixo são os ids dos itens que estarão disponíveis no npc de quest.*/
+setarray $qitens3[0],5137,5132,2236,5141,5377;
+setarray $qquant[0],0,0,0,0,0,0;
+
+/* Aqui configure os itens necessarios para a quest em @itens e a quantidade em @quant.*/
+setarray @itens[0],7549,7549,7549,7549,7549;
+setarray @quant[0],300,300,300,300,300;
+
+
+
+mes "[ ^0000ffTrocar Bandeiras^000000 ]";
+mes "Vamos trocar suas bandeiras brasileiras então.";
+close2;
+callshop "quest_shop",1;
+end;
+ 
+OnInit:
+npcshopattach "quest_shop",1;
+end;
+ 
+ 
+OnBuyItem:
+        for (set .@i,0; .@i < getarraysize(@bought_nameid); set .@i,.@i+1) {
+        set @cost,callfunc("Q_bonuscusto12",@bought_nameid[.@i]);
+		/* Abaixo estão configurados 5 itens de quest, para adicionar outros basta seguir o exemplo, não esquecendo de alterar o $qitens.*/
+		if (@bought_nameid[.@i] == $qitens3[0]) {
+		/* O nummin e nummax são as variáveis que controlam o número de itens da quest. se sua quest tiver 5 itens coloque nummin =0 e nummax = 4
+		se o próximo item tiver 3 itens, coloque nummin = 5 e nummax = 8 na segunda parte, e assim por diante, não esqueã de alterar o numerodoitem
+		
+		A configuração que está aplicada é de 6 itens para cada quest.*/
+		set @nummin1,0;
+		set @nummax1,0;
+		set @numerodoitem,0;
+		callsub Terminando;
+}
+		if (@bought_nameid[.@i] == $qitens3[1]) {
+		set @nummin1,0;
+		set @nummax1,0;
+		set @numerodoitem,1;
+		callsub Terminando;
+}		
+		if (@bought_nameid[.@i] == $qitens3[2]) {
+		set @nummin1,0;
+		set @nummax1,0;
+		set @numerodoitem,2;
+		callsub Terminando;
+}
+		if (@bought_nameid[.@i] == $qitens3[3]) {
+		set @nummin1,0;
+		set @nummax1,0;
+		set @numerodoitem,3;
+		callsub Terminando;
+}
+		if (@bought_nameid[.@i] == $qitens3[4]) {
+		set @nummin1,0;
+		set @nummax1,0;
+		set @numerodoitem,4;
+		callsub Terminando;
+}
+		if (@bought_nameid[.@i] == $qitens3[5]) {
+		set @nummin1,0;
+		set @nummax1,0;
+		set @numerodoitem,5;
+		callsub Terminando;
+}
+
+Terminando:
+		mes "[ ^0000ffTrocar Bandeiras^000000 ]";
+		mes "Para comprar este item serão necessários:";
+		for (set .@m,@nummin1; .@m <= @nummax1; set .@m,.@m+1){
+		mes getitemname(@itens[.@m])+" - (^00ff00"+countitem(@itens[.@m])+"^000000/"+@quant[.@m]+")";
+}
+		next;	
+		mes "[ ^0000ffTrocar Bandeiras^000000 ]";
+		mes "Você possui todos os itens?";
+		if(select("Sim, prossiga.:Não, vou consegui-los.")==2){
+		next;
+		mes "[ ^0000ffTrocar Bandeiras^000000 ]"; 
+		mes "Vá em busca das bandeiras e volte aqui quando consegui-las."; 
+		close;
+}
+		for (set .@c,@nummin1; .@c < @nummax1; set .@c,.@c+1){
+		if(countitem(@itens[.@c]) <= @quant[.@c]){
+		callsub Sem_item;
+	}
+}
+			next;
+			mes "Muito bem, aqui está seu item.";
+			for (set .@d,1; .@d < 6; set .@d,.@d+1) {
+			delitem @itens[.@d],@quant[.@d];
+}
+			getitem $qitens3[@numerodoitem],1;
+			announce "[Mestre das Quests]: O jogador "+strcharinfo(0)+" acaba de concluir uma de minhas quests e obter o item: "+getitemname($qitens3[@numerodoitem]),bc_all;
+			close;
+			end;
+}
+
+
+deletearray @bought_nameid[0],getarraysize(@bought_nameid);
+deletearray @bought_quantity[0],getarraysize(@bought_quantity);
+end;
+
+Sem_item:
+			next;
+			mes "[ ^0000ffQuests^000000 ]";
+			mes "Me desculpe, mas você não possui todas as Bandeiras"; close;
+     
+}
+function	script	Q_bonuscusto12	{
+        for(set .@i,0; .@i < getarraysize($qitens3); set .@i,.@i+1) {
+        if($qitens3[.@i] == getarg(0)) {
+        return $qquant[.@i];
+                }
+        }
+return;
+}
+ 
