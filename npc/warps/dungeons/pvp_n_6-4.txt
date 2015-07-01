@@ -11,26 +11,146 @@
 //= 1.1 Official warps [Playtester]
 //============================================================
 
-pvp_n_6-4,93,72,0	warp	encruzilhada	1,1,pvp_n_6-4,64,77
-pvp_n_6-4,66,77,0	warp	encruzilhada1	1,1,pvp_n_6-4,96,72
+//Anda 1
+pvp_n_1-4,93,72,0	warp	Aencruzilhada	1,1,pvp_n_1-4,64,77
+pvp_n_1-4,66,77,0	warp	Aencruzilhada1	1,1,pvp_n_1-4,96,72
+pvp_n_1-4,57,88,0	warp	Aencruzilhada2	1,1,pvp_n_1-4,55,117
+pvp_n_1-4,55,115,0	warp	Aencruzilhada3	1,1,pvp_n_1-4,58,86
+pvp_n_1-4,55,128,0	warp	Aencruzilhada4	1,1,pvp_n_1-4,54,157
+pvp_n_1-4,55,155,0	warp	Aencruzilhada5	1,1,pvp_n_1-4,55,126
+pvp_n_1-4,67,167,0	warp	Aencruzilhada6	1,1,pvp_n_1-4,95,166
+pvp_n_1-4,93,164,0	warp	Aencruzilhada7	1,1,pvp_n_1-4,64,167
+pvp_n_1-4,107,165,0	warp	Aencruzilhada8	1,1,pvp_n_1-4,135,165
+pvp_n_1-4,132,165,0	warp	Aencruzilhada9	1,1,pvp_n_1-4,104,165
+pvp_n_1-4,144,155,0	warp	Aencruzilhada10	1,1,pvp_n_1-4,144,126
+pvp_n_1-4,144,128,0	warp	Aencruzilhada11	1,1,pvp_n_1-4,144,157
+pvp_n_1-4,144,114,0	warp	Aencruzilhada12	1,1,pvp_n_1-4,144,87
+pvp_n_1-4,144,89,0	warp	Aencruzilhada13	1,1,pvp_n_1-4,145,116
+pvp_n_1-4,132,79,0	warp	Aencruzilhada14	1,1,pvp_n_1-4,102,71
+pvp_n_1-4,105,71,0	warp	Aencruzilhada15	1,1,pvp_n_1-4,135,79
 
-pvp_n_6-4,57,88,0	warp	encruzilhada2	1,1,pvp_n_6-4,55,117
-pvp_n_6-4,55,115,0	warp	encruzilhada3	1,1,pvp_n_6-4,58,86
+//Anda 2
+pvp_n_2-4,93,72,0	warp	Bencruzilhada	1,1,pvp_n_2-4,64,77
+pvp_n_2-4,66,77,0	warp	Bencruzilhada1	1,1,pvp_n_2-4,96,72
+pvp_n_2-4,57,88,0	warp	Bencruzilhada2	1,1,pvp_n_2-4,55,117
+pvp_n_2-4,55,115,0	warp	Bencruzilhada3	1,1,pvp_n_2-4,58,86
+pvp_n_2-4,55,128,0	warp	Bencruzilhada4	1,1,pvp_n_2-4,54,157
+pvp_n_2-4,55,155,0	warp	Bencruzilhada5	1,1,pvp_n_2-4,55,126
+pvp_n_2-4,67,167,0	warp	Bencruzilhada6	1,1,pvp_n_2-4,95,166
+pvp_n_2-4,93,164,0	warp	Bencruzilhada7	1,1,pvp_n_2-4,64,167
+pvp_n_2-4,107,165,0	warp	Bencruzilhada8	1,1,pvp_n_2-4,135,165
+pvp_n_2-4,132,165,0	warp	Bencruzilhada9	1,1,pvp_n_2-4,104,165
+pvp_n_2-4,144,155,0	warp	Bencruzilhada10	1,1,pvp_n_2-4,144,126
+pvp_n_2-4,144,128,0	warp	Bencruzilhada11	1,1,pvp_n_2-4,144,157
+pvp_n_2-4,144,114,0	warp	Bencruzilhada12	1,1,pvp_n_2-4,144,87
+pvp_n_2-4,144,89,0	warp	Bencruzilhada13	1,1,pvp_n_2-4,145,116
+pvp_n_2-4,132,79,0	warp	Bencruzilhada14	1,1,pvp_n_2-4,102,71
+pvp_n_2-4,105,71,0	warp	Bencruzilhada15	1,1,pvp_n_2-4,135,79
 
-pvp_n_6-4,55,128,0	warp	encruzilhada4	1,1,pvp_n_6-4,54,157
-pvp_n_6-4,55,155,0	warp	encruzilhada5	1,1,pvp_n_6-4,55,126
+//Anda 3
+pvp_n_3-4,93,72,0	warp	Cencruzilhada	1,1,pvp_n_3-4,64,77
+pvp_n_3-4,66,77,0	warp	Cencruzilhada1	1,1,pvp_n_3-4,96,72
+pvp_n_3-4,57,88,0	warp	Cencruzilhada2	1,1,pvp_n_3-4,55,117
+pvp_n_3-4,55,115,0	warp	Cencruzilhada3	1,1,pvp_n_3-4,58,86
+pvp_n_3-4,55,128,0	warp	Cencruzilhada4	1,1,pvp_n_3-4,54,157
+pvp_n_3-4,55,155,0	warp	Cencruzilhada5	1,1,pvp_n_3-4,55,126
+pvp_n_3-4,67,167,0	warp	Cencruzilhada6	1,1,pvp_n_3-4,95,166
+pvp_n_3-4,93,164,0	warp	Cencruzilhada7	1,1,pvp_n_3-4,64,167
+pvp_n_3-4,107,165,0	warp	Cencruzilhada8	1,1,pvp_n_3-4,135,165
+pvp_n_3-4,132,165,0	warp	Cencruzilhada9	1,1,pvp_n_3-4,104,165
+pvp_n_3-4,144,155,0	warp	Cencruzilhada10	1,1,pvp_n_3-4,144,126
+pvp_n_3-4,144,128,0	warp	Cencruzilhada11	1,1,pvp_n_3-4,144,157
+pvp_n_3-4,144,114,0	warp	Cencruzilhada12	1,1,pvp_n_3-4,144,87
+pvp_n_3-4,144,89,0	warp	Cencruzilhada13	1,1,pvp_n_3-4,145,116
+pvp_n_3-4,132,79,0	warp	Cencruzilhada14	1,1,pvp_n_3-4,102,71
+pvp_n_3-4,105,71,0	warp	Cencruzilhada15	1,1,pvp_n_3-4,135,79
 
-pvp_n_6-4,67,167,0	warp	encruzilhada6	1,1,pvp_n_6-4,95,166
-pvp_n_6-4,93,164,0	warp	encruzilhada7	1,1,pvp_n_6-4,64,167
+//Anda 4
+pvp_n_4-4,93,72,0	warp	Dencruzilhada	1,1,pvp_n_4-4,64,77
+pvp_n_4-4,66,77,0	warp	Dencruzilhada1	1,1,pvp_n_4-4,96,72
+pvp_n_4-4,57,88,0	warp	Dencruzilhada2	1,1,pvp_n_4-4,55,117
+pvp_n_4-4,55,115,0	warp	Dencruzilhada3	1,1,pvp_n_4-4,58,86
+pvp_n_4-4,55,128,0	warp	Dencruzilhada4	1,1,pvp_n_4-4,54,157
+pvp_n_4-4,55,155,0	warp	Dencruzilhada5	1,1,pvp_n_4-4,55,126
+pvp_n_4-4,67,167,0	warp	Dencruzilhada6	1,1,pvp_n_4-4,95,166
+pvp_n_4-4,93,164,0	warp	Dencruzilhada7	1,1,pvp_n_4-4,64,167
+pvp_n_4-4,107,165,0	warp	Dencruzilhada8	1,1,pvp_n_4-4,135,165
+pvp_n_4-4,132,165,0	warp	Dencruzilhada9	1,1,pvp_n_4-4,104,165
+pvp_n_4-4,144,155,0	warp	Dencruzilhada10	1,1,pvp_n_4-4,144,126
+pvp_n_4-4,144,128,0	warp	Dencruzilhada11	1,1,pvp_n_4-4,144,157
+pvp_n_4-4,144,114,0	warp	Dencruzilhada12	1,1,pvp_n_4-4,144,87
+pvp_n_4-4,144,89,0	warp	Dencruzilhada13	1,1,pvp_n_4-4,145,116
+pvp_n_4-4,132,79,0	warp	Dencruzilhada14	1,1,pvp_n_4-4,102,71
+pvp_n_4-4,105,71,0	warp	Dencruzilhada15	1,1,pvp_n_4-4,135,79
 
-pvp_n_6-4,107,165,0	warp	encruzilhada8	1,1,pvp_n_6-4,135,165
-pvp_n_6-4,132,165,0	warp	encruzilhada9	1,1,pvp_n_6-4,104,165
+//Anda 5
+pvp_n_5-4,93,72,0	warp	Eencruzilhada	1,1,pvp_n_5-4,64,77
+pvp_n_5-4,66,77,0	warp	Eencruzilhada1	1,1,pvp_n_5-4,96,72
+pvp_n_5-4,57,88,0	warp	Eencruzilhada2	1,1,pvp_n_5-4,55,117
+pvp_n_5-4,55,115,0	warp	Eencruzilhada3	1,1,pvp_n_5-4,58,86
+pvp_n_5-4,55,128,0	warp	Eencruzilhada4	1,1,pvp_n_5-4,54,157
+pvp_n_5-4,55,155,0	warp	Eencruzilhada5	1,1,pvp_n_5-4,55,126
+pvp_n_5-4,67,167,0	warp	Eencruzilhada6	1,1,pvp_n_5-4,95,166
+pvp_n_5-4,93,164,0	warp	Eencruzilhada7	1,1,pvp_n_5-4,64,167
+pvp_n_5-4,107,165,0	warp	Eencruzilhada8	1,1,pvp_n_5-4,135,165
+pvp_n_5-4,132,165,0	warp	Eencruzilhada9	1,1,pvp_n_5-4,104,165
+pvp_n_5-4,144,155,0	warp	Eencruzilhada10	1,1,pvp_n_5-4,144,126
+pvp_n_5-4,144,128,0	warp	Eencruzilhada11	1,1,pvp_n_5-4,144,157
+pvp_n_5-4,144,114,0	warp	Eencruzilhada12	1,1,pvp_n_5-4,144,87
+pvp_n_5-4,144,89,0	warp	Eencruzilhada13	1,1,pvp_n_5-4,145,116
+pvp_n_5-4,132,79,0	warp	Eencruzilhada14	1,1,pvp_n_5-4,102,71
+pvp_n_5-4,105,71,0	warp	Eencruzilhada15	1,1,pvp_n_5-4,135,79
 
-pvp_n_6-4,144,155,0	warp	encruzilhada10	1,1,pvp_n_6-4,144,126
-pvp_n_6-4,144,128,0	warp	encruzilhada11	1,1,pvp_n_6-4,144,157
+//Anda 6
+pvp_n_6-4,93,72,0	warp	Fencruzilhada	1,1,pvp_n_6-4,64,77
+pvp_n_6-4,66,77,0	warp	Fencruzilhada1	1,1,pvp_n_6-4,96,72
+pvp_n_6-4,57,88,0	warp	Fencruzilhada2	1,1,pvp_n_6-4,55,117
+pvp_n_6-4,55,115,0	warp	Fencruzilhada3	1,1,pvp_n_6-4,58,86
+pvp_n_6-4,55,128,0	warp	Fencruzilhada4	1,1,pvp_n_6-4,54,157
+pvp_n_6-4,55,155,0	warp	Fencruzilhada5	1,1,pvp_n_6-4,55,126
+pvp_n_6-4,67,167,0	warp	Fencruzilhada6	1,1,pvp_n_6-4,95,166
+pvp_n_6-4,93,164,0	warp	Fencruzilhada7	1,1,pvp_n_6-4,64,167
+pvp_n_6-4,107,165,0	warp	Fencruzilhada8	1,1,pvp_n_6-4,135,165
+pvp_n_6-4,132,165,0	warp	Fencruzilhada9	1,1,pvp_n_6-4,104,165
+pvp_n_6-4,144,155,0	warp	Fencruzilhada10	1,1,pvp_n_6-4,144,126
+pvp_n_6-4,144,128,0	warp	Fencruzilhada11	1,1,pvp_n_6-4,144,157
+pvp_n_6-4,144,114,0	warp	Fencruzilhada12	1,1,pvp_n_6-4,144,87
+pvp_n_6-4,144,89,0	warp	Fencruzilhada13	1,1,pvp_n_6-4,145,116
+pvp_n_6-4,132,79,0	warp	Fencruzilhada14	1,1,pvp_n_6-4,102,71
+pvp_n_6-4,105,71,0	warp	Fencruzilhada15	1,1,pvp_n_6-4,135,79
 
-pvp_n_6-4,144,114,0	warp	encruzilhada12	1,1,pvp_n_6-4,144,87
-pvp_n_6-4,144,89,0	warp	encruzilhada13	1,1,pvp_n_6-4,145,116
+//Anda 7
+pvp_n_7-4,93,72,0	warp	Gencruzilhada	1,1,pvp_n_7-4,64,77
+pvp_n_7-4,66,77,0	warp	Gencruzilhada1	1,1,pvp_n_7-4,96,72
+pvp_n_7-4,57,88,0	warp	Gencruzilhada2	1,1,pvp_n_7-4,55,117
+pvp_n_7-4,55,115,0	warp	Gencruzilhada3	1,1,pvp_n_7-4,58,86
+pvp_n_7-4,55,128,0	warp	Gencruzilhada4	1,1,pvp_n_7-4,54,157
+pvp_n_7-4,55,155,0	warp	Gencruzilhada5	1,1,pvp_n_7-4,55,126
+pvp_n_7-4,67,167,0	warp	Gencruzilhada6	1,1,pvp_n_7-4,95,166
+pvp_n_7-4,93,164,0	warp	Gencruzilhada7	1,1,pvp_n_7-4,64,167
+pvp_n_7-4,107,165,0	warp	Gencruzilhada8	1,1,pvp_n_7-4,135,165
+pvp_n_7-4,132,165,0	warp	Gencruzilhada9	1,1,pvp_n_7-4,104,165
+pvp_n_7-4,144,155,0	warp	Gencruzilhada10	1,1,pvp_n_7-4,144,126
+pvp_n_7-4,144,128,0	warp	Gencruzilhada11	1,1,pvp_n_7-4,144,157
+pvp_n_7-4,144,114,0	warp	Gencruzilhada12	1,1,pvp_n_7-4,144,87
+pvp_n_7-4,144,89,0	warp	Gencruzilhada13	1,1,pvp_n_7-4,145,116
+pvp_n_7-4,132,79,0	warp	Gencruzilhada14	1,1,pvp_n_7-4,102,71
+pvp_n_7-4,105,71,0	warp	Gencruzilhada15	1,1,pvp_n_7-4,135,79
 
-pvp_n_6-4,132,79,0	warp	encruzilhada14	1,1,pvp_n_6-4,102,71
-pvp_n_6-4,105,71,0	warp	encruzilhada15	1,1,pvp_n_6-4,135,79
+//Anda 8
+pvp_n_8-4,93,72,0	warp	Hencruzilhada	1,1,pvp_n_8-4,64,77
+pvp_n_8-4,66,77,0	warp	Hencruzilhada1	1,1,pvp_n_8-4,96,72
+pvp_n_8-4,57,88,0	warp	Hencruzilhada2	1,1,pvp_n_8-4,55,117
+pvp_n_8-4,55,115,0	warp	Hencruzilhada3	1,1,pvp_n_8-4,58,86
+pvp_n_8-4,55,128,0	warp	Hencruzilhada4	1,1,pvp_n_8-4,54,157
+pvp_n_8-4,55,155,0	warp	Hencruzilhada5	1,1,pvp_n_8-4,55,126
+pvp_n_8-4,67,167,0	warp	Hencruzilhada6	1,1,pvp_n_8-4,95,166
+pvp_n_8-4,93,164,0	warp	Hencruzilhada7	1,1,pvp_n_8-4,64,167
+pvp_n_8-4,107,165,0	warp	Hencruzilhada8	1,1,pvp_n_8-4,135,165
+pvp_n_8-4,132,165,0	warp	Hencruzilhada9	1,1,pvp_n_8-4,104,165
+pvp_n_8-4,144,155,0	warp	Hencruzilhada10	1,1,pvp_n_8-4,144,126
+pvp_n_8-4,144,128,0	warp	Hencruzilhada11	1,1,pvp_n_8-4,144,157
+pvp_n_8-4,144,114,0	warp	Hencruzilhada12	1,1,pvp_n_8-4,144,87
+pvp_n_8-4,144,89,0	warp	Hencruzilhada13	1,1,pvp_n_8-4,145,116
+pvp_n_8-4,132,79,0	warp	Hencruzilhada14	1,1,pvp_n_8-4,102,71
+pvp_n_8-4,105,71,0	warp	Hencruzilhada15	1,1,pvp_n_8-4,135,79
