@@ -74,28 +74,22 @@ bat_a02	mapflag	nowarp
 poring_w01	mapflag	nowarp
 poring_w02	mapflag	nowarp
 
-// Mvp's 
-beach_dun	mapflag	nowarp //Tao Gunka
-yuno_fild03	mapflag	nowarp //Deviling
-prt_sewb4	mapflag	nowarp //Besouro Ladrão Dourado
-gef_dun01	mapflag	nowarp //Drácula
-pay_dun04	mapflag	nowarp //Flor do lua	
-ayo_dun02	mapflag	nowarp //Lady Tanny
-xmas_dun02	mapflag nowarp //Cavaleiro da Tempestade
-xmas_fild01	mapflag	nowarp //Hatii
-tur_dun04	mapflag	nowarp //General Tartaruga
-kh_dun02	mapflag	nowarp //Kiel-D-01
-abyss_03	mapflag nowarp //Detar
-abbey02		mapflag	nowarp //Bispo Decadente
-abbey03		mapflag	nowarp //Bezelbu
-ra_san05	mapflag	nowarp //Pesar Nortuno
-odin_tem03	mapflag	nowarp //Valquiria Randrigys
-lhz_dun02	mapflag nowarp //Humanos Mvp's
-thor_v03	mapflag	nowarp //Ifrit
-moc_fild22	mapflag	nowarp //Morroc Ferido
-lhz_dun03	mapflag	nowarp //Humanos Mvp's
-
-
-
-
-
+beach_dun	mapflag	nowarp
+yuno_fild03	mapflag	nowarp
+prt_sewb4	mapflag	nowarp
+gef_dun01	mapflag	nowarp
+pay_dun04	mapflag	nowarp
+ayo_dun02	mapflag	nowarp
+xmas_dun02	mapflag	nowarp
+xmas_fild01	mapflag	nowarp
+tur_dun04	mapflag	nowarp
+kh_dun02	mapflag	nowarp
+abyss_03	mapflag	nowarp
+abbey02	mapflag	nowarp
+abbey03	mapflag	nowarp
+ra_san05	mapflag	nowarp
+odin_tem03	mapflag	nowarp
+lhz_dun02	mapflag	nowarp
+thor_v03	mapflag	nowarp
+moc_fild22	mapflag	nowarp
+lhz_dun03	mapflag	nowarp

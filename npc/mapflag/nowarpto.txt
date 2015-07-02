@@ -154,3 +154,25 @@ bossnia_01	mapflag	nowarpto
 bossnia_02	mapflag	nowarpto
 bossnia_03	mapflag	nowarpto
 bossnia_04	mapflag	nowarpto
+
+beach_dun	mapflag	nowarpto
+yuno_fild03	mapflag	nowarpto
+prt_sewb4	mapflag	nowarpto
+gef_dun01	mapflag	nowarpto
+pay_dun04	mapflag	nowarpto
+ayo_dun02	mapflag	nowarpto
+xmas_dun02	mapflag	nowarpto
+xmas_fild01	mapflag	nowarpto
+tur_dun04	mapflag	nowarpto
+kh_dun02	mapflag	nowarpto
+abyss_03	mapflag	nowarpto
+abbey02	mapflag	nowarpto
+abbey03	mapflag	nowarpto
+ra_san05	mapflag	nowarpto
+odin_tem03	mapflag	nowarpto
+lhz_dun02	mapflag	nowarpto
+thor_v03	mapflag	nowarpto
+moc_fild22	mapflag	nowarpto
+lhz_dun03	mapflag	nowarpto
+
+
