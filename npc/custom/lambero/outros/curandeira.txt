@@ -1,0 +1,86 @@
+// .----------------------------------------------------------.
+// .            SoulBlaker Scripts Apresenta:                 .
+// .                ___________________                       .
+// .               /   _____/\______   \                      .
+// .               \_____  \  |    |  _/                      .
+// .               /        \ |    |   \                      .
+// .              /_______  / |______  /                      .
+// .                      \/         \/                       .
+// .            [ Cronus Advanced Scripts ]                   .
+// .                                                    v1.1  .
+// .----------------------------------------------------------.
+// ;  http://forum.cronus-emulator.com/user/20800-soulblaker  ;
+// .----------------------------------------------------------.
+// . Script:                                                  .
+// .  Curandeira                                              .
+// .----------------------------------------------------------.
+// . Por: SoulBlaker   Compátivel: Cronus       versão: 1.0   .
+// .----------------------------------------------------------.
+// . Descrição:                                               .
+// .  Curandeira com tempo de espera.                         .
+// .----------------------------------------------------------.
+// . Changelog da Versão:                                     .
+// .  * 1.0 [SoulBlaker]                                      .
+// .	- Iniciado NPC.                                       .
+// *----------------------------------------------------------*
+-	script	Curandeira#healer_01::CustomHealer	48,{
+
+	set .@Price, 0;	// Preço a ser cobrado, 0 para desabilitar esta função.
+	set .@Delay, 10;	// Tempo em segundos de restrição de uso após uso.
+	set .@Buffs, 1;		// Habilitar Buffs? 0: Não / 1: Sim
+
+	if( healer_delay > gettimetick(2) )
+		dispbottom "Você deve aguardar " + .@Delay + " segundos para utilizar a cura novamente!";
+	else if( .@Price && Zeny < .@Price )
+		dispbottom "Você não tem " + .@Price + " Zenys para utilizar a cura!";
+	else {
+		if( .@Buffs )
+		{
+			specialeffect2 EF_INCAGILITY;
+			sc_start SC_INC_AGI,120000,10;
+			specialeffect2 EF_BLESSING;
+			sc_start SC_BLESSING,120000,10;
+		}
+
+		specialeffect2 EF_HEAL2;
+		percentheal 100, 100;
+
+		if( .@Price ) set Zeny, Zeny - .@Price;
+
+		set healer_delay, gettimetick(2)+.@Delay;
+	}
+	end;
+}
+
+alberta,25,240,6	duplicate(CustomHealer)	Enfermeira#alb	4_F_VALKYRIE
+aldebaran,146,122,4	duplicate(CustomHealer)	Curandeira#alde	4_F_VALKYRIE
+amatsu,200,79,4	duplicate(CustomHealer)	Enfermeira#ama	4_F_VALKYRIE
+ayothaya,207,169,6	duplicate(CustomHealer)	Enfermeira#ayo	4_F_VALKYRIE
+brasilis,194,221,6	duplicate(CustomHealer)	Enfermeira#bra	4_F_VALKYRIE
+comodo,184,158,6	duplicate(CustomHealer)	Enfermeira#com	4_F_VALKYRIE
+dewata,193,175,6	duplicate(CustomHealer)	Enfermeira#dew	4_F_VALKYRIE
+einbech,142,244,4	duplicate(CustomHealer)	Enfermeira#einbe	4_F_VALKYRIE
+einbroch,57,202,6	duplicate(CustomHealer)	Enfermeira#einbr	4_F_VALKYRIE
+dicastes01,201,194,4	duplicate(CustomHealer)	Enfermeira#dic	4_F_VALKYRIE
+geffen,115,72,6	duplicate(CustomHealer)	Enfermeira#gef	4_F_VALKYRIE
+gonryun,156,122,6	duplicate(CustomHealer)	Enfermeira#gon	4_F_VALKYRIE
+hugel,89,150,6	duplicate(CustomHealer)	Enfermeira#hug	4_F_VALKYRIE
+izlude,125,118,5	duplicate(CustomHealer)	Enfermeira#izl	4_F_VALKYRIE
+lighthalzen,149,103,6	duplicate(CustomHealer)	Enfermeira#li	4_F_VALKYRIE
+louyang,225,103,4	duplicate(CustomHealer)	Enfermeira#lou	4_F_VALKYRIE
+malangdo,226,188,4	duplicate(CustomHealer)	Enfermeira#mal	4_F_VALKYRIE
+manuk,256,176,6	duplicate(CustomHealer)	Enfermeira#man	4_F_VALKYRIE
+mid_camp,203,289,6	duplicate(CustomHealer)	Enfermeira#mid	4_F_VALKYRIE
+mora,106,100,6	duplicate(CustomHealer)	Enfermeira#mora	4_F_VALKYRIE
+morocc,153,97,6	duplicate(CustomHealer)	Enfermeira#mor	4_F_VALKYRIE
+moscovia,215,194,6	duplicate(CustomHealer)	Enfermeira#mos	4_F_VALKYRIE
+niflheim,188,180,5	duplicate(CustomHealer)	Enfermeira#nif	4_F_VALKYRIE
+payon,179,106,4	duplicate(CustomHealer)	Enfermeira#pay	4_F_VALKYRIE
+prontera,160,188,4	duplicate(CustomHealer)	Curandeira#pront	4_F_VALKYRIE
+rachel,125,116,6	duplicate(CustomHealer)	Enfermeira#rac	4_F_VALKYRIE
+splendide,201,153,4	duplicate(CustomHealer)	Enfermeira#spl	4_F_VALKYRIE
+thor_camp,249,74,4	duplicate(CustomHealer)	Enfermeira#thor	4_F_VALKYRIE
+umbala,129,132,4	duplicate(CustomHealer)	Enfermeira#umb	4_F_VALKYRIE
+veins,217,121,4	duplicate(CustomHealer)	Enfermeira#ve	4_F_VALKYRIE
+xmas,143,136,6	duplicate(CustomHealer)	Enfermeira#xmas	4_F_VALKYRIE
+yuno,164,45,4	duplicate(CustomHealer)	Enfermeira#yuno	4_F_VALKYRIE

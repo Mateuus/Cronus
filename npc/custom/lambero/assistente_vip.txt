@@ -646,8 +646,10 @@ menu            "Campos de Amatsu",wamafild,
 		"Deserto de Morroc 16",dmocfild16,
 		"Deserto de Morroc 17",dmocfild17,
 		"Deserto de Morroc 18",dmocfild18,
-		"Deserto de Morroc 19",dmocfild19;
-
+		"Deserto de Morroc 19",dmocfild19;,
+                "Deserto de Morroc 20",dmocfild20;,
+                "Deserto de Morroc 21",dmocfild21;,
+                "Deserto de Morroc 22",dmocfild22;
 	wpayfor:
 	mes @npc$;
 	mes "Por favor selecione o Campo, Você será teleportado para o centro do mapa..";
@@ -883,6 +885,9 @@ dmocfild16:	warp "moc_fild16.gat",206,228;	close;
 dmocfild17:	warp "moc_fild17.gat",208,238;	close;
 dmocfild18:	warp "moc_fild18.gat",209,223;	close;
 dmocfild19:	warp "moc_fild19.gat",85,97;	close;
+dmocfild20:	warp "moc_fild20.gat",349,179;	close;
+dmocfild21:	warp "moc_fild21.gat",30,195;	close;
+dmocfild22:	warp "moc_fild22.gat",200,200;	close;
 dpayfild1:	warp "pay_fild01.gat",158,206;	close;
 dpayfild2:	warp "pay_fild02.gat",151,219;	close;
 dpayfild3:	warp "pay_fild03.gat",205,148;	close;
@@ -1509,9 +1514,15 @@ cavegelo:
 next;
 mes .npcname$;
 mes "Por favor, Selecione o Level Desejado.";
-menu "Level 1 ( ^FF0000"+getmapusers("ra_fild01")+" ^000000)",cavg1;
+menu "Level 1 ( ^FF0000"+getmapusers("ice_dun01")+" ^000000)",cavg1;
+menu "Level 2 ( ^FF0000"+getmapusers("ice_dun02")+" ^000000)",cavg2;
+menu "Level 3 ( ^FF0000"+getmapusers("ice_dun03")+" ^000000)",cavg3;
   cavg1:
-   warp "ra_fild01",233,326; end;
+   warp "ice_dun01",157,15; end;
+  cavg2:
+   warp "ice_dun02",151,139; end;
+  cavg3:
+   warp "ice_dun03",149,24; end;
 //---------- Vulcão de Thor --------\\
 vulcaoth:
 next;

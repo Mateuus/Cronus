@@ -316,8 +316,8 @@ moc_fild21,0,0,0,0	monster	Morroc's Shadow	1921,34,30000,0,0
 //==================================================
 // moc_fild22 - Dimensional Gorge
 //==================================================
-moc_fild22,0,0,0,0	monster	Morroc's Shadow	1918,60,30000,0,0
-moc_fild22,0,0,0,0	monster	Morroc's Shadow	1919,60,30000,0,0
-moc_fild22,0,0,0,0	monster	Morroc's Shadow	1920,60,30000,0,0
-moc_fild22,0,0,0,0	monster	Morroc's Shadow	1921,25,30000,0,0
-moc_fild22,0,0,0,0	monster	Wounded Satan Morroc	1917,1,43200000,3600000,1
+moc_fild22,0,0,0,0	monster	Sombra da Inveja	1918,60,30000,0,0
+moc_fild22,0,0,0,0	monster	Sombra da Gula	1919,60,30000,0,0
+moc_fild22,0,0,0,0	monster	Sombra da Vaidade	1920,60,30000,0,0
+moc_fild22,0,0,0,0	monster	Sombra da Ira	1921,25,30000,0,0
+moc_fild22,0,0,0,0	monster	Morroc Ferido	1917,1,43200000,3600000,1
