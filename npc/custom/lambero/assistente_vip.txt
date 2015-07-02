@@ -887,7 +887,7 @@ dmocfild18:	warp "moc_fild18.gat",209,223;	close;
 dmocfild19:	warp "moc_fild19.gat",85,97;	close;
 dmocfild20:	warp "moc_fild20.gat",349,179;	close;
 dmocfild21:	warp "moc_fild21.gat",30,195;	close;
-dmocfild22:	warp "moc_fild22.gat",200,200;	close;
+dmocfild22:	warp "moc_fild22.gat",36,196;	close;
 dpayfild1:	warp "pay_fild01.gat",158,206;	close;
 dpayfild2:	warp "pay_fild02.gat",151,219;	close;
 dpayfild3:	warp "pay_fild03.gat",205,148;	close;
