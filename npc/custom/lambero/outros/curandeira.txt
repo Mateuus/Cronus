@@ -65,7 +65,7 @@ dicastes01,201,194,4	duplicate(CustomHealer)	Enfermeira#dic	936
 geffen,115,72,6	duplicate(CustomHealer)	Enfermeira#gef	936
 gonryun,156,122,6	duplicate(CustomHealer)	Enfermeira#gon	936
 hugel,89,150,6	duplicate(CustomHealer)	Enfermeira#hug	936
-izlude,125,118,5	duplicate(CustomHealer)	Enfermeira#izl	936
+izlude,128,118,5	duplicate(CustomHealer)	Enfermeira#izl	936
 lighthalzen,149,103,6	duplicate(CustomHealer)	Enfermeira#li	936
 louyang,225,103,4	duplicate(CustomHealer)	Enfermeira#lou	936
 malangdo,226,188,4	duplicate(CustomHealer)	Enfermeira#mal	936

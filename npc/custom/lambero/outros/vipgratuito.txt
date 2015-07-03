@@ -8,25 +8,29 @@
 // |                                                        |
 // |                 brAthena Script                        |
 // |--------------------------------------------------------|
-// | Nome do Script: Premiador Diário                       |
+// | Nome do Script: VIP GRATUITO                           |
 // |--------------------------------------------------------|
 // | Criado por: Mateuus                                    |
 // |--------------------------------------------------------|
-// | 							                            |
+// | 							    | 
 // |--------------------------------------------------------|
-// | 			                                            |
-// |    ALTER TABLE `login`
-// |	ADD COLUMN `premiadordiario`  int(11) NOT NULL DEFAULT 0 AFTER `pontoswot`;
+// | 			                                    |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 							                            |
+// | 							    |
 // \_______________________________________________________/
 
 
-prontera,157,174,4	script	Premiador Diário	435,{
+prontera,156,195,4	script	VIP GRATUITO	893,{
 	
-set @npc$,"[ ^FF0000Premiador Diário^000000 ]";
+set @npc$,"[ ^FF0000VIP GRATUITO^000000 ]";
 
+mes @npc$;
+mes "Para conseguir os pontos você deve fazer login no site e votar nos links indicados corretamente.";
+mes "^FF0000www.lambero.com.br/vote^000000";
+close;
 
-
+OnInit:
+	waitingroom "VIP GRATUITO",0;
+end;
 }
