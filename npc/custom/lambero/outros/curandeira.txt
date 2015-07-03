@@ -23,7 +23,7 @@
 // .  * 1.0 [SoulBlaker]                                      .
 // .	- Iniciado NPC.                                       .
 // *----------------------------------------------------------*
--	script	Curandeira#healer_01::CustomHealer	48,{
+-	script	Curandeira#healer_01::CustomHealer	936,{
 
 	set .@Price, 0;	// Preço a ser cobrado, 0 para desabilitar esta função.
 	set .@Delay, 10;	// Tempo em segundos de restrição de uso após uso.
@@ -52,35 +52,35 @@
 	end;
 }
 
-alberta,25,240,6	duplicate(CustomHealer)	Enfermeira#alb	4_F_VALKYRIE
-aldebaran,146,122,4	duplicate(CustomHealer)	Curandeira#alde	4_F_VALKYRIE
-amatsu,200,79,4	duplicate(CustomHealer)	Enfermeira#ama	4_F_VALKYRIE
-ayothaya,207,169,6	duplicate(CustomHealer)	Enfermeira#ayo	4_F_VALKYRIE
-brasilis,194,221,6	duplicate(CustomHealer)	Enfermeira#bra	4_F_VALKYRIE
-comodo,184,158,6	duplicate(CustomHealer)	Enfermeira#com	4_F_VALKYRIE
-dewata,193,175,6	duplicate(CustomHealer)	Enfermeira#dew	4_F_VALKYRIE
-einbech,142,244,4	duplicate(CustomHealer)	Enfermeira#einbe	4_F_VALKYRIE
-einbroch,57,202,6	duplicate(CustomHealer)	Enfermeira#einbr	4_F_VALKYRIE
-dicastes01,201,194,4	duplicate(CustomHealer)	Enfermeira#dic	4_F_VALKYRIE
-geffen,115,72,6	duplicate(CustomHealer)	Enfermeira#gef	4_F_VALKYRIE
-gonryun,156,122,6	duplicate(CustomHealer)	Enfermeira#gon	4_F_VALKYRIE
-hugel,89,150,6	duplicate(CustomHealer)	Enfermeira#hug	4_F_VALKYRIE
-izlude,125,118,5	duplicate(CustomHealer)	Enfermeira#izl	4_F_VALKYRIE
-lighthalzen,149,103,6	duplicate(CustomHealer)	Enfermeira#li	4_F_VALKYRIE
-louyang,225,103,4	duplicate(CustomHealer)	Enfermeira#lou	4_F_VALKYRIE
-malangdo,226,188,4	duplicate(CustomHealer)	Enfermeira#mal	4_F_VALKYRIE
-manuk,256,176,6	duplicate(CustomHealer)	Enfermeira#man	4_F_VALKYRIE
-mid_camp,203,289,6	duplicate(CustomHealer)	Enfermeira#mid	4_F_VALKYRIE
-mora,106,100,6	duplicate(CustomHealer)	Enfermeira#mora	4_F_VALKYRIE
-morocc,153,97,6	duplicate(CustomHealer)	Enfermeira#mor	4_F_VALKYRIE
-moscovia,215,194,6	duplicate(CustomHealer)	Enfermeira#mos	4_F_VALKYRIE
-niflheim,188,180,5	duplicate(CustomHealer)	Enfermeira#nif	4_F_VALKYRIE
-payon,179,106,4	duplicate(CustomHealer)	Enfermeira#pay	4_F_VALKYRIE
-prontera,160,188,4	duplicate(CustomHealer)	Curandeira#pront	4_F_VALKYRIE
-rachel,125,116,6	duplicate(CustomHealer)	Enfermeira#rac	4_F_VALKYRIE
-splendide,201,153,4	duplicate(CustomHealer)	Enfermeira#spl	4_F_VALKYRIE
-thor_camp,249,74,4	duplicate(CustomHealer)	Enfermeira#thor	4_F_VALKYRIE
-umbala,129,132,4	duplicate(CustomHealer)	Enfermeira#umb	4_F_VALKYRIE
-veins,217,121,4	duplicate(CustomHealer)	Enfermeira#ve	4_F_VALKYRIE
-xmas,143,136,6	duplicate(CustomHealer)	Enfermeira#xmas	4_F_VALKYRIE
-yuno,164,45,4	duplicate(CustomHealer)	Enfermeira#yuno	4_F_VALKYRIE
+alberta,25,240,6	duplicate(CustomHealer)	Enfermeira#alb	936
+aldebaran,146,122,4	duplicate(CustomHealer)	Curandeira#alde	936
+amatsu,200,79,4	duplicate(CustomHealer)	Enfermeira#ama	936
+ayothaya,207,169,6	duplicate(CustomHealer)	Enfermeira#ayo	936
+brasilis,194,221,6	duplicate(CustomHealer)	Enfermeira#bra	936
+comodo,184,158,6	duplicate(CustomHealer)	Enfermeira#com	936
+dewata,193,175,6	duplicate(CustomHealer)	Enfermeira#dew	936
+einbech,142,244,4	duplicate(CustomHealer)	Enfermeira#einbe	936
+einbroch,57,202,6	duplicate(CustomHealer)	Enfermeira#einbr	936
+dicastes01,201,194,4	duplicate(CustomHealer)	Enfermeira#dic	936
+geffen,115,72,6	duplicate(CustomHealer)	Enfermeira#gef	936
+gonryun,156,122,6	duplicate(CustomHealer)	Enfermeira#gon	936
+hugel,89,150,6	duplicate(CustomHealer)	Enfermeira#hug	936
+izlude,125,118,5	duplicate(CustomHealer)	Enfermeira#izl	936
+lighthalzen,149,103,6	duplicate(CustomHealer)	Enfermeira#li	936
+louyang,225,103,4	duplicate(CustomHealer)	Enfermeira#lou	936
+malangdo,226,188,4	duplicate(CustomHealer)	Enfermeira#mal	936
+manuk,256,176,6	duplicate(CustomHealer)	Enfermeira#man	936
+mid_camp,203,289,6	duplicate(CustomHealer)	Enfermeira#mid	936
+mora,106,100,6	duplicate(CustomHealer)	Enfermeira#mora	936
+morocc,153,97,6	duplicate(CustomHealer)	Enfermeira#mor	936
+moscovia,215,194,6	duplicate(CustomHealer)	Enfermeira#mos	936
+niflheim,188,180,5	duplicate(CustomHealer)	Enfermeira#nif	936
+payon,179,106,4	duplicate(CustomHealer)	Enfermeira#pay	936
+prontera,160,188,4	duplicate(CustomHealer)	Curandeira#pront	936
+rachel,125,116,6	duplicate(CustomHealer)	Enfermeira#rac	936
+splendide,201,153,4	duplicate(CustomHealer)	Enfermeira#spl	936
+thor_camp,249,74,4	duplicate(CustomHealer)	Enfermeira#thor	936
+umbala,129,132,4	duplicate(CustomHealer)	Enfermeira#umb	936
+veins,217,121,4	duplicate(CustomHealer)	Enfermeira#ve	936
+xmas,143,136,6	duplicate(CustomHealer)	Enfermeira#xmas	936
+yuno,164,45,4	duplicate(CustomHealer)	Enfermeira#yuno	936

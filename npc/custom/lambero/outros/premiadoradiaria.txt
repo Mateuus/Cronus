@@ -1,0 +1,131 @@
+//  _______________________________________________________
+// /                                                       \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                 brAthena Script                        |
+// |--------------------------------------------------------|
+// | Nome do Script: Premiador Diário                       |
+// |--------------------------------------------------------|
+// | Criado por: Mateuus                                    |
+// |--------------------------------------------------------|
+// | 							                            |
+// |--------------------------------------------------------|
+// | 			                                            |
+// |    ALTER TABLE `login`
+// |	ADD COLUMN `premiadordiario`  int(11) NOT NULL DEFAULT 0 AFTER `pontoswot`;
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 							                            |
+// \_______________________________________________________/
+
+
+prontera,157,174,4	script	Premiador Diário	435,{
+	
+set @npc$,"[ ^FF0000Premiador Diário^000000 ]";
+setarray .@itens[1],607,12218;   // Itens ID
+setarray .@iquant[1],1000,20; // Quantidade dos Itens
+
+/* Querys */
+query_sql "select `premiadordiario` from `login` where `account_id` = '"+getcharid(3)+"'",@pegou;
+
+//if (getgroupid() < 2){
+
+if (getgroupid() < 1){
+	cutin "ep15_2_fru_1", 2;
+	mes @npc$;
+	mes "Me desculpe, mas atendo somente a";
+	mes "usuários VIP.";
+	mes "Se você deseja ser usuário VIP,";
+	mes "visite www.lambero.com.br e descubra";
+	mes "como se tornar um.";
+	cutin "",255;
+	close; 
+}else{
+
+	mes @npc$;
+	cutin "ep15_2_fru_1", 2;
+	mes "Olá, eu entrego aos usuários VIP seus premios diários, são itens que ajudam nossos guerreios em suas batalhas por toda Rune-Midgard.";
+	mes " ";
+	mes "Oque deseja de min?";
+	next;
+	switch (select ("Receber Prêmios do Dia","Como Funciona?","Quais os Prêmios?","Sair"))
+	{
+		case 1:
+        if (@pegou == 1){
+		mes @npc$;
+		mes "Olá ^0000CD"+strcharinfo(0)+"^000000!";
+		mes "^FF0000Você já recebeu seus prêmios do dia, volte novamente amanha!.^000000";
+		cutin "",255;
+		close;
+		
+		}else{
+		mes @npc$;
+		mes "Deseja receber seus prêmios agora?";
+		next;
+
+		switch (select ("Sim","Não")){
+                case 1:
+		mes @npc$;
+		for(set .@e,1;.@e < getarraysize(.@itens);set .@e,.@e + 1)
+		getitem .@itens[.@e],.@iquant[.@e];
+		query_sql "update `login` set `premiadordiario` = '1' where `account_id` = '"+getcharid(3)+"'";
+		mes "Pronto! Ai estão seus prêmios do dia...";
+		mes "Lembre-se de voltar todo dia!";
+		cutin "",255;
+		close;
+
+		case 2:
+		mes @npc$;
+		mes "Até breve";
+		cutin "",255;
+		close;
+		
+		}
+
+		}
+               
+
+
+
+		case 2:
+		mes @npc$;
+		mes "Todo dia você pode receber seus prêmios falando comigo.";
+		//mes "As premiações melhoram do 1° ao 7° dia, sendo do 7° em diante a mesma.";
+		cutin "",255;
+		close;
+
+		case 3:
+		mes @npc$;
+		mes "- ^0000FFQuantidade^000000";
+		mes "- ^006600Nome do item^000000";
+                mes " ";
+ 		set .@menu$, "";
+		
+	for(set .@e,1;.@e < getarraysize(.@itens);set .@e,.@e + 1)
+	set .@menu$,.@menu$ + "^0000FF"+.@iquant[.@e]+"^000000 - ^006600" + getitemname(.@itens[.@e]) + "^000000             ";
+	//if(select(.@menu$+"Sair") >= getarraysize(.@itens))close;
+
+		mes .@menu$;
+		cutin "",255;
+		close;
+
+		case 4:
+		mes @npc$;
+		mes "Até breve";
+		cutin "",255;
+		close;
+
+	}
+
+}
+}
+// Checagens e updates */
+-	script	contarpremiador	-1,{
+		OnClock0000:
+		query_sql "update `login` set `premiadordiario` = '0'";
+		end;
+}

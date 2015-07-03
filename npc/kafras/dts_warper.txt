@@ -1116,9 +1116,9 @@ OnEnable:
 
 OnTimer7200000:
 	stopnpctimer;
-	if (($DTS_Result == 0) || ($DTS_Result == 3)) {
-		announce "Currently, the Dungeon Teleport Service Provider Election is being held in all major cities. Your participation is appreciated.",bc_all,"0x70dbdb";
-	}
+	 //if (($DTS_Result == 0) || ($DTS_Result == 3)) {
+	//	announce "Currently, the Dungeon Teleport Service Provider Election is being held in all major cities. Your participation is appreciated.",bc_all,"0x70dbdb";
+	//}
 	donpcevent "Scrutiny Association#5::OnEnable";
 	end;
 }
