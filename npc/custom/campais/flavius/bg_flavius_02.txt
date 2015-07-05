@@ -515,7 +515,7 @@ end;
 end;
 OnPCLoadMapEvent:
 OnViewRed:
-    getmapxy .@MAPNAME$,@X,@Y,0,strcharinfo(0);
+    getmapxy .@MAPNAME$,@x,@y,0,strcharinfo(0);
     if(.@MAPNAME$ == "bat_b02") {
 
     if($@FlaviusBG2 == 2) {
@@ -549,7 +549,7 @@ end;
 end;
 OnPCLoadMapEvent:
 OnViewBlue:
-    getmapxy .@MAPNAME$,@X,@Y,0,strcharinfo(0);
+    getmapxy .@MAPNAME$,@x,@y,0,strcharinfo(0);
     if(.@MAPNAME$ == "bat_b02") {
     if($@FlaviusBG2 == 2) {
     viewpoint 2,.yEE,.yEE,2,0xff0000;
