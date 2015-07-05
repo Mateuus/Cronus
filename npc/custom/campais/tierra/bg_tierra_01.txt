@@ -83,8 +83,7 @@ OnReadyCheck:
 	if( .@Guillaume < 3 || .@Croix < 3 )
 	{
 		//mapannounce "bat_room","Batalha Campal -- Tierra [3 vs 3] G: " + .@Guillaume + "/3, C: " + .@Croix + "/3",1,0xFFA500;
-		announce "bat_room","Batalha Campal -- Tierra [3 vs 3] G: " + .@Guillaume + "/3, C: " + .@Croix + "/3",1,0xFFA500;
-
+		  announce "Batalha Campal -- Tierra [3 vs 3] G: " + .@Guillaume + "/3, C: " + .@Croix + "/3",bc_all,0xFFA500;
 		end;
 	}
 	}
