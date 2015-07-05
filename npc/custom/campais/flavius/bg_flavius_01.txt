@@ -108,8 +108,8 @@ OnReadyCheck:
 		// BG Variables
 	set $@FlaviusBG1, 1;
 	set $@FlaviusBG1_Victory, 0;
-	set .Guillaume_Score, 99;
-	set .Croix_Score, 99;
+	set .Guillaume_Score, 20;
+	set .Croix_Score, 20;
 	// Prepare NPC
 	donpcevent "#gfl1_respawn::OnBGStart";
 	donpcevent "#cfl1_respawn::OnBGStart";
@@ -242,8 +242,8 @@ OnTimer60000:
 
 OnReset:
 	stopnpctimer;
-	set .Guillaume_Score, 99;
-	set .Croix_Score, 99;
+	set .Guillaume_Score, 20;
+	set .Croix_Score, 20;
 	set $@FlaviusBG1_Victory, 0;
 	// NPC's
 	disablenpc "Negociante Guillaume#fl1";
