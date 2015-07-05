@@ -12,7 +12,7 @@
 bat_room,253,97,4	script	Registro::Fl1R_Guillaume	418,{
 	end;
 OnInit:
-	waitingroom "Estação de Batalha 5 Jogadores",5,"Flavius_BG1::OnGuillaumeJoin",1;
+	waitingroom "Estação de Batalha 3 Jogadores",6,"Flavius_BG1::OnGuillaumeJoin",1;
 	end;
 OnEnterBG:
 	set $@FlaviusBG1_id1, waitingroom2bg("bat_b01",390,10,"Flavius_BG1::OnGuillaumeQuit","");
@@ -22,7 +22,7 @@ OnEnterBG:
 bat_room,253,74,0	script	Registro::Fl1R_Croix	414,{
 	end;
 OnInit:
-	waitingroom "Estação de Batalha 5 Jogadores",5,"Flavius_BG1::OnCroixJoin",1;
+	waitingroom "Estação de Batalha 3 Jogadores",6,"Flavius_BG1::OnCroixJoin",1;
 	end;
 OnEnterBG:
 	set $@FlaviusBG1_id2, waitingroom2bg("bat_b01",10,290,"Flavius_BG1::OnCroixQuit","");
@@ -91,15 +91,16 @@ OnReadyCheck:
 	set .@Guillaume, getwaitingroomstate(0,"Fl1R_Guillaume");
 	set .@Croix, getwaitingroomstate(0,"Fl1R_Croix");
 	
-    	if( .@Guillaume < 5 || .@Croix < 5 ){
+    	if( .@Guillaume < 3 || .@Croix < 3 ){
 	
-	if( .@Guillaume >=4  && .@Croix >=4 && !agitcheck() && $@FLTD_Flood < gettimetick(2) ) 
+	if( .@Guillaume >=3  && .@Croix >=3 && !agitcheck() && $@FLTD_Flood < gettimetick(2) ) 
     {
-    announce "Batalha Campal -- Flavius [Deathmacth] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5",bc_all,0x006400;
+    announce "Batalha Campal -- Flavius [Deathmacth] G: " + .@Guillaume + "/3, C: " + .@Croix + "/3",bc_all,0x006400;
     set $@FLTD_Flood, gettimetick(2) + 15; 
     end;
     }
-		mapannounce "bat_room","Batalha Campal -- Flavius [Deathmacth] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5",1,0x006400;
+		//mapannounce "bat_room","Batalha Campal -- Flavius [Deathmacth] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5",1,0x006400;
+		  announce "Batalha Campal -- Flavius [Deathmacth] G: " + .@Guillaume + "/3, C: " + .@Croix + "/3",bc_all,0x006400;
 		end;
 	}
 	//

@@ -202,7 +202,7 @@ bat_room,159,178,5	script	Cavaleiro de Guillaume#1	417,{
 
 // Tierra Officerer - Guillaume
 // *********************************************************************
-bat_room,156,178,5	script	Desfiladeiro [5x5]#1	418,{
+bat_room,156,178,5	script	Desfiladeiro [3x3]#1	418,{
 	mes "[Oficial de Guillaume]";
 	if( Bat_Team == 2 )
 	{
@@ -267,7 +267,7 @@ bat_room,159,121,1	script	Cavaleiro de Croix#1	413,{
 
 // Tierra Officer - Croix
 // *********************************************************************
-bat_room,156,121,1	script	Desfiladeiro [5x5]#2	414,{
+bat_room,156,121,1	script	Desfiladeiro [3x3]#2	414,{
 	mes "[Oficial de Croix]";
 	if( Bat_Team == 1 )
 	{

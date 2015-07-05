@@ -10,7 +10,7 @@
 bat_room,85,227,4	script	Registro::TV1R_Guillaume	418,{
 	end;
 OnInit:
-	waitingroom "Estação de Batalha 5 Jogadores",6,"Tierra_BG1::OnGuillaumeJoin",1;
+	waitingroom "Estação de Batalha 3 Jogadores",6,"Tierra_BG1::OnGuillaumeJoin",1;
 	end;
 OnEnterBG:
 	set $@TierraBG1_id1, waitingroom2bg("bat_a01",50,374,"Tierra_BG1::OnGuillaumeQuit","");
@@ -20,7 +20,7 @@ OnEnterBG:
 bat_room,85,204,0	script	Registro::TV1R_Croix	414,{
 	end;
 OnInit:
-	waitingroom "Estação de Batalha 5 Jogadores",6,"Tierra_BG1::OnCroixJoin",1;
+	waitingroom "Estação de Batalha 3 Jogadores",6,"Tierra_BG1::OnCroixJoin",1;
 	end;
 OnEnterBG:
 	set $@TierraBG1_id2, waitingroom2bg("bat_a01",42,16,"Tierra_BG1::OnCroixQuit","");
@@ -73,16 +73,18 @@ OnReadyCheck:
 	set .@Guillaume, getwaitingroomstate(0,"TV1R_Guillaume");
 	set .@Croix, getwaitingroomstate(0,"TV1R_Croix");
 
-    if( .@Guillaume < 5 || .@Croix < 5 ){
+    if( .@Guillaume < 3 || .@Croix < 3 ){
     if( .@Guillaume >=3  && .@Croix >=3 && !agitcheck() && $@TIERRA1_Flood < gettimetick(2) ) 
     {
-    announce "Batalha Campal -- Tierra [5 vs 5] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5",bc_all,0xFFA500;
+    announce "Batalha Campal -- Tierra [3 vs 3] G: " + .@Guillaume + "/3, C: " + .@Croix + "/3",bc_all,0xFFA500;
     set $@TIERRA1_Flood, gettimetick(2) + 15; 
     end;
     }
-	if( .@Guillaume < 5 || .@Croix < 5 )
+	if( .@Guillaume < 3 || .@Croix < 3 )
 	{
-		mapannounce "bat_room","Batalha Campal -- Tierra [5 vs 5] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5",1,0xFFA500;
+		//mapannounce "bat_room","Batalha Campal -- Tierra [3 vs 3] G: " + .@Guillaume + "/3, C: " + .@Croix + "/3",1,0xFFA500;
+		announce "bat_room","Batalha Campal -- Tierra [3 vs 3] G: " + .@Guillaume + "/3, C: " + .@Croix + "/3",1,0xFFA500;
+
 		end;
 	}
 	}
