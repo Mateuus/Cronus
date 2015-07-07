@@ -1,0 +1,599 @@
+//===== Hercules Script =======================================
+//= Quest NPCs located in Lighthalzen
+//===== By: ==================================================
+//= Ziu, Heris (translation)
+//===== Current Version: =====================================
+//= 1.2
+//===== Description: =========================================
+//= Quests related to Lighthalzen City.
+//===== Additional Comments: =================================
+//= 1.0 Updated to match the new Izlude Map. [Masao]
+//= 1.1 Added Somatology Laboratory F4 quest. [Euphy]
+//= 1.2 Added Izlude duplicates. [Euphy]
+//= 1.3 Tradução Rapida Google Tradutor. [Mateuus]
+//= 1.4 Somente Level Maior o Igual a 255 pode entra. [Mateuus]
+//============================================================
+
+// Renewal split [Daegaladh]
+//============================================================
+izlude,172,73,6	duplicate(Scamp)	Scamp#iz4	4_M_YURI
+izlude_a,172,73,6	duplicate(Scamp)	Scamp#iz_a	4_M_YURI
+izlude_b,172,73,6	duplicate(Scamp)	Scamp#iz_b	4_M_YURI
+izlude_c,172,73,6	duplicate(Scamp)	Scamp#iz_c	4_M_YURI
+izlude_d,172,73,6	duplicate(Scamp)	Scamp#iz_d	4_M_YURI
+
+// Somatology Laboratory F4
+//============================================================
+lighthalzen,303,304,5	script	Jerome Jameson#start	4_M_KHMAN,{
+	if (lhz_dun04 == 0) {
+		mes "[Jerome Jameson]";
+		mes "Uau, que "+((Sex)?"homem forte!":"moça bonita!");
+		next;
+		mes "[Jerome Jameson]";
+		mes ((Sex)?"Senhor":"Madame")+", Por favor, tome cuidado";
+		mes "como um rumor perigoso despertou sobre";
+		mes "o comprometimento de todos na";
+		mes "cidade, a melhor coisa a fazer é bloqueio";
+		mes "suas portas.";
+		next;
+		
+		// To do: check BaseLevel requirement.
+		if (BaseLevel < 255){ 
+		mes "[Jerome Jameson]";
+		mes "^FF0000Você precisa ser Level 255 ^000000";
+		close;
+		}
+
+		
+		select("Rumor perigoso?");
+		mes "[Jerome Jameson]";
+		mes "Fortes rumores foram ouvidas a partir de";
+		mes "Instituto de Investigação Rekenber";
+		mes "Sobre terríveis experimentos secretos";
+		mes "Com seres Humanos!";
+		next;
+		select("Que? Experimentos?");
+		mes "[Jerome Jameson]";
+		mes "Sim. Experimentos biológicos !!";
+		mes "Experimentos com seres Humanos";
+		mes "Realizado nos subterrâneos de";
+		mes "Bio Level 4. Aparentemente, eles";
+		mes "espalharam-se os rumores sobre ser";
+		mes "negado benefícios sociais.";
+		next;
+		mes "[Jerome Jameson]";
+		mes "Este rumor não pode ir sobre";
+		mes "não tratada. o biológico";
+		mes "que foram experimentos realizados";
+		mes "neste lugar pode ser real.";
+		mes "Isso realmente precisa ser";
+		mes "investigado, e em breve!";
+		setquest 5109;
+		set lhz_dun04,1;
+		close;
+	}
+	mes "[Jerome Jameson]";
+	mes "Por favor, vá investigar o mais profundo";
+	mes "anda do laboratório. espero";
+	mes "ver você em breve.";
+	close;
+}
+
+// Is this the correct behavior? (limited and conflicting sources)
+// - NPC in lhz_dun04 warps into que_lhz. (?)
+// - lhz_dun03 warps directly to que_lhz. (?)
+function	script	lhz4enter	{
+	if (getmapusers("que_lhz") == 0 && mobcount("que_lhz","#controllhz4::OnMyMobDead") < 1) {
+		if (getarg(0) == 0) {
+			mes "- Tendo ordens de Jerome Jameson";
+			mes "em mente, você prende a respiração e";
+			mes "inundado descer o lance de";
+			mes "escada. -";
+		} else {
+			mes "[Researcher]";
+			mes "Quem é você?";
+			mes "................";
+			emotion e_omg;
+			next;
+			mes "O homem foge e você vai ir atrás dele.";
+		}
+		if (lhz_dun04 > 1) {
+			changequest 5110,5109;
+			set lhz_dun04,1;
+		}
+		close2;
+		// Check twice because of 'next'.
+		if (getmapusers("que_lhz") == 0 && mobcount("que_lhz","#controllhz4::OnMyMobDead") < 1) {
+			donpcevent "#lhz4mes1::OnEnable";
+			warp "que_lhz",244,52;
+		}
+		end;
+	}
+	mes "Neste momento, existem outras pessoas lá dentro. Aguarde a sua vez.";
+	close;
+}
+
+lhz_dun03,239,77,0	script	#warplhz3lhz4	WARPNPC,1,1,{
+OnTouch:
+	if (lhz_dun04 == 0) {
+		mes "Não faz sentido ir para baixo as escadas inundadas.";
+		close;
+	} else if (lhz_dun04 < 6) {
+		callfunc "lhz4enter",0;
+		end;
+	}
+	warp "lhz_dun04",244,52;
+	end;
+}
+lhz_dun04,245,61,0	warp	#warplhz4lhz3	1,1,lhz_dun03,240,74
+
+// Does this portal exist?
+que_lhz,245,61,0	warp	#warplhzqlhz3	1,1,lhz_dun03,240,74
+
+que_lhz,244,52,0	script	#lhz4mes1	-1,2,2,{
+OnTouch:
+	mes "- Você encontrar um outro lance de escadas que é levantado e se desvia do caminho inundado";
+	// Missing dialogue.
+	close2;
+	donpcevent "#lhz4mes1::OnDisable";
+	end;
+OnInit:
+OnDisable:
+	disablenpc "#lhz4mes1";
+	end;
+OnEnable:
+	enablenpc "#lhz4mes1";
+	end;
+}
+
+lhz_dun04,151,276,3	script	Researcher#lhz4	4_LGTSCIENCE,{
+	if (lhz_dun04 == 0) {
+		mes "[Researcher]";
+		mes "................";
+		close;
+	} else if (lhz_dun04 < 6) {
+		callfunc "lhz4enter",1;
+		end;
+	} else if (lhz_dun04 == 6) {
+		mes "Pense duas vezes antes de dizer que estas amostras são uma razão para fechar este lugar.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Você está me parando para fazer nada de bom? E sobre os últimos quatro homens que criei?";
+		next;
+		mes "[Wolfchev]";
+		mes "Hmm. Este lugar será completamente inundada...";
+		next;
+		mes "[Wolfchev]";
+		mes "Qual é o problema?";
+		next;
+		mes "[Wolfchev]";
+		mes "Hmm... Tudo isso burocracia está arruinando o meu laboratório. Pelo amor de Deus!";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Hey! Wolfchev!!";
+		next;
+		mes "[Wolfchev]";
+		mes "Ah sim? Para agradar a todos eles! ^FF0080Os diferentes espécime^000000 organicamente são ligados uns aos outros.";
+		next;
+		mes "[Wolfchev]";
+		mes "Talvez o chefe destas ^00FF00coisas^000000...";
+		mes "Minha incapacidade de controlar a minha própria experiência... Aqui, são todos ^808000escravos, utilizados como chamarizes^000000 eo laboratório será encerrado.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Hey, Wolfchev !! este ^00FF00chefe^000000 você está falando. Cadê?";
+		next;
+		mes "[Wolfchev]";
+		mes "...no meu laboratório. Acordei-lo. Eu tentei usá-lo para destruir todos eles, mas não deu certo... você vai ter que fazê-lo...";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Como posso ter acesso ao seu laboratório?";
+		next;
+		mes "[Wolfchev]";
+		mes "Agora ... Um momento";
+		mes "Vou te ajudar.";
+		next;
+		mes "[Wolfchev]";
+		mes "Felizmente, o chefe não despertar sóbrio, embora ele ainda é forte e destrutivo.";
+		next;
+		mes "[Wolfchev]";
+		mes "Mas ainda é perigoso. Ele wil liberar seus colegas e isso significa que não temos muito tempo aqui.";
+		set lhz_dun04,7;
+		completequest 5111;
+		setquest 5113;
+		setquest 5114;
+		setquest 5115;
+		setquest 5116;
+		setquest 5117;
+		setquest 5118;
+		setquest 5119;
+		setquest 5120;
+		setquest 5121;
+		setquest 5122;
+		setquest 5123;
+		setquest 5124;
+		setquest 5125;
+		close;
+	} else if (lhz_dun04 == 7) {
+		mes "[Wolfchev]";
+		mes "Você vai sozinho??";
+		mes "Você vai precisar de um grupo muito bom para ignorar o sistema e derrotar o chefe.";
+		close;
+	}
+	end;
+}
+
+que_lhz,207,75,3	script	Researcher#ins	4_LGTSCIENCE,3,3,{
+OnTouch:
+	if (lhz_dun04 == 1) {
+		mes "[Researcher]";
+		mes "..........";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Você! Você é professor de Wolfchev?";
+		emotion e_omg,1;
+		next;
+		mes "[Wolfchev]";
+		mes "Muitas pessoas vêm aqui à procura de mim. Mas a maioria deles estão relutantes em.";
+		mes "O que você quer?";
+		emotion e_gg;
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Eu ouvi rumores sobre experiências biológicas.";
+		mes "Wolfchev!!";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Estas experiências...";
+		next;
+		mes "[Wolfchev]";
+		mes "Eu acho que sei o que você vai dizer. Você está me acusando de alguma coisa?";
+		mes "Eu não quero ouvir mais do que.";
+		mes "É melhor dá licença.";
+		emotion e_gg;
+		next;
+		mes "[Wolfchev]";
+		mes "Eles parecem ter chorado por um longo tempo ... Estou ocupado, desculpe-me!";
+		next;
+		mes "De olhos de Wolfchev as lágrimas brotaram e ele começou a rir antes de fugir.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Hey! Wolfchev Há...";
+		emotion e_omg,1;
+		changequest 5109,5110;
+		set lhz_dun04,2;
+		close2;
+		warp "que_lhz",96,136;
+		end;
+	}
+	mes "[Researcher]";
+	mes "..........";
+	close;
+}
+
+que_lhz,94,119,3	script	Researcher#ins2	4_LGTSCIENCE,{
+	if (lhz_dun04 == 2) {
+		mes "[Wolfchev]";
+		mes "Hehehe. Você é realmente persistente. O que você quer de alguém como eu?";
+		emotion e_swt2;
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Wolfchev... Você já admitiu que já é perigoso. E todas estas investigações...";
+		next;
+		mes "[Wolfchev]";
+		mes "You're right...hehe.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Sua pesquisa é muito perigoso. Você acha que todo mundo quer que ele continue?";
+		next;
+		mes "[Wolfchev]";
+		mes "Todo mundo quer ser forte e dominar os outros. Têm a sua obediência, respeito e atenção. Você não quer isso? hehe.";
+		emotion e_gg;
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "... ... ...";
+		next;
+		mes "[Wolfchev]";
+		mes "Com uma vida tão perigoso, evitando ser danificado... Você não vê-lo ?. hehe.";
+		next;
+		mes "Mais uma vez, Wolfchev apressadamente escapa.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Oh! Ele é muito... é...";
+		set lhz_dun04,3;
+		close2;
+		warp "que_lhz",148,215;
+		end;
+	}
+	mes "[Researcher]";
+	mes "..........";
+	close;
+}
+que_lhz,147,224,3	script	Researcher#ins3	4_LGTSCIENCE,{
+	if (lhz_dun04 == 4 || mobcount("que_lhz","#controllhz4::OnMyMobDead") > 0) {
+		mes "[Wolfchev]";
+		mes "Wolfchev está pirando. Ele está fora de sua mente.";
+		emotion e_turn;
+		close;
+	} else if (lhz_dun04 == 3) {
+		mes "[Wolfchev]";
+		mes "Você realmente é um pouco enfadonho";
+		mes "carrapato, não é? Não é isso";
+		mes "evidente para você em tudo?";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "... ... ...";
+		emotion e_dots,1;
+		next;
+		mes "Wolfchev não queria mais falar com você, por isso, enquanto rindo ele apertou um botão em sua mão. Então ele ficou louco.";
+		specialeffect EF_SIGHTRASHER;
+		next;
+		mes "[Wolfchev]";
+		mes "Infelizmente para você, eu vou vencê-lo aqui.";
+		donpcevent "#controllhz4::OnEnable";
+		next;
+		mes "[Wolfchev]";
+		mes "Você é um idiota.";
+		emotion e_gasp;
+		next;
+		mes "[Wolfchev]";
+		mes "Olhe para todos esses corpos experimentais que você vai ter que lidar e ver como eles são bons.";
+		next;
+		donpcevent "#controllhz4::OnEnable2";
+		progressbar "ffff00",6;
+		set lhz_dun04,4;
+		next;
+		mes "[Wolfchev]";
+		mes "Não!! ...Olha o que você fez !! você";
+		mes "wreckless louco!!!";
+		emotion e_omg;
+		next;
+		mes "[Wolfchev]";
+		mes "Volte!";
+		next;
+		mes "First, let's destroy all these experiments!";
+		close;
+	} else if (lhz_dun04 == 5) {
+		mes "Primeiro, vamos destruir todas estas experiências!";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "*Slaps Face*  Ei, sai dessa!";
+		mes "Temos os destruiu!";
+		specialeffect EF_STUNATTACK;
+		sleep2 1000;
+		specialeffect EF_STUNATTACK;
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Vamos sair daqui primeiro! Existe um lugar onde podemos ir?";
+		specialeffect EF_DARKBREATH;
+		emotion e_no,1;
+		next;
+		mes "[Wolfchev]";
+		mes "Este. Meu laboratório ... Meu laboratório...";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "O laboratório? Onde estou, de facto?";
+		next;
+		mes "[Wolfchev]";
+		mes "Voltar para o início... é aqui quando...";
+		next;
+		mes "- Wolfchev fracamente aponta para a direção do relógio de 12 horas. -";
+		next;
+		mes "Eu tenho que ir para ^0000FF Wolfchev's laboratório^000000...";
+		changequest 5110,5111;
+		set lhz_dun04,6;
+		donpcevent "#controllhz4d::OnEnable";
+		close;
+	} else if (lhz_dun04 == 6) {
+		mes "Eu tenho que ir para ^0000FF Wolfchev's laboratório^000000...";
+		close;
+	}
+	end;
+}
+
+-	script	Awake Specimen#lhz	-1,{
+	end;
+OnInit:
+OnDisable:
+	hideonnpc strnpcinfo(0);
+	end;
+OnEnable:
+	hideoffnpc strnpcinfo(0);
+	end;
+OnEffect1:
+	specialeffect EF_SUI_EXPLOSION;
+	end;
+OnEffect2:
+	specialeffect EF_BEGINASURA;
+	end;
+OnEffect3:
+	specialeffect EF_FLASHER;
+	end;
+}
+que_lhz,148,231,0	duplicate(Awake Specimen#lhz)	Awake Specimen#0	2244
+que_lhz,140,231,1	duplicate(Awake Specimen#lhz)	Awake Specimen#1	2244
+que_lhz,140,224,2	duplicate(Awake Specimen#lhz)	Awake Specimen#2	2244
+que_lhz,140,216,3	duplicate(Awake Specimen#lhz)	Awake Specimen#3	2244
+que_lhz,147,216,4	duplicate(Awake Specimen#lhz)	Awake Specimen#4	2244
+que_lhz,155,216,5	duplicate(Awake Specimen#lhz)	Awake Specimen#5	2244
+que_lhz,155,224,6	duplicate(Awake Specimen#lhz)	Awake Specimen#6	2244
+que_lhz,155,231,7	duplicate(Awake Specimen#lhz)	Awake Specimen#7	2244
+
+-	script	#controllhz4	-1,{
+OnInit:
+	disablenpc "#controllhz4";
+	end;
+OnEnable:
+	enablenpc "#controllhz4";
+	donpcevent "Awake Specimen#0::OnEnable";
+	donpcevent "Awake Specimen#1::OnEnable";
+	donpcevent "Awake Specimen#2::OnEnable";
+	donpcevent "Awake Specimen#3::OnEnable";
+	donpcevent "Awake Specimen#4::OnEnable";
+	donpcevent "Awake Specimen#5::OnEnable";
+	donpcevent "Awake Specimen#6::OnEnable";
+	donpcevent "Awake Specimen#7::OnEnable";
+	end;
+OnEnable2:
+	initnpctimer;
+	end;
+OnTimer1000:
+	donpcevent "Awake Specimen#0::OnEffect1";
+	end;
+OnTimer2000:
+	donpcevent "Awake Specimen#0::OnEffect2";
+	donpcevent "Awake Specimen#7::OnEffect1";
+	end;
+OnTimer3000:
+	donpcevent "Awake Specimen#7::OnEffect2";
+	donpcevent "Awake Specimen#6::OnEffect1";
+	end;
+OnTimer4000:
+	donpcevent "Awake Specimen#6::OnEffect2";
+	donpcevent "Awake Specimen#5::OnEffect1";
+	end;
+OnTimer5000:
+	donpcevent "Awake Specimen#5::OnEffect2";
+	donpcevent "Awake Specimen#4::OnEffect1";
+	end;
+OnTimer6000:
+	donpcevent "Awake Specimen#4::OnEffect2";
+	donpcevent "Awake Specimen#3::OnEffect1";
+	end;
+OnTimer7000:
+	donpcevent "Awake Specimen#3::OnEffect2";
+	donpcevent "Awake Specimen#2::OnEffect1";
+	end;
+OnTimer8000:
+	donpcevent "Awake Specimen#2::OnEffect2";
+	donpcevent "Awake Specimen#1::OnEffect1";
+	end;
+OnTimer9000:
+	donpcevent "Awake Specimen#1::OnEffect2";
+	end;
+OnTimer11000:
+	donpcevent "Awake Specimen#0::OnEffect3";
+	donpcevent "Awake Specimen#1::OnEffect3";
+	donpcevent "Awake Specimen#2::OnEffect3";
+	donpcevent "Awake Specimen#3::OnEffect3";
+	donpcevent "Awake Specimen#4::OnEffect3";
+	donpcevent "Awake Specimen#5::OnEffect3";
+	donpcevent "Awake Specimen#6::OnEffect3";
+	donpcevent "Awake Specimen#7::OnEffect3";
+	end;
+OnTimer14000:
+	donpcevent "Awake Specimen#0::OnDisable";
+	donpcevent "Awake Specimen#1::OnDisable";
+	donpcevent "Awake Specimen#2::OnDisable";
+	donpcevent "Awake Specimen#3::OnDisable";
+	donpcevent "Awake Specimen#4::OnDisable";
+	donpcevent "Awake Specimen#5::OnDisable";
+	donpcevent "Awake Specimen#6::OnDisable";
+	donpcevent "Awake Specimen#7::OnDisable";
+	end;
+OnTimer16000:
+	monster "que_lhz",148,231,"Awake Specimen",2244,1,"#controllhz4::OnMyMobDead";
+	monster "que_lhz",140,231,"Awake Specimen",2244,1,"#controllhz4::OnMyMobDead";
+	monster "que_lhz",140,224,"Awake Specimen",2244,1,"#controllhz4::OnMyMobDead";
+	monster "que_lhz",140,216,"Awake Specimen",2244,1,"#controllhz4::OnMyMobDead";
+	monster "que_lhz",147,216,"Awake Specimen",2244,1,"#controllhz4::OnMyMobDead";
+	monster "que_lhz",155,216,"Awake Specimen",2244,1,"#controllhz4::OnMyMobDead";
+	monster "que_lhz",155,224,"Awake Specimen",2244,1,"#controllhz4::OnMyMobDead";
+	monster "que_lhz",155,231,"Awake Specimen",2244,1,"#controllhz4::OnMyMobDead";
+	donpcevent "#controllhz4b::OnEnable";
+	stopnpctimer;
+	end;
+OnMyMobDead:
+	if (mobcount("que_lhz","#controllhz4::OnMyMobDead") < 1) {
+		donpcevent "#controllhz4b::OnStop";
+		donpcevent "#controllhz4c::OnEnable";
+		disablenpc "#controllhz4";
+		end;
+	}
+	end;
+}
+
+-	script	#controllhz4b	-1,{
+OnInit:
+OnDisable:
+	disablenpc "#controllhz4b";
+	end;
+OnEnable:
+	enablenpc "#controllhz4b";
+	initnpctimer;
+	end;
+OnStop:
+	stopnpctimer;
+	donpcevent "#controllhz4b::OnDisable";
+	end;
+OnTimer400000:
+	killmonster "que_lhz","#controllhz4::OnMyMobDead";
+	mapwarp "que_lhz","lighthalzen",263,200;
+	disablenpc "#controllhz4";
+	disablenpc "#controllhz4b";
+	stopnpctimer;
+	end;
+}
+
+-	script	#controllhz4c	-1,{
+OnInit:
+	disablenpc "#controllhz4c";
+	end;
+OnEnable:
+	enablenpc "#controllhz4c";
+	initnpctimer;
+	end;
+OnTimer10000:
+	mapannounce "que_lhz","Sussurro de um homem: Ajude-me... Por favor... Aaah... Não quero... Morre....",bc_map,0x0080C0;
+	donpcevent "#controllhz4d::OnEnable";
+	stopnpctimer;
+	disablenpc "#controllhz4c";
+	end;
+}
+
+que_lhz,147,248,0	script	#controllhz4d	-1,6,4,{
+OnTouch:
+	if (lhz_dun04 == 4) {
+		mes "Parece que tudo é feito.";
+		set lhz_dun04,5;
+		donpcevent "#controllhz4d::OnDisable";
+		close;
+	} else if (lhz_dun04 == 6) {
+		mes "- Então cai do teto";
+		mes "devido à estrutura enfraquecida";
+		mes "o laboratório e você cair para baixo de um";
+		mes "lance de escadas, evitando-lo. -";
+		close2;
+		warp "lhz_dun04",148,269;
+		donpcevent "#lhz4mes2::OnEnable";
+		donpcevent "#controllhz4d::OnDisable";
+		end;
+	}
+	end;
+OnInit:
+OnDisable:
+	disablenpc "#controllhz4d";
+	end;
+OnEnable:
+	enablenpc "#controllhz4d";
+	end;
+}
+
+lhz_dun04,148,269,0	script	#lhz4mes2	-1,2,2,{
+OnTouch:
+	if (lhz_dun04 == 6) {
+		heal -Hp/2,0; // To do: check HP value.
+		mes "- Você desperta ferido, ouvindo o";
+		mes "sons de passos ao redor";
+		mes "de você... -";
+		close2;
+		donpcevent "#lhz4mes2::OnDisable";
+		end;
+	}
+	end;
+OnInit:
+OnDisable:
+	disablenpc "#lhz4mes2";
+	end;
+OnEnable:
+	enablenpc "#lhz4mes2";
+	end;
+}

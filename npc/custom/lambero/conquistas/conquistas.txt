@@ -1,0 +1,639 @@
+// .----------------------------------------------------------.
+// .                ___________________                       .
+// .               /   _____/\______   \                      .
+// .               \_____  \  |    |  _/                      .
+// .               /        \ |    |   \                      .
+// .              /_______  / |______  /                      .
+// .                      \/         \/                       .
+// .               [ Advanced Scripts ]                       .
+// .                                                    v1.2  .
+// .----------------------------------------------------------.
+// ;               https:github.com/SoulBlaker/               ;
+// .----------------------------------------------------------.
+// . Script:                                                  .
+// .  Sistema de Conquistas                                   .
+// .----------------------------------------------------------.
+// . Por: SoulBlaker   Compátivel: eAthena Based              .
+// . Versão: 1.0
+// .----------------------------------------------------------.
+// . Descrição:                                               .
+// .  Sistemas de Conquistas que trabalha em todo o servidor. .
+// .----------------------------------------------------------.
+// . Changelog da Versão:                                     .
+// .  * 1.0 [SoulBlaker]                                      .
+// .	- Iniciado NPC.                                       .
+// *----------------------------------------------------------*
+
+// Eventos Responsável a interação chamada pelos jogadores.
+-	script	achievement#main	-1,{
+OnInit:
+	bindatcmd "achievement", "achievement#main::OnStart";
+	bindatcmd "conquest", "achievement#main::OnStart";
+	bindatcmd "conquistas", "achievement#main::OnStart";
+	end;
+
+OnStart:
+	mes "^FFA500[Conquistas]^000000";
+	mes "Você pode visualizar suas conquistas clicando no endereço abaixo:";
+	mes "<URL>Minhas Conquistas<INFO>127.0.0.1/conquistas/index.php?account_id=" + getcharid(3) + "</INFO></URL>";
+	close;
+}
+
+// Eventos responsáveis as conquistas de monstros.
+//
+// Autor: SoulBlaker
+//
+-	script	achievement#monster	-1,{
+
+OnNPCKillEvent:
+	// Conquista: O primeiro jamáis será esquecido.
+	if( callfunc("achcheckmvp",killedrid) == 1 && !callfunc("getachprogress",getcharid(3),2,0) )
+	{
+		if( callfunc("updateach", getcharid(3), 2, 0) )
+		{
+			callfunc "achcutin", 2;
+			callfunc "achreward", 2;
+			dispbottom "Conquista '" + callfunc("achname",2) + "' foi desbloqueada.";
+		}
+	}
+	
+	switch( killedrid )
+	{
+		case 1002:
+			// Conquista: O Primeiro de Muitos.
+			if( !callfunc("getachprogress",getcharid(3),0,0) )
+			{
+				callfunc "updateach", getcharid(3), 0, 1;
+				if( callfunc("updateach", getcharid(3), 0, 0) )
+				{
+					callfunc "achcutin", 0;
+					callfunc "achreward", 0;
+					dispbottom "Conquista '" + callfunc("achname",0) + "' foi desbloqueada.";
+				}
+			}
+			
+			// Conquista: Todos vão para o céu.
+			if( !callfunc("getachprogress",getcharid(3),1,0) )
+			{
+				callfunc "updateach", getcharid(3), 1, 1;
+				set .@count, callfunc("getachprogress",getcharid(3),1,1);
+				if( .@count >= 1000 )
+				{
+					if( callfunc("updateach", getcharid(3), 1, 0) )
+					{
+						callfunc "achcutin", 1;
+						callfunc "achreward", 1;
+						dispbottom "Conquista '" + callfunc("achname",1) + "' foi desbloqueada.";
+					}
+				}
+			}
+			break;
+		case 1708:
+			// Conquista: Memória de um Grande Herói.
+			if( strcharinfo(3) == "thana_boss" && !callfunc("getachprogress",getcharid(3),3,0) )
+			{
+				if( callfunc("updateach", getcharid(3), 3, 0) )
+				{
+					callfunc "achcutin", 3;
+					callfunc "achreward", 3;
+					dispbottom "Conquista '" + callfunc("achname",3) + "' foi desbloqueada.";
+				}
+			}
+			break;
+		case 1039:
+			// Conquista: Bode morto não fala.
+			if( strcharinfo(3) == "prt_maze01" && !callfunc("getachprogress",getcharid(3),4,0) )
+			{
+				if( callfunc("updateach", getcharid(3), 4, 0) )
+				{
+					callfunc "achcutin", 4;
+					callfunc "achreward", 4;
+					dispbottom "Conquista '" + callfunc("achname",4) + "' foi desbloqueada.";
+				}
+			}
+			break;
+		case 1916:
+			// Conquista: Império a 7 palmos debaixo da terra.
+			if( strcharinfo(3) == "moc_fild21" && !callfunc("getachprogress",getcharid(3),5,0) )
+			{
+				if( callfunc("updateach", getcharid(3), 5, 0) )
+				{
+					callfunc "achcutin", 5;
+					callfunc "achreward", 5;
+					dispbottom "Conquista '" + callfunc("achname",5) + "' foi desbloqueada.";
+				}
+			}
+			break;
+	}
+	end;
+}
+
+// Evento Responsável por morte de jogadores.
+//
+// 	Autor: SoulBlaker
+-	script	achievement#players	-1,{
+OnPCKillEvent:
+	set .@pvpflag, getmapflag(strcharinfo(3),mf_pvp);
+	set .@gvgflag, getmapflag(strcharinfo(3),mf_gvg);
+	set .@bgflag, getmapflag(strcharinfo(3),mf_battleground);
+	//set .@killname$, rid2name(killedrid);
+	
+	// Conquista: Iniciante no PvP.
+	if( .@pvpflag && !.@gvgflag && !callfunc("getachprogress",getcharid(3),6,0) )
+	{
+		callfunc "updateach", getcharid(3), 6, 1;
+		set .@count, callfunc("getachprogress",getcharid(3),6,1);
+		if( .@count >= 250 )
+		{
+			if( callfunc("updateach", getcharid(3), 6, 0) )
+			{
+				callfunc "achcutin", 6;
+				callfunc "achreward", 6;
+				dispbottom "Conquista '" + callfunc("achname",6) + "' foi desbloqueada.";
+			}
+		}
+	}
+	
+	// Conquista: Amador no PvP.
+	if( .@pvpflag && !.@gvg_flag && !callfunc("getachprogress",getcharid(3),7,0) )
+	{
+		callfunc "updateach", getcharid(3), 7, 1;
+		set .@count, callfunc("getachprogress",getcharid(3),7,1);
+		if( .@count >= 500 )
+		{
+			if( callfunc("updateach", getcharid(3), 7, 0) )
+			{
+				callfunc "achcutin", 7;
+				callfunc "achreward", 7;
+				dispbottom "Conquista '" + callfunc("achname",7) + "' foi desbloqueada.";
+			}
+		}
+	}
+	
+	// Conquista: Mestre no PvP.
+	if( .@pvpflag && !.@gvg_flag && !callfunc("getachprogress",getcharid(3),8,0) )
+	{
+		callfunc "updateach", getcharid(3), 8, 1;
+		set .@count, callfunc("getachprogress",getcharid(3),8,1);
+		if( .@count >= 1000 )
+		{
+			if( callfunc("updateach", getcharid(3), 8, 0) )
+			{
+				callfunc "achcutin", 8;
+				callfunc "achreward", 8;
+				dispbottom "Conquista '" + callfunc("achname",8) + "' foi desbloqueada.";
+			}
+		}
+	}
+	
+	// Conquista: Iniciante de Guerra.
+	if( .@gvgflag && !callfunc("getachprogress",getcharid(3),9,0) )
+	{
+		callfunc "updateach", getcharid(3), 9, 1;
+		set .@count, callfunc("getachprogress",getcharid(3),9,1);
+		if( .@count >= 250 )
+		{
+			if( callfunc("updateach", getcharid(3), 9, 0) )
+			{
+				callfunc "achcutin", 9;
+				callfunc "achreward", 9;
+				dispbottom "Conquista '" + callfunc("achname",9) + "' foi desbloqueada.";
+			}
+		}
+	}
+	
+	// Conquista: Amador de Guerra.
+	if( .@gvgflag && !callfunc("getachprogress",getcharid(3),10,0) )
+	{
+		callfunc "updateach", getcharid(3), 10, 1;
+		set .@count, callfunc("getachprogress",getcharid(3),10,1);
+		if( .@count >= 500 )
+		{
+			if( callfunc("updateach", getcharid(3), 10, 0) )
+			{
+				callfunc "achcutin", 10;
+				callfunc "achreward", 10;
+				dispbottom "Conquista '" + callfunc("achname",10) + "' foi desbloqueada.";
+			}
+		}
+	}
+	
+	// Conquista: Veterano de Guerra.
+	if( .@gvgflag && !callfunc("getachprogress",getcharid(3),11,0) )
+	{
+		callfunc "updateach", getcharid(3), 11, 1;
+		set .@count, callfunc("getachprogress",getcharid(3),11,1);
+		if( .@count >= 1000 )
+		{
+			if( callfunc("updateach", getcharid(3), 11, 0) )
+			{
+				callfunc "achcutin", 11;
+				callfunc "achreward", 11;
+				dispbottom "Conquista '" + callfunc("achname",11) + "' foi desbloqueada.";
+			}
+		}
+	}
+	
+	// Conquista: Iniciante de Batalhas
+	if( .@bgflag && !callfunc("getachprogress",getcharid(3),12,0) )
+	{
+		callfunc "updateach", getcharid(3), 12, 1;
+		set .@count, callfunc("getachprogress",getcharid(3),12,1);
+		if( .@count >= 250 )
+		{
+			if( callfunc("updateach", getcharid(3), 12, 0) )
+			{
+				callfunc "achcutin", 12;
+				callfunc "achreward", 12;
+				dispbottom "Conquista '" + callfunc("achname",12) + "' foi desbloqueada.";
+			}
+		}
+	}
+	
+	// Conquista: Amador de Batalhas
+	if( .@bgflag && !callfunc("getachprogress",getcharid(3),13,0) )
+	{
+		callfunc "updateach", getcharid(3), 13, 1;
+		set .@count, callfunc("getachprogress",getcharid(3),13,1);
+		if( .@count >= 500 )
+		{
+			if( callfunc("updateach", getcharid(3), 13, 0) )
+			{
+				callfunc "achcutin", 13;
+				callfunc "achreward", 13;
+				dispbottom "Conquista '" + callfunc("achname",13) + "' foi desbloqueada.";
+			}
+		}
+	}
+	
+	// Conquista: Veterano de Batalhas
+	if( .@bgflag && !callfunc("getachprogress",getcharid(3),14,0) )
+	{
+		callfunc "updateach", getcharid(3), 14, 1;
+		set .@count, callfunc("getachprogress",getcharid(3),14,1);
+		if( .@count >= 1000 )
+		{
+			if( callfunc("updateach", getcharid(3), 14, 0) )
+			{
+				callfunc "achcutin", 14;
+				callfunc "achreward", 14;
+				dispbottom "Conquista '" + callfunc("achname",14) + "' foi desbloqueada.";
+			}
+		}
+	}
+	end;
+}
+
+// Evento Responsável por Gasto de Zeny nos npcs.
+//
+// 	Autor: SoulBlaker
+-	script	achievement#zeny	-1,{
+OnPayZenyEvent:
+	set .@zeny, PAYACHIEVEMENT;
+	
+	debugmes "Teste: "+Zeny;
+	// Conquista: Consumidor de Primeira Classe
+	if( !callfunc("getachprogress",getcharid(3),21,0) )
+	{
+		callfunc "updateach", getcharid(3), 21, 1, .@zeny;
+		set .@count, callfunc("getachprogress",getcharid(3),21,1);
+		if( .@count >= 250000 )
+		{
+			if( callfunc("updateach", getcharid(3), 21, 0) )
+			{
+				callfunc "achcutin", 21;
+				callfunc "achreward", 21;
+				dispbottom "Conquista '" + callfunc("achname",21) + "' foi desbloqueada.";
+			}
+		}
+	}
+	
+	// Conquista: Consumidor Avançado
+	if( !callfunc("getachprogress",getcharid(3),22,0) )
+	{
+		callfunc "updateach", getcharid(3), 22, 1, .@zeny;
+		set .@count, callfunc("getachprogress",getcharid(3),22,1);
+		if( .@count >= 500000 )
+		{
+			if( callfunc("updateach", getcharid(3), 22, 0) )
+			{
+				callfunc "achcutin", 22;
+				callfunc "achreward", 22;
+				dispbottom "Conquista '" + callfunc("achname",22) + "' foi desbloqueada.";
+			}
+		}
+	}
+	
+	// Conquista: Consumidor Abusivo
+	if( !callfunc("getachprogress",getcharid(3),23,0) )
+	{
+		callfunc "updateach", getcharid(3), 23, 1, .@zeny;
+		set .@count, callfunc("getachprogress",getcharid(3),23,1);
+		if( .@count >= 1000000 )
+		{
+			if( callfunc("updateach", getcharid(3), 23, 0) )
+			{
+				callfunc "achcutin", 23;
+				callfunc "achreward", 23;
+				dispbottom "Conquista '" + callfunc("achname",23) + "' foi desbloqueada.";
+			}
+		}
+	}
+	
+	// Conquista: Numa tacada só!
+	if( .@zeny > 700000 && !callfunc("getachprogress",getcharid(3),24,0) )
+	{
+		if( callfunc("updateach", getcharid(3), 24, 0) )
+		{
+			callfunc "achcutin", 24;
+			callfunc "achreward", 24;
+			dispbottom "Conquista '" + callfunc("achname",24) + "' foi desbloqueada.";
+		}
+	}
+	end;
+
+OnOpenShopEvent:
+	// Conquista: Meu primeiro milhão.
+	if( Zeny >= 1000000 && !callfunc("getachprogress",getcharid(3),20,0) )
+	{
+		if( callfunc("updateach", getcharid(3), 20, 0) )
+		{
+			callfunc "achcutin", 20;
+			callfunc "achreward", 20;
+			dispbottom "Conquista '" + callfunc("achname",20) + "' foi desbloqueada.";
+		}
+	}
+	end;
+}
+
+// Evento Responsável por tempo dos jogadores.
+//
+// 	Autor: SoulBlaker
+-	script	achievement#timer	-1,{
+
+OnInit:
+	initnpctimer;
+	end;
+
+OnTimer60000:
+	freeloop(1);
+	query_sql "SELECT `account_id`, `char_id`, `name` FROM `char` WHERE `online`='1'", .@account_id, .@char_id, .@char_name$;
+	for( set .@i, 0; .@i < getarraysize(.@account_id); set .@i, .@i + 1 )
+	{
+		if( !callfunc("getachprogress",.@account_id[.@i],31,0) && gettime(3) == 4 && gettime(2) == 0 )
+		{
+			if( callfunc("updateach", .@account_id[.@i], 31, 0) )
+			{
+				if( attachrid(.@account_id[.@i]) )
+				{
+					callfunc "achcutin", 31;
+					callfunc "achreward", 31;
+					dispbottom "Conquista '" + callfunc("achname",31) + "' foi desbloqueada.";
+					detachrid;
+				}
+			}
+		}
+		
+		// Conquista: Jogador Iniciante
+		if( !callfunc("getachprogress",.@account_id[.@i],32,0) )
+		{
+			callfunc "updateach", .@account_id[.@i], 32, 1;
+			set .@count, callfunc("getachprogress",.@account_id[.@i],32,1);
+			if( .@count >= 2520 )
+			{
+				if( callfunc("updateach", .@account_id[.@i], 32, 0) )
+				{
+					if( attachrid(.@account_id[.@i]) )
+					{
+						callfunc "achcutin", 32;
+						callfunc "achreward", 32;
+						dispbottom "Conquista '" + callfunc("achname",32) + "' foi desbloqueada.";
+						detachrid;
+					}
+				}
+			}
+		}
+		
+		// Conquista: Jogador Avançado
+		if( !callfunc("getachprogress",.@account_id[.@i],33,0) )
+		{
+			callfunc "updateach", .@account_id[.@i], 33, 1;
+			set .@count, callfunc("getachprogress",.@account_id[.@i],33,1);
+			if( .@count >= 5040 )
+			{
+				if( callfunc("updateach", .@account_id[.@i], 33, 0) )
+				{
+					if( attachrid(.@account_id[.@i]) )
+					{
+						callfunc "achcutin", 33;
+						callfunc "achreward", 33;
+						dispbottom "Conquista '" + callfunc("achname",33) + "' foi desbloqueada.";
+						detachrid;
+					}
+				}
+			}
+		}
+		
+		// Conquista: Super Jogador
+		if( !callfunc("getachprogress",.@account_id[.@i],34,0) )
+		{
+			callfunc "updateach", .@account_id, 34, 1;
+			set .@count, callfunc("getachprogress",.@account_id[.@i],34,1);
+			if( .@count >= 10080 )
+			{
+				if( callfunc("updateach", .@account_id[.@i], 34, 0) )
+				{
+					if( attachrid(.@account_id[.@i]) )
+					{
+						callfunc "achcutin", 34;
+						callfunc "achreward", 34;
+						dispbottom "Conquista '" + callfunc("achname",34) + "' foi desbloqueada.";
+						detachrid;
+					}
+				}
+			}
+		}
+	}
+	setnpctimer 0;
+	freeloop(0);
+	end;
+}
+
+// Checa o progresso das conquistas.
+//
+//	getachprogress <account_id>, <achievement>, <flag>;
+//
+//		achievement:
+//			 0: O Primeiro de Muitos.
+//			 1: Todos vão para o céu.
+//			 2: O Primeiro jamáis será esquecido.
+//			 3: Memória de um grande herói
+//			 4: Bode morto não fala.
+//			 5: Império a 7 palmos debaixo da terra.
+//			 6: Iniciante no PvP.
+//			 7: Amador no PvP.
+//			 8: Mestre no PvP.
+//			 9: Iniciante de Guerra.
+//			10: Amador de Guerra.
+//			11: Veterano de Guerra.
+//			12: Iniciante de Batalhas.
+//			13: Amador de Batalhas.
+//			14: Veterano de Batalhas.
+//			15: Legionário Intermediário.
+//			16: Legionário Avançado.
+//			17: Legionário Veterano.
+//			18: Lembro como fosse ontem.
+//			19: Um verdadeiro quebrador de Emperium.
+//			20: Meu primeiro milhão.
+//			21: Consumidor de Primeira Classe.
+//			22: Consumidor Avançado.
+//			23: Consumidor Abusivo.
+//			24: Numa tacada só!
+//			25: Iniciante em Runas Guardiãs.
+//			26: Intermediário em Runas Guardiãs.
+//			27: Avançado em Runas Guardiãs.
+//			28: Construtor de Barreiras.
+//			29: Construtor de Fortes.
+//			30: Construtor de Fortalezas.
+//			31: Acordado sim, dormindo nunca!
+//			32: Jogador Iniciante.
+//			33: Jogador Avançado.
+//			34: Super Jogador.
+//
+//		flag:
+//			0: Retorna se a conquista já foi desbloqueada.
+//			1: Retorna com a quantidade do valor que falta para desbloquear a conquista.
+//
+//		value:
+//			0: Valor a ser adicionado, funcional em apenas algumas conquistas.
+//
+function	script	getachprogress	{
+	query_sql "SELECT `account_id`, `value`, `status` FROM `achievement_data` WHERE `account_id`='" + getarg(0) + "' AND `achievement_id`='" + getarg(1) + "'", .@account_id, .@value, .@status;
+	return (getarraysize(.@account_id)?(getarg(2)?.@value:.@status):false);
+}
+
+// Atualiza uma conquista.
+//
+//	updateach <account_id>, <achievement>, <flag>,{value};
+//
+//		achievement: Id da conquista.
+//
+//		flag:
+//			0: Atualiza os status da conquistada.
+//			1: Atualiza os valores de progresso dela em +1.
+//
+//		value: opcional, invez de acrescentar mais um ele acrescenta o valor informado.
+function	script	updateach	{
+	set .@chk, 2;
+	while(.@chk)
+	{
+		query_sql "SELECT `account_id`, `value` FROM `achievement_data` WHERE `account_id`='" + getarg(0) + "' AND `achievement_id`='" + getarg(1) + "'", .@account_id, .@value;
+		if( !getarraysize(.@account_id) )
+		{
+			query_sql "INSERT INTO `achievement_data` (account_id, achievement_id) VALUES (" + getarg(0) + ", " + getarg(1) + ")";
+			.@chk--;
+		}
+		else {
+			if( getargcount() < 4 )
+				set .@set, 1;
+			else
+				set .@set, getarg(3);
+				
+			query_sql (!getarg(2)?"UPDATE `achievement_data` SET `status`='1', `date_time`='" + gettimestr("%Y-%m-%d %H:%M:%S",21) + "' WHERE `account_id`='" + getarg(0) + "' AND `achievement_id`='" + getarg(1) + "'":"UPDATE `achievement_data` SET `value`=`value`+'" + .@set + "', `date_time`='" + gettimestr("%Y-%m-%d %H:%M:%S",21) + "' WHERE `account_id`='" + getarg(0) + "' AND `achievement_id`='" + getarg(1) + "'");
+			return true;
+		}
+	}
+	return false;
+}
+
+// Pega o nome da conquista.
+//	achname <achievement>;
+//
+//		achievement <achievement>;
+//
+function	script	achname	{
+	query_sql "SELECT `name` FROM `achievement` WHERE `id`='" + getarg(0) + "'", .@name$;
+	return (getarraysize(.@name$)?.@name$:"não definida");
+}	
+
+// Adiciona o cutin na tela do jogador.
+//	achcutin <achievement>;
+//
+//		achievement: Id da Conquista.
+//
+function	script	achcutin	{
+	query_sql "SELECT `cutin` FROM `achievement` WHERE `id`='" + getarg(0) + "'", .@cutin$;
+	if( getarraysize(.@cutin$) )
+		cutin .@cutin$, 4;
+	return;
+}
+
+// Concede a reponsa aos jogador.
+//	achreward <achievment>;
+//
+//		achievement: Id da Conquista.
+//
+function	script	achreward	{
+	query_sql "SELECT `reward` FROM `achievement` WHERE `id`='" + getarg(0) + "'", .@reward;
+	
+	if( !getarraysize(.@reward) )
+		return false;
+		
+	if( !.@reward )
+		return true;
+	
+	query_sql "SELECT `object`, `value`, `type`, `desc` FROM `achievement_rewards` WHERE `ach_id`='" + getarg(0) + "' ORDER BY `type`", .@object$, .@value, .@type, .@desc$;
+	
+	if( !getarraysize(.@object$) )
+		return false;
+		
+	if( .@reward == 2 )
+	{
+		set .@rand, rand(0,(getarraysize(.@object$)-1));
+		if( !.@type[.@rand] )
+		{
+			if( checkweight(atoi(.@object$[.@rand]),.@value[.@rand]) )
+			{
+				dispbottom "Você recebeu como recompensa " + .@value[.@rand] + "x " + getitemname(atoi(.@object$[.@rand])) + ".";
+				getitem atoi(.@object$[.@rand]), .@value[.@rand];
+			}
+		}
+		else {
+			setd .@object$[.@rand], getd(.@object$[.@rand]) + .@value[.@rand];
+			dispbottom "Você recebeu como recompensa " + .@value[.@rand] + " de " + .@desc$[.@rand] + ".";
+		}
+	}
+	else {
+		for( set .@i, 0; .@i < getarraysize(.@object$); set .@i, .@i + 1 )
+		{
+			if( !.@type[.@i] )
+			{
+				if( checkweight(atoi(.@object$[.@i]),.@value[.@i]) )
+				{
+					dispbottom "Você recebeu como recompensa " + .@value[.@i] + "x " + getitemname(atoi(.@object$[.@i])) + ".";
+					getitem atoi(.@object$[.@i]), .@value[.@i];
+				}
+			}
+			else {
+				setd .@object$[.@i], getd(.@object$[.@i]) + .@value[.@i];
+				dispbottom "Você recebeu como recompensa " + .@value[.@i] + " de " + .@desc$[.@i] + ".";
+			}
+		}
+	}
+	return true;
+}
+
+// Checa se o monstro morto é um MvP.
+//	achcheckmvp(mob_id)
+//
+//		Retorna 0 caso não seja um MvP e 1 caso seja.
+//
+function	script	achcheckmvp	{
+	setarray .@monster_id[0], 1059, 1647, 1511, 2362, 1645, 1650, 1785, 1039, 2320, 2317, 1873, 1086, 1871, 2068, 2319, 1251, 2188, 2189, 2187, 2190, 2234, 2229, 2232, 1719, 1046, 2131, 1112, 1389, 1115, 1652, 1952, 1157, 1150, 1159, 2253, 1312, 2251, 1885, 2255, 1252, 1734, 2202, 1779, 1980, 1630, 1688, 2156, 1946, 1147, 1708, 2233, 2231, 1648, 1917, 1956, 1087, 2228, 1768, 2194, 2230, 2249, 1623, 1492, 1272, 1373, 1190, 1418, 2022, 1649, 1583, 1751, 2106;
+	for( set .@i, 0; .@i < getarraysize(.@monster_id); set .@i, .@i + 1 )
+	{
+		if( getarg(0) == .@monster_id[.@i] )
+			return 1;
+	}
+	return 0;
+}

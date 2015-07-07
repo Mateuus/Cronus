@@ -15117,6 +15117,8 @@ void clif_cashshop_show(struct map_session_data *sd, struct npc_data *nd) {
 	}
 	WFIFOW(fd,2) = offset+c*11;
 	WFIFOSET(fd,WFIFOW(fd,2));
+    // [SoulBlaker]: Open Shop Script Event
+	npc->script_event(sd, NPCE_OPENSHOP);
 }
 
 /// Cashshop Buy Ack (ZC_PC_CASH_POINT_UPDATE).

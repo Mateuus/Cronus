@@ -1,0 +1,166 @@
+-	script	Pontos MvP	-1,{
+OnNPCKillEvent:
+
+set .@ACC,getcharid(3); //Account ID
+
+
+if(killedrid== 1038 ||killedrid== 1885 || killedrid== 1785 || killedrid== 1658 || killedrid== 1623 || killedrid== 1511 || killedrid== 1492 || killedrid== 1373 || killedrid== 1272 || killedrid== 1039 || killedrid== 1059 || killedrid== 1059 || killedrid== 1087 || killedrid== 1112 || killedrid== 1115 || killedrid== 1147 || killedrid== 1150 || killedrid== 1157 || killedrid== 1159 || killedrid== 1190){
+
+
+query_sql "UPDATE `login` SET `pontosmvp` = `pontosmvp` +1 WHERE `account_id`="+.@ACC+"";
+
+query_sql "select `pontosmvp` from `login` where `account_id` = '"+getcharid(3)+"'",@pontosmvp;
+
+dispbottom "Parabéns "+strcharinfo(0)+", Sua recompensa por derrotar esse montro é 1 Ponto MvP! Agora você possui "+@pontosmvp+" pontos.";
+}
+
+if(killedrid== 1389 || killedrid== 1630 || killedrid== 1418 || killedrid== 1734 || killedrid== 1766 || killedrid== 1767 || killedrid== 1120 || killedrid== 1980 ){
+
+query_sql "UPDATE `login` SET `pontosmvp` = `pontosmvp` +2 WHERE `account_id`="+.@ACC+"";
+
+query_sql "select `pontosmvp` from `login` where `account_id` = '"+getcharid(3)+"'",@pontosmvp;
+
+dispbottom "Parabéns "+strcharinfo(0)+", Sua recompensa por derrotar esse montro é 2 Pontos MvP! Agora você possui "+@pontosmvp+" pontos.";
+}
+
+if(killedrid== 1086 || killedrid== 1251 || killedrid== 1312 || killedrid== 1685 || killedrid== 1688 || killedrid== 1719 || killedrid== 1779 ){
+
+query_sql "UPDATE `login` SET `pontosmvp` = `pontosmvp` +3 WHERE `account_id`="+.@ACC+"";
+
+query_sql "select `pontosmvp` from `login` where `account_id` = '"+getcharid(3)+"'",@pontosmvp;
+
+dispbottom "Parabéns "+strcharinfo(0)+", Sua recompensa por derrotar esse montro é 3 Pontos MvP! Agora você possui "+@pontosmvp+" pontos.";
+}
+
+if(killedrid==1917 || killedrid==1874 || killedrid== 1871 || killedrid== 1399 || killedrid== 1651 || killedrid== 1650 || killedrid== 1649 || killedrid== 1648 || killedrid== 1647 || killedrid== 1646 || killedrid== 1583 || killedrid== 1768){
+
+query_sql "UPDATE `login` SET `pontosmvp` = `pontosmvp` +5 WHERE `account_id`="+.@ACC+"";
+
+query_sql "select `pontosmvp` from `login` where `account_id` = '"+getcharid(3)+"'",@pontosmvp;
+
+dispbottom "Parabéns "+strcharinfo(0)+", Sua recompensa por derrotar esse montro é 5 Pontos MvP! Agora você possui "+@pontosmvp+" pontos.";
+}
+
+if(killedrid== 2235 || killedrid== 2236 || killedrid== 2237 || killedrid== 2238 || killedrid== 2239 || killedrid== 2240 || killedrid== 2241){
+
+query_sql "UPDATE `login` SET `pontosmvp` = `pontosmvp` +7 WHERE `account_id`="+.@ACC+"";
+
+query_sql "select `pontosmvp` from `login` where `account_id` = '"+getcharid(3)+"'",@pontosmvp;
+
+dispbottom "Parabéns "+strcharinfo(0)+", Sua recompensa por derrotar esse montro é 7 Pontos MvP! Agora você possui "+@pontosmvp+" pontos.";
+}
+
+if(killedrid== 1708 || killedrid== 1751 || killedrid== 1832 || killedrid==1916){
+
+query_sql "UPDATE `login` SET `pontosmvp` = `pontosmvp` +10 WHERE `account_id`="+.@ACC+"";
+
+query_sql "select `pontosmvp` from `login` where `account_id` = '"+getcharid(3)+"'",@pontosmvp;
+
+dispbottom "Parabéns "+strcharinfo(0)+", Sua recompensa por derrotar esse montro é 10 Pontos MvP! Agora você possui "+@pontosmvp+" pontos.";
+}
+end;
+}
+
+
+-	shop	MVSHOP1	-1,512:-1
+-	shop	MVSHOP2	-1,512:-1
+
+prontera,165,196,4	script	Loja Pontos MvP	4_M_OLDFRIAR,{
+
+query_sql "select `pontosmvp` from `login` where `account_id` = '"+getcharid(3)+"'",.@pontosmvp;
+
+mes "[^FF0000Loja MvP^000000]";
+mes "•MVP é a abreviação para Most Valuable Player, que significa Jogador de Maior Valor.";
+mes "•É uma definição que não se limita apenas à Ragnarök Online.";
+next;
+mes "[^FF0000Loja MvP^000000]";
+mes "•A dificuldade de um MVP está pelo seu HP, dano e Experiência altíssimos.";
+mes "•Eles são do tipo Chefe, ou seja, possuem certas prioridades que um monstro comum não possui.";
+next;
+mes "[^FF0000Loja MvP^000000]";
+mes "•Os MVPs são livres para todos os jogadores: qualquer um poderá atacar um MVP sem estar infringindo a regra de Kill Steal.";
+mes "•Entretanto, se houver abuso e habilidade, os infratores deverão ser denunciados.";
+next;
+mes "[^FF0000Loja MvP^000000]";
+mes "Deseja trocar seus pontos MvP por itens?";
+next;
+switch(select("[^339966+^000000] Sim.:[^FF0000+^000000] Não."))
+{
+case 1:
+
+	mes "[^FF0000Loja MvP^000000]";
+	mes "^FF0000Escolha a categoria de itens que lhe interessa:^000000";
+	set @s, select("Utilidades:Hats");
+	message strcharinfo(0),"Esta loja só aceita Pontos MvP.";
+	dispbottom "Você tem "+.@pontosmvp+" Pontos MvP.";
+	callshop "MVSHOP"+@s,1;
+	npcshopattach "MVSHOP"+@s;
+	end;
+case 2:
+	mes "[^FF0000Loja MvP^000000]";
+	mes "Volte Sempre!";
+close;
+}
+
+OnBuyItem:
+mes "[^FF0000Loja MvP^000000]";
+
+//query_sql "UPDATE `login` SET `pontosmvp` = `pontosmvp` +5 WHERE `account_id`="+.@ACC+"";
+
+query_sql "select `pontosmvp` from `login` where `account_id` = '"+getcharid(3)+"'",@pointmvp;
+
+if (@pointmvp == 0){mes "Você não possui Pontos Mvp"; close;}
+if (@pointmvp >= 1){
+	set .@i,0;
+	while (.@i < getarraysize(@bought_nameid)) {
+		set .@j, 0;
+		while (.@j < getarraysize(getd(".Shop"+@s))) {
+			if(getd(".Shop"+@s+"["+.@j+"]") == @bought_nameid[.@i]) {
+				set @itemcost, (getd(".Shop"+@s+"["+(.@j+1)+"]") * @bought_quantity[.@i]);
+				set @totalcost, @totalcost + @itemcost;
+				break; }
+			set .@j, .@j+2; }
+		set .@i, .@i+1; }
+	if (@totalcost > @pointmvp) dispbottom "Você não tem o suficiente de Pontos MvP."; 
+	else {
+		set .@i,0;
+		while (.@i < getarraysize(@bought_nameid)) {
+			getitem @bought_nameid[.@i], @bought_quantity[.@i];
+			
+			dispbottom "Você comprou "+@bought_quantity[.@i]+"x "+getitemname(@bought_nameid[.@i])+".";
+
+			set .@i, .@i+1; }
+			
+		//set PontoMvP,PontoMvP-@totalcost;
+		
+		set .@ACC,getcharid(3); //Account ID
+	    query_sql "UPDATE `login` SET `pontosmvp` = `pontosmvp` - "+@totalcost+" WHERE `account_id`="+.@ACC+"";
+		
+	query_sql "select `pontosmvp` from `login` where `account_id` = '"+getcharid(3)+"'",@pointmvpnew;
+	
+	mes "Seu total de Pontos MvP agora é ^FF0000"+@pointmvpnew+"^000000.";}
+	
+	set @totalcost, 0;
+	deletearray @bought_nameid[0], 128;
+	deletearray @bought_quantity[0], 128;
+close;
+	end;
+}
+
+OnInit:
+	setarray .Currency[1],507;
+	//setarray .Shop1[0],12210,250,12103,100,12208,30,;
+	setarray .Shop1[0],17068,150,13973,140,12210,140,12916,100,12103,80,17034,50,17033,40,12208,25; 
+	setarray .Shop2[0],5361,700,5406,650,5407,600,5385,410,5405,400,5383,400,5364,350,5365,300,5380,300,5387,250,5367,250,5397,170,5371,150,5399,110,5392,110,5389,90,5402,90,5404,80;
+
+	set .@i,1;
+	while (.@i <= getarraysize(.Currency)) {
+		set .@j,0;
+while (.@j < getarraysize(getd(".Shop"+.@i))) {
+			npcshopdelitem "MVSHOP"+.@i,512;
+			npcshopadditem "MVSHOP"+.@i, getd(".Shop"+.@i+"["+.@j+"]"), getd(".Shop"+.@i+"["+(.@j+1)+"]");
+			set .@j, .@j+2; }
+		set .@i, .@i+1; }
+	end;
+
+}

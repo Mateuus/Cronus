@@ -174,5 +174,6 @@ lhz_dun02	mapflag	nowarpto
 thor_v03	mapflag	nowarpto
 moc_fild22	mapflag	nowarpto
 lhz_dun03	mapflag	nowarpto
+lhz_dun04	mapflag	nowarpto
 
 

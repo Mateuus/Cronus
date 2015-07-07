@@ -1352,7 +1352,9 @@ int npc_buysellsel(struct map_session_data* sd, int id, int type) {
 	} else {
 		clif->selllist(sd);
 	}
-	
+
+	// [SoulBlaker]: Open Shop Script Event
+	npc->script_event(sd, NPCE_OPENSHOP);
 	return 0;
 }
 
@@ -4319,6 +4321,8 @@ void npc_read_event_script(void)
 		{"Die Event",script->config.die_event_name},
 		{"Kill PC Event",script->config.kill_pc_event_name},
 		{"Kill NPC Event",script->config.kill_mob_event_name},
+		{"NPC Pay Zeny Event","OnPayZenyEvent"},
+		{"NPC Open Shop Event","OnOpenShopEvent"},
 	};
 
 	for (i = 0; i < NPCE_MAX; i++)

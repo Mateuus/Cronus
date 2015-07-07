@@ -93,3 +93,4 @@ lhz_dun02	mapflag	nowarp
 thor_v03	mapflag	nowarp
 moc_fild22	mapflag	nowarp
 lhz_dun03	mapflag	nowarp
+lhz_dun04	mapflag	nowarp

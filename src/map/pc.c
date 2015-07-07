@@ -3875,6 +3875,7 @@ int pc_payzeny(struct map_session_data *sd,int zeny, enum e_log_pick_type type, 
 		return 1;
 	}
 
+	pc_setaccountreg(sd, script->add_str("PAYACHIEVEMENT"), zeny);
 	if( sd->status.zeny < zeny )
 		return 1; //Not enough.
 
@@ -3888,7 +3889,7 @@ int pc_payzeny(struct map_session_data *sd,int zeny, enum e_log_pick_type type, 
 		sprintf(output, "Removed %dz.", zeny);
 		clif_disp_onlyself(sd,output,strlen(output));
 	}
-
+	npc->script_event(sd, NPCE_PAYZENY);
 	return 0;
 }
 /*==========================================
