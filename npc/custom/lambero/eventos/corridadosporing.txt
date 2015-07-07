@@ -45,18 +45,18 @@ OnChequeo:
 -	script	Timers#prace0	-1,{
 
 
-    OnClock0000: callsub OnCalll;
-    OnClock0200: callsub OnCalll;
-    OnClock0400: callsub OnCalll;
-    OnClock0600: callsub OnCalll;
-    OnClock0800: callsub OnCalll;
-    OnClock1000: callsub OnCalll;
-    OnClock1200: callsub OnCalll;
-    OnClock1400: callsub OnCalll;
-    OnClock1600: callsub OnCalll;
-    OnClock1800: callsub OnCalll;
-    OnClock2000: callsub OnCalll;
-    OnClock2200: callsub OnCalll;
+    OnClock0011: callsub OnCalll;
+    OnClock0211: callsub OnCalll;
+    OnClock0411: callsub OnCalll;
+    OnClock0611: callsub OnCalll;
+    OnClock0811: callsub OnCalll;
+    OnClock1011: callsub OnCalll;
+    OnClock1211: callsub OnCalll;
+    OnClock1411: callsub OnCalll;
+    OnClock1611: callsub OnCalll;
+    OnClock1811: callsub OnCalll;
+    OnClock2011: callsub OnCalll;
+    OnClock2211: callsub OnCalll;
 
 
     OnCalll:

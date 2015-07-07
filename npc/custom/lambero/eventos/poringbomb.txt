@@ -1,0 +1,467 @@
+//------------------------------- C H A N G E L O G---------------------------------------------
+//	->	Simplify some script parts.	
+//	->	Fixed GM Start Event Message Closing Problem.
+//	->	Fixed Reward NPC Appear After Event Finished.
+//	->	Added New Announcement Messages.
+//	->	Changed Default Bomb Poring Amount.	
+//	->	Announce Register NPC Location On Prontera.
+//	->	Bomb Poring no more fixed spawn on a specific spots.
+//	->	Changed some Globe Announce to Map Announce.
+//	->	Changed Time Duration of Event.
+//	->	Added an iforming message after GM has Disable the Event.
+//	->	Changed Rewards based on each Character and not Account based.
+//	->	Change Rewards System to auto RANDOMLY GENERATE Reward amount.
+//	->	Default Reward = Poring Coin [ ItemID : 7539 ] ( Amount 1 to 30 )
+//	->	Tradução [Mateuus]
+
+
+
+//		_________________________
+//----------------------| MAP FLAG OF THIS EVENT |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//		_________________________
+
+
+quiz_01	mapflag	nowarpto
+quiz_01	mapflag	noskill
+quiz_01	mapflag	nowarp
+quiz_01	mapflag	noteleport
+quiz_01	mapflag	nomemo
+quiz_01	mapflag	nosave	SavePoint
+quiz_01	mapflag	nobranch
+quiz_01	mapflag	noicewall
+quiz_01	mapflag	nopenalty
+quiz_01	mapflag	nobranch
+quiz_01	mapflag	noexp
+quiz_01	mapflag	noreturn
+quiz_01	mapflag	pvp_noparty	1
+
+
+
+
+//----------------------Hide NPC On Startup----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-	script	Bomber#disable	-1,{
+
+OnInit:
+	disablenpc "Reward NPC";
+}
+
+
+//----------------------NPC Master Location-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------To Active / Close Event --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-	script	Evento Poring Bomber	-1,{
+	doevent "bombevent::OnStart";
+}
+
+
+
+//----------------------WHISPERING SYSTEM----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------  PM [ npc:bombevent ] with any message then menu will come out --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-	script	bombevent	-1,{
+	OnWhisperGlobal:
+
+OnStart:
+	if (getgmlevel() >= 60) goto LMS_Admin;
+	mes "[Favorito]";
+	mes "Olá " + strcharinfo(0) + ", Estou ocupado agora.";
+	mes "*suspiro*";
+	close;
+
+
+
+//---------------------------GM MENU----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LMS_Admin:
+	mes "[Evento Poring Bomber]";
+	mes "Olá " + strcharinfo(0) + ", como você gosta de mim para iniciar a bomba Evento?";
+	mes "Escolher [ ^336699INICIA EVENTO ^000000 ] se você quiser iniciá-la !!";
+	menu "INICIA EVENTO",M_bomb,"Entra no Evento",M_warp,"Termina Evento",M_EndEvent,"Não, Obrigado",leave;
+	M_bomb:
+		next;
+		mes "[Evento Poring Bomber]";
+		 mes "Ok, eu vou iniciá-lo neste instante.";
+		next;
+		 mes "A Secretaria NPC vai sair mais algum tempo..";
+		 mes "Ele é usado para registrar o jogador Jogo.";
+		 mes "Ele também irá deformar jogador que se inscreveu para o local do evento.";
+		close2;
+		set $@offvar,1;
+		goto StartEvent;
+		end;
+
+	M_warp:
+		mes "[Evento Poring Bomber]";
+		mes "Muito bem, vou deformar-lhe o mapa!";
+		warp "quiz_01",42,369;
+		close;
+
+	leave:
+		next;
+		mes "[Evento Poring Bomber]";
+		mes "Ok " + strcharinfo(0) +", bom ver você.";
+		close;
+		
+	M_EndEvent:
+		mes "[Evento Poring Bomber]";
+		mes "Ok mestre, Vou parar o evento para você imediatamente!";
+		next;
+		set $@offvar,1;
+		announce "Vou estar de volta depois de 3 minutos",bc_blue|bc_self;
+		disablenpc "Reward NPC";
+		killmonsterall "quiz_01";
+		areawarp "quiz_01",10,10,450,450,"prontera",155,165;
+		
+		disablenpc "Bomber";
+		warp "prontera",155,160;
+		close2;
+		sleep2 180000;
+		enablenpc "Bomber";
+		end;
+
+
+//----------------------START EVENT----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    OOnClock0030:OnClock0230:OnClock0430:OnClock0630:OnClock0830:OnClock1030:OnClock1230:OnClock1430:OnClock1630:OnClock1830:OnClock2030:OnClock2230::OnClock0346:
+	StartEvent:
+	initnpctimer;
+	announce "Bomba evento terá início em 3 minutos. Em Prontera",0;
+	killmonsterall "quiz_01";
+	disablenpc "Reward NPC";
+	sleep2 30000;
+	announce "Bomba evento terá início em 2 minutos 30 segundo. Em Prontera",0;
+	sleep2 30000;
+	announce "Bomba Evento começará em 2 minutos! Em Prontera",0;
+	sleep2 15000;
+	announce "Evento Bomber : Já está liberado o registro! ",0;
+	enablenpc "Registry";
+	sleep2 3000;
+	announce "Evento Bomber : Localização : Prontera [ 156 , 185 ] l! ",0;
+	announce "Evento Bomber : No Centro de Prontera ",0;
+	sleep2 22000;
+	announce "Evento Bomber : Localização : Prontera [ 156 , 185 ] l! ",0;
+	announce "Evento Bomber : No Centro de Prontera ",0;
+	sleep2 20000;
+	announce "Evento Bomber começará em 1 minuto!",0;
+	sleep2 1000;
+	announce "Evento Bomber : Localização : Prontera [ 156 , 185 ] l! ",0;
+	announce "Evento Bomber : No Centro de Prontera ",0;
+	sleep2 15000;
+	mapannounce "quiz_01","Em 30 segundos, o evento bomber terá início!!",0;
+	sleep2 30000;
+	announce "Evento bomber já começou !! Registro fechado agora ~",0,0x00FF00;
+	disablenpc "Registry";
+	sleep2 3000;
+	announce "Evento bomber começará em ~5~",0;
+	sleep2 1000;
+	announce "Evento bomber começará em ~4~",0;
+	sleep2 1000;
+	announce "Evento bomber começará em ~3~",0;
+	sleep2 1000;
+	announce "Evento bomber começará em ~2~",0;
+	sleep2 1000;
+	announce "Evento bomber começará em ~1~",0;
+	sleep2 1000;
+
+
+//----------------------ROUND ONE ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+	mapannounce "quiz_01","1° Rodada !! O momento BOMB começou a contagem decrescente !!",0;
+	sleep2 2000;
+	mapannounce "quiz_01",getmapusers("quiz_01") +" jogadores juntou-se ao evento.",0,0x00FF00;
+	sleep2 3000;
+	announce "Bem !! Vamos fazê-lo explodir !! ",bc_blue|bc_map;
+	sleep2 3000;
+	areamonster "quiz_01", 23, 361, 38, 376, "Timed Bomb",1904,5;
+	areamonster "quiz_01", 45, 362, 60, 376, "Timed Bomb",1904,5;
+	sleep2 13000;
+	areamonster "quiz_01", 23, 361, 38, 376, "Timed Bomb",1904,5;
+	areamonster "quiz_01", 45, 362, 60, 376, "Timed Bomb",1904,5;
+	sleep2 10000;
+	mapannounce "quiz_01","5 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","4 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","3 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","2 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","1 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","1° Rodada Finalizada !! Por favor, aguarde para a próxima rodada !! ^^ !!",0;
+	killmonsterall "quiz_01";
+	sleep2 1000;
+
+//----------------------ROUND TWO----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	if(getmapusers("quiz_01") < 1) goto L_Lose;
+	mapannounce "quiz_01","2° Rodada !! O momento BOMB começou a contagem decrescente  !!",0;
+	sleep2 2000;
+	mapannounce "quiz_01",getmapusers("quiz_01") +" jogadores sobreviveu a esta rodada.",0,0x00FF00;
+	sleep2 3000;
+	announce "Bom Trabalho !! Por alcançar este estágio !! ",bc_blue|bc_map;
+	sleep2 3000;
+	areamonster "quiz_01", 23, 361, 38, 376, "Timed Bomb",1904,1,"bomblose::OnMobDied";
+	areamonster "quiz_01", 45, 362, 60, 376, "Timed Bomb",1904,1,"bomblose1::OnMobDied";
+	areamonster "quiz_01", 23, 361, 38, 376, "Timed Bomb",1904,5;
+	areamonster "quiz_01", 45, 362, 60, 376, "Timed Bomb",1904,5;
+	sleep2 13000;
+	areamonster "quiz_01", 23, 361, 38, 376, "Timed Bomb",1904,3;
+	areamonster "quiz_01", 45, 362, 60, 376, "Timed Bomb",1904,3;
+	sleep2 10000;
+	mapannounce "quiz_01","5 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","4 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","3 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","2 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","1 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","2° Rodada Finalizada !! Por favor, aguarde para a próxima rodada !! ^^ !!",0;
+	killmonsterall "quiz_01";
+	sleep2 1000;
+
+//----------------------ROUND THREE ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	if(getmapusers("quiz_01") < 1) goto L_Lose;
+	mapannounce "quiz_01","3° Rodada !! O momento BOMB começou a contagem decrescente   !!",0;
+	sleep2 2000;
+	mapannounce "quiz_01",getmapusers("quiz_01") +" jogadores sobreviveu a esta rodada.",0,0x00FF00;
+	sleep2 3000;
+	announce "Mantenha-se Vivo !! 2 Falta mais 2° Rodadas após esta etapa !! ~ ",bc_blue|bc_map;
+	sleep2 3000;
+	areamonster "quiz_01", 23, 361, 38, 376, "Timed Bomb",1904,7;
+	areamonster "quiz_01", 45, 362, 60, 376, "Timed Bomb",1904,7;
+	sleep2 5000;
+	areamonster "quiz_01", 23, 361, 38, 376, "Timed Bomb",1904,5;
+	areamonster "quiz_01", 45, 362, 60, 376, "Timed Bomb",1904,5;
+	sleep2 10000;
+	areamonster "quiz_01", 23, 361, 38, 376, "Timed Bomb",1904,2,"bomblose::OnMobDied";
+	areamonster "quiz_01", 45, 362, 60, 376, "Timed Bomb",1904,2,"bomblose1::OnMobDied";
+	sleep2 7000;
+	mapannounce "quiz_01","5 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","4 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","3 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","2 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","1 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","3° Rodada Finalizada !! Por favor, aguarde para a próxima rodada !! ^^ !!",0;
+	killmonsterall "quiz_01";
+	sleep2 1000;
+
+
+//----------------------ROUND FOUR ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	if(getmapusers("quiz_01") < 1) goto L_Lose;
+	mapannounce "quiz_01","4° Rodada !! O momento BOMB começou a contagem decrescente  !!",0;
+	sleep2 2000;
+	mapannounce "quiz_01",getmapusers("quiz_01") +" jogadores sobreviveu a esta rodada.",0,0x00FF00;
+	sleep2 3000;
+	announce "Incrível !! Vocês estão vivos, até este estágio ~ ",bc_blue|bc_map;
+	sleep2 3000;
+	areamonster "quiz_01", 23, 361, 38, 376, "Timed Bomb",1904,1,"bomblose::OnMobDied";
+	areamonster "quiz_01", 45, 362, 60, 376, "Timed Bomb",1904,1,"bomblose1::OnMobDied";
+	areamonster "quiz_01", 23, 361, 38, 376, "Timed Bomb",1904,5;
+	areamonster "quiz_01", 45, 362, 60, 376, "Timed Bomb",1904,5;
+	sleep2 15000;
+	areamonster "quiz_01", 23, 361, 38, 376, "Timed Bomb",1904,2,"bomblose1::OnMobDied";
+	areamonster "quiz_01", 45, 362, 60, 376, "Timed Bomb",1904,2,"bomblose::OnMobDied";
+	sleep2 10000;
+	mapannounce "quiz_01","5 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","4 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","3 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","2 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","1 Segundo para ir até a próxima rodada  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","4° Rodada Finalizada !! Por favor, aguarde para a próxima rodada !! ^^ !!",0;
+	killmonsterall "quiz_01";
+	sleep2 1000; 
+
+
+//----------------------ROUND FIVE  ( FINAL )-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	if(getmapusers("quiz_01") < 1) goto L_Lose;
+	mapannounce "quiz_01","Fase Final !! Oque  ?? A bomba não pode ser parado agora  !! droga !!~ ",0;
+	sleep2 2000;
+	mapannounce "quiz_01",getmapusers("quiz_01") +" jogadores sobreviveu a esta rodada.",0,0x00FF00;
+	sleep2 3000;
+	announce "OMG !!! Vocês chegou a FINAL !!! Quem vai fica vivo até o fim? !?? ~ ",bc_blue|bc_all;
+	sleep2 3000;
+	areamonster "quiz_01", 23, 361, 38, 376, "Timed Bomb",1904,1,"bomblose::OnMobDied";
+	areamonster "quiz_01", 45, 362, 60, 376, "Timed Bomb",1904,1,"bomblose1::OnMobDied";
+	areamonster "quiz_01", 23, 361, 38, 376, "Timed Bomb",1904,15;
+	areamonster "quiz_01", 45, 362, 60, 376, "Timed Bomb",1904,15;
+	sleep2 18000;
+	areamonster "quiz_01", 23, 361, 38, 376, "Timed Bomb",1904,2,"bomblose1::OnMobDied";
+	areamonster "quiz_01", 45, 362, 60, 376, "Timed Bomb",1904,2,"bomblose::OnMobDied";
+	sleep2 2000;
+	mapannounce "quiz_01","Sobreviver a esta rodada de obter recompensa ^^ !!",0;
+	sleep2 10000;
+	mapannounce "quiz_01","30 Segundo para terminar !! ^^ !!",0;
+	sleep2 1500;
+	mapannounce "quiz_01","15 Segundo para terminar  !! ^^ !!",0;
+	sleep2 5000;
+	mapannounce "quiz_01","10 Segundo para terminar  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","9 Segundo para terminar  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","8 Segundo para terminar  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","7 Segundo para terminar  !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","6 Segundo para terminar   !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","5 Segundo para terminar    !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","4 Segundo para terminar    !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","3 Segundo para terminar    !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","2 Segundo para terminar    !! ^^ !!",0;
+	sleep2 1000;
+	mapannounce "quiz_01","1 Segundo para terminar    !! ^^ !!",0;
+	sleep2 1000;
+	if(getmapusers("quiz_01") < 1) goto L_Lose;
+	mapannounce "quiz_01","Parabéns a todos sobreviventes  !! ^^ !!",0;
+	killmonsterall "quiz_01";
+	goto L_Win;
+	sleep2 1000;
+	
+	end;
+
+//----------------------When All Players LOSE / WIN--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------Will Auto Check Every Round Before Start----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+L_Lose: 
+	if ( getmapusers("quiz_01") == 0 ){
+	killmonsterall "quiz_01";
+	announce "'Evento Bomba terminou. Ninguém sobreviveu.",0;
+	stopnpctimer;
+	end;
+}
+L_Win:
+ 	if ( getmapusers("quiz_01") > 0 ){
+	mapannounce "quiz_01",getmapusers("quiz_01") +" jogadores sobreviveu ao mesmo.",0,0x00FF00;
+	enablenpc "Reward NPC";
+	sleep2 3000;
+	mapannounce "quiz_01","Você é o vencendor, fale com o NPC de Recompensa por favor! ",0;
+	end;
+}
+	stopnpctimer;	
+	end;
+OnTimer10000:
+	if(getmapusers("quiz_01") == 1){
+		killmonsterall "quiz_01";
+		mapannounce "quiz_01","Você é o vencendor, fale com o NPC de Recompensa por favor!",0;
+		enablenpc "Reward NPC";
+		end;
+	}	
+
+
+//-----------When Player Died He Will Be Warp Back -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-----------But Will Increase Amount Of Bomb Poring At The Same Time--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+OnPCDieEvent:
+	getmapxy .@mapnvz$,.@xnvz,.@ynvz,0;
+	if ( .@mapnvz$ == "quiz_01") {
+	sleep2 1;
+	warp "prontera",155,155;
+	mapannounce "quiz_01","Que desastre !! A bomba será multiplicado quando alguém morreu no Evento !! .",0;
+	areamonster "quiz_01", 23, 361, 38, 376, "Timed Bomb",1904,1,"bomblose::OnMobDied";
+	areamonster "quiz_01", 45, 362, 60, 376, "Timed Bomb",1904,1,"bomblose1::OnMobDied";
+	atcommand "@alive "+ strcharinfo(0);
+	dispbottom "Que má sorte... Junte-se nos próxima vez  ^^. ";
+	}
+	
+}
+
+//----------------------REWARD NPC---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+quiz_01,42,369,3	script	Reward NPC	72,{
+
+	if(BombRewarded == 1) goto L_End;
+	mes "[Reward NPC]";
+	mes "Please tell me your name.";
+	next;
+	input .@name$;
+	if(.@name$ != strcharinfo(0)) {
+		mes "[Reward NPC]";
+		mes "Are you sure that is your name?";
+		close;
+	}
+	mes "[Reward NPC]";
+	mes "Parabéns. Você é um vencendor";
+	close2;
+	announce "Evento Bomba : Temos sobrevivente !! "+.@name$+" ganhou o Evento Bomber!",0;
+	set $rewarditem, 7539;				 //Change This item id and amount to what ever you want. Default = Poring Coins [ItemID 7539]
+	set $rand, rand(1,30);  				// Randomly picks from 1 to 30.
+	getitem $rewarditem,$rand;
+	set BombRewarded,1;				//to ensure player cant have chances to spam rewards
+	warp "prontera",155,155;
+	sleep2 1500;
+	if ( getmapusers("quiz_01") < 1 ){
+	disablenpc "Reward NPC";
+	}
+	end;
+L_End:
+	mes "[Reward NPC]";
+	mes "Você obteve as recompensas já ";
+	mes " OR ";
+	mes "Você se juntou a este jogo sem se registrar na Secretaria NPC.";
+	mes "Assim, não me culpe por não lhe dar recompensas.";
+	close;
+
+}
+
+
+//----------------------REGISTER FOR GAME----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+prontera,156,185,4	script	Registry	1904,{
+	if (BaseLevel < 1) goto NO;			// Check Base Level Before Register
+	if (Class > 0) goto event;			// Check Class Before Register
+	event:
+	mes "[^0000FFRegistro^000000]";
+	mes "Atreve-se a participar do evento Survival bomba?";
+	next;
+	switch(select("Pode vir mostro !! ","Desculpe, me dê algum tempo..")) {
+	case 1:
+	sc_end SC_ALL;				// Remove all their Buffs before they enter
+	percentheal 100,100;
+//	statusup2 bStr,-999;			// you can enable this to set their stat to lower during the event
+//	statusup2 bAgi,-999;			// you can enable this to set their stat to lower during the event
+//	statusup2 bVit,-999;			// you can enable this to set their stat to lower during the event
+//	statusup2 bInt,-999;			// you can enable this to set their stat to lower during the event
+//	statusup2 bDex,-999;			// you can enable this to set their stat to lower during the event
+//	statusup2 bLuk,-999;			// you can enable this to set their stat to lower during the event
+	set BombRewarded,0;				//reset the rewarded players for last events
+	warp "quiz_01",42,369;
+	end;
+	break;
+	case 2:
+	mes "[^0000FFRegistro^000000]";
+	mes "Volte quando estiver pronto.";
+	close;
+	break;
+	NO:
+	mes "[^0000FFRegistro^000000]";
+	mes "Você não deve ser um principiante, ou com o nível de base inferior ou igual a 1.";
+	close;
+}
+	OnInit:
+	disablenpc "Registry";
+	disablenpc "Reward NPC";
+	end;
+}
+
