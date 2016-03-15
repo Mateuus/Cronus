@@ -27,7 +27,7 @@ mes "O SEU número de referência é ^FF0000"+getcharid(3)+"^000000";
 if(@referencia !=0){
 mes "Você foi indicado por: ^FF0000"+@apelidor$+"^000000"; }else{ mes "Você não foi indicado por ninguém."; }
 next;
-menu "Marcar Presença",apont,"Trocar Apelido",apel,"Ver Pontos de Indicados",pcon,"Ir Para Central de Lojas LambeRO",scash,"Como Funciona?",inform,"Sair",-;
+menu "Marcar Presença",apont,"Trocar Apelido",apel,"Ver Pontos de Indicados",pcon,"Ir Para Central de Lojas NewAgeRO",scash,"Como Funciona?",inform,"Sair",-;
 cutin "",255;
 close;
 //"Trocar Pontos Por Cash",tcash,
@@ -94,7 +94,7 @@ case 3: // <- Trocando
 		break;
 case 2: // <- Presença
 		mes @npc$;
-		mes "Ganhe pontos com sua preseça no LambeRO, é muito simples basta escolher a opção no NPC e ficar online durante 1 hora, sem trocar de persongem, relogar ou sair do jogo. Apos o tempo terminar você receberá um aviso que a presença foi marcada, basta retornar aqui e receber os 4 pontos pela sua presença.";
+		mes "Ganhe pontos com sua preseça no NewAgeRO, é muito simples basta escolher a opção no NPC e ficar online durante 1 hora, sem trocar de persongem, relogar ou sair do jogo. Apos o tempo terminar você receberá um aviso que a presença foi marcada, basta retornar aqui e receber os 4 pontos pela sua presença.";
 		next;
 		mes @npc$;
 		mes "Comece agora mesmo a marcar sua presença e adquira pontos para trocar por itens exclusivos!";
@@ -239,7 +239,7 @@ end;
 }
 
 job3_war01,23,26,3	script	Recepcionista	858,{
-mes "-   ^977117Central de Lojas LambeRO^000000   -";
+mes "-   ^977117Central de Lojas NewAgeRO^000000   -";
 next;
 if(select("Voltar para Prontera:Cancelar")==2){ close; }
 warp "prontera",156,187;

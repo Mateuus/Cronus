@@ -127,6 +127,9 @@
     <ClCompile Include="..\src\common\mutex.c">
       <Filter>common</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\char\hashield_char.c">
+      <Filter>char_sql</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\common\cbasetypes.h">
@@ -272,6 +275,9 @@
     </ClInclude>
     <ClInclude Include="..\src\common\mutex.h">
       <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\char\hashield_char.h">
+      <Filter>char_sql</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

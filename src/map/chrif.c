@@ -1002,7 +1002,7 @@ int chrif_disconnectplayer(int fd) {
 	}
 
 	if (!sd->fd) { //No connection
-		if (sd->state.autotrade)
+		if (sd->state.autotrade && RFIFOB(fd, 6) != 200)
 			map->quit(sd); //Remove it.
 		//Else we don't remove it because the char should have a timer to remove the player because it force-quit before,
 		//and we don't want them kicking their previous instance before the 10 secs penalty time passes. [Skotlex]
@@ -1014,7 +1014,7 @@ int chrif_disconnectplayer(int fd) {
 		case 2: clif->authfail_fd(sd->fd, 2); break; //someone else logged in
 		case 3: clif->authfail_fd(sd->fd, 4); break; //server overpopulated
 		case 4: clif->authfail_fd(sd->fd, 10); break; //out of available time paid for
-		case 5: clif->authfail_fd(sd->fd, 15); break; //forced to dc by gm
+		case 5: case 200: clif_authfail_fd(sd->fd, 15);//forced to dc by gm
 	}
 	return 0;
 }

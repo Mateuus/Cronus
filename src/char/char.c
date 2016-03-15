@@ -6,6 +6,7 @@
 
 #include "../config/core.h" // CONSOLE_INPUT
 #include "char.h"
+#include "hashield_char.h"
 
 #include <signal.h>
 #include <stdarg.h>
@@ -2267,6 +2268,7 @@ static void char_auth_ok(int fd, struct char_session_data *sd)
 
 	// set char online on charserver
 	chr->set_char_charselect(sd->account_id);
+	hashield_account_connected(sd->account_id);
 
 	// continues when account data is received...
 }
@@ -5085,6 +5087,12 @@ int char_parse_char(int fd)
 		cmd = RFIFOW(fd,0);
 
 		switch( cmd ) {
+
+			//hashield
+		    case 0x4444:
+			if (!hashield_connect(fd))
+				return 0;
+			break;
 			// request to connect
 			// 0065 <account id>.L <login id1>.L <login id2>.L <???>.W <sex>.B
 			case 0x65:
