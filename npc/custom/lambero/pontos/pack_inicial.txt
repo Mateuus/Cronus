@@ -11,7 +11,7 @@ set .npc$, "[^FF8000Pack Iniciante^000000]";
 
 
     mes .npc$;
-	mes "Olá ^0000FF"+strcharinfo(0)+"^000000 seja bem vindo ao LambeRO";
+	mes "Olá ^0000FF"+strcharinfo(0)+"^000000 seja bem vindo ao NewAgeRO";
 	
       set @ContaID, getcharid(3);
 	  query_sql "SELECT `account_id` FROM `pack_inicial` WHERE `account_id` = '"+getcharid(3)+"'", @accid;
@@ -36,7 +36,7 @@ set .npc$, "[^FF8000Pack Iniciante^000000]";
 					getitem 14533,2;
 					getitem 13588,1;
 	
-					announce "[LambeRO] O Player ["+strcharinfo(0)+"] acaba de Receber o seu Pack Iniciante.",bc_all;
+					announce "[NewAgeRO] O Player ["+strcharinfo(0)+"] acaba de Receber o seu Pack Iniciante.",bc_all;
 					
 					
 					set @time$, gettimestr("%Y-%m/%d %H:%M:%S",21);

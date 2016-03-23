@@ -1,0 +1,91 @@
+-	shop	PSHOP1	-1,512:-1
+-	shop	PSHOP2	-1,512:-1
+
+job3_war01,20,31,4	script	Loja Pontos Presença	4_F_FAIRYKID,{
+
+query_sql "select `pontos` from `login` where `account_id` = '"+getcharid(3)+"'",.@pontosp;
+
+
+mes "[^FF0000Loja Pontos Presença^000000]";
+mes "Deseja trocar seus pontos de presença por itens?";
+next;
+switch(select("[^339966+^000000] Sim.:[^FF0000+^000000] Não."))
+{
+case 1:
+
+	mes "[^FF0000Loja Pontos Presença^000000]";
+	mes "^FF0000Escolha a categoria de itens que lhe interessa:^000000";
+	set @s, select("Utilidades:Hats");
+	message strcharinfo(0),"Esta loja só aceita Pontos Presença.";
+	dispbottom "Você tem "+.@pontosp+" Pontos de Presença.";
+	callshop "PSHOP"+@s,1;
+	npcshopattach "PSHOP"+@s;
+	end;
+case 2:
+	mes "[^FF0000Loja Pontos Presença^000000]";
+	mes "Volte Sempre!";
+close;
+}
+
+OnBuyItem:
+mes "[^FF0000Loja Pontos Presença^000000]";
+
+//query_sql "UPDATE `login` SET `pontosmvp` = `pontosmvp` +5 WHERE `account_id`="+.@ACC+"";
+
+query_sql "select `pontos` from `login` where `account_id` = '"+getcharid(3)+"'",@pointp;
+
+if (@pointp == 0){mes "Você não possui Pontos de Presença"; close;}
+if (@pointp >= 1){
+	set .@i,0;
+	while (.@i < getarraysize(@bought_nameid)) {
+		set .@j, 0;
+		while (.@j < getarraysize(getd(".Shop"+@s))) {
+			if(getd(".Shop"+@s+"["+.@j+"]") == @bought_nameid[.@i]) {
+				set @itemcost, (getd(".Shop"+@s+"["+(.@j+1)+"]") * @bought_quantity[.@i]);
+				set @totalcost, @totalcost + @itemcost;
+				break; }
+			set .@j, .@j+2; }
+		set .@i, .@i+1; }
+	if (@totalcost > @pointp) dispbottom "Você não tem o suficiente de Pontos de Presença."; 
+	else {
+		set .@i,0;
+		while (.@i < getarraysize(@bought_nameid)) {
+			getitem @bought_nameid[.@i], @bought_quantity[.@i];
+			
+			dispbottom "Você comprou "+@bought_quantity[.@i]+"x "+getitemname(@bought_nameid[.@i])+".";
+
+			set .@i, .@i+1; }
+			
+		//set PontoMvP,PontoMvP-@totalcost;
+		
+		set .@ACC,getcharid(3); //Account ID
+	    query_sql "UPDATE `login` SET `pontos` = `pontos` - "+@totalcost+" WHERE `account_id`="+.@ACC+"";
+		
+	query_sql "select `pontos` from `login` where `account_id` = '"+getcharid(3)+"'",@pointpnew;
+	
+	mes "Seu total de Pontos de Presença agora é ^FF0000"+@pointmvpnew+"^000000.";}
+	
+	set @totalcost, 0;
+	deletearray @bought_nameid[0], 128;
+	deletearray @bought_quantity[0], 128;
+close;
+	end;
+}
+
+OnInit:
+	setarray .Currency[1],507;
+	//setarray .Shop1[0],12210,250,12103,100,12208,30,;
+	setarray .Shop1[0],12920,30,12921,30,17068,50; 
+	setarray .Shop2[0],5361,700;
+
+	set .@i,1;
+	while (.@i <= getarraysize(.Currency)) {
+		set .@j,0;
+while (.@j < getarraysize(getd(".Shop"+.@i))) {
+			npcshopdelitem "PSHOP"+.@i,512;
+			npcshopadditem "PSHOP"+.@i, getd(".Shop"+.@i+"["+.@j+"]"), getd(".Shop"+.@i+"["+(.@j+1)+"]");
+			set .@j, .@j+2; }
+		set .@i, .@i+1; }
+	end;
+
+}

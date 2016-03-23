@@ -107,10 +107,6 @@ set $mnd, 1; // Cristais na Sala 2.
                 close;
 }
 
-OnClock1629: callsub OnOpenRoom;
-OnClock1640: callsub OnClosRoom; 
-
-
 OnClock0000: callsub OnOpenRoom;
 OnClock0010: callsub OnClosRoom; 
 
@@ -414,8 +410,8 @@ warp "knight_1-1.gat",0,0; end;
 }
 }
 
-knight_1-1.gat,0,0,0,0	monster	Cristal LambeRO	1877,10,20000,30000,0
-bif_fild01.gat,0,0,0,0	monster	Cristal LambeRO	1877,60,20000,30000,0
+knight_1-1.gat,0,0,0,0	monster	Cristal NewAgeRO	1877,10,20000,30000,0
+bif_fild01.gat,0,0,0,0	monster	Cristal NewAgeRO	1877,60,20000,30000,0
 //bif_fild01.gat,0,0,0,0	monster	Cristal LambeRO	1877,40,20000,30000,0
  
 knight_1-1.gat	mapflag	nobranch
