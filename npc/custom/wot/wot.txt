@@ -194,12 +194,12 @@ prt_are_in	mapflag	nobranch
 prt_are_in	mapflag	noreturn
 prt_are_in	mapflag	nomemo
 prt_are_in	mapflag	noteleport
-prt_are_in	mapflag	gvg
+//prt_are_in	mapflag	gvg
 prt_are_in	mapflag	nosave
 arena_room	mapflag	nobranch
 arena_room	mapflag	noreturn
 arena_room	mapflag	nomemo
 arena_room	mapflag	noteleport
-arena_room	mapflag	gvg
+//arena_room	mapflag	gvg
 arena_room	mapflag	nosave
 arena_room	mapflag	loadevent

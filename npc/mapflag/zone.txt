@@ -23,14 +23,14 @@ turbo_e_16	mapflag	zone	Aldebaran Turbo Track
 sec_pri	mapflag	zone	Jail
 
 //Izlude Battle Arena
-force_1-1	mapflag	zone	Izlude Battle Arena
-force_2-1	mapflag	zone	Izlude Battle Arena
-force_3-1	mapflag	zone	Izlude Battle Arena
-force_4-1	mapflag	zone	Izlude Battle Arena
-force_5-1	mapflag	zone	Izlude Battle Arena
-force_1-2	mapflag	zone	Izlude Battle Arena
-force_1-3	mapflag	zone	Izlude Battle Arena
-prt_are_in	mapflag	zone	Izlude Battle Arena
+//force_1-1	mapflag	zone	Izlude Battle Arena
+//force_2-1	mapflag	zone	Izlude Battle Arena
+//force_3-1	mapflag	zone	Izlude Battle Arena
+//force_4-1	mapflag	zone	Izlude Battle Arena
+//force_5-1	mapflag	zone	Izlude Battle Arena
+//force_1-2	mapflag	zone	Izlude Battle Arena
+//force_1-3	mapflag	zone	Izlude Battle Arena
+//prt_are_in	mapflag	zone	Izlude Battle Arena
 
 //Sealed Shrine ==================
 1@cata	mapflag	zone	Sealed Shrine
