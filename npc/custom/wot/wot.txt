@@ -190,16 +190,33 @@ arena_room,100,88,0	warp	War Of TreasureExit	1,1,izlude,128,218 //Saida da wot
 
 
 // --- Mapflags wot.
-prt_are_in	mapflag	nobranch
-prt_are_in	mapflag	noreturn
-prt_are_in	mapflag	nomemo
-prt_are_in	mapflag	noteleport
+//prt_are_in	mapflag	nobranch
+//prt_are_in	mapflag	noreturn
+//prt_are_in	mapflag	nomemo
+//prt_are_in	mapflag	noteleport
 //prt_are_in	mapflag	gvg
-prt_are_in	mapflag	nosave
-arena_room	mapflag	nobranch
-arena_room	mapflag	noreturn
-arena_room	mapflag	nomemo
-arena_room	mapflag	noteleport
+//prt_are_in	mapflag	nosave
+//arena_room	mapflag	nobranch
+//arena_room	mapflag	noreturn
+//arena_room	mapflag	nomemo
+//arena_room	mapflag	noteleport
 //arena_room	mapflag	gvg
-arena_room	mapflag	nosave
-arena_room	mapflag	loadevent
+//arena_room	mapflag	nosave
+//arena_room	mapflag	loadevent
+
+prt_are_in	mapflag	nomemo
+prt_are_in	mapflag	nowarp
+prt_are_in	mapflag	nowarpto
+prt_are_in	mapflag	gvg_castle
+prt_are_in	mapflag	noicewall
+prt_are_in	mapflag	nomemo
+prt_are_in	mapflag	noreturn
+prt_are_in	mapflag	gvg
+arena_room	mapflag	gvg
+arena_room	mapflag	nomemo
+arena_room	mapflag	nowarp
+arena_room	mapflag	nowarpto
+arena_room	mapflag	gvg_castle
+arena_room	mapflag	noicewall
+arena_room	mapflag	nomemo
+arena_room	mapflag	noreturn
