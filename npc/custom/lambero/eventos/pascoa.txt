@@ -16,7 +16,6 @@ OnClock2230:
 OnClock0030:
 OnClock0230:
 OnClock0430:
-OnClock0425:
 //OnClock0116:
 
 		set .mobs_left, 1;
@@ -32,8 +31,8 @@ OnClock0425:
 	announce "[NewAgeRO]: Os Coelhos das Páscoa Invadiram " + .Map$ + "!", bc_all;
 		sleep2 5000;
 	announce "[NewAgeRO]: Corra atrás dos Ovos da Páscoa!", bc_all;	
-		monster .Map$,0,0,"Coelho da Páscoa",1322,100,"Evento Pascoa::OnSpecialMobDead";
-		set .mobs_left, 100;
+		monster .Map$,0,0,"Coelho da Páscoa",1322,150,"Evento Pascoa::OnSpecialMobDead";
+		set .mobs_left, 150;
 end;
 
 OnTimer1805000: // 30 minutes later, kills all the mobs.
