@@ -1,0 +1,151 @@
+prontera.gat,0,0,0	script	Evento Pascoa	-1,{
+
+/////////////////////////
+//The actual NPC Script//
+/////////////////////////
+
+OnClock0630:
+OnClock0830:
+OnClock1030:
+OnClock1230:
+OnClock1430:
+OnClock1630:
+OnClock1830:
+OnClock2030:
+OnClock2230:
+OnClock0030:
+OnClock0230:
+OnClock0430:
+OnClock0425:
+//OnClock0116:
+
+		set .mobs_left, 1;
+		sleep2 1000;
+		set $@ran, rand(1,6);
+	if ($@ran == 6) set .Map$,"splendide";
+	if ($@ran == 5) set .Map$,"izlude";
+	if ($@ran == 4) set .Map$,"payon";
+	if ($@ran == 3) set .Map$,"geffen";
+	if ($@ran == 2) set .Map$,"morocc";
+	if ($@ran == 1) set .Map$,"prontera";
+		sleep2 1000;
+	announce "[NewAgeRO]: Os Coelhos das Páscoa Invadiram " + .Map$ + "!", bc_all;
+		sleep2 5000;
+	announce "[NewAgeRO]: Corra atrás dos Ovos da Páscoa!", bc_all;	
+		monster .Map$,0,0,"Coelho da Páscoa",1322,100,"Evento Pascoa::OnSpecialMobDead";
+		set .mobs_left, 100;
+end;
+
+OnTimer1805000: // 30 minutes later, kills all the mobs.
+		set .mobs_left, 0;
+		killmonster .Map$,"Evento Pascoa::OnSpecialMobDead";
+		announce "[NewAgeRO]: Acabou com a invasão!",bc_all;
+end;
+
+OnSpecialMobDead:
+getitem 12403,1; 
+}
+
+
+//=====================Trocador de Ovos==========================================
+//=====================Version 1.0===============================================
+
+-	shop	quest_shop2	-1,501:50
+prontera.gat,155,174,4	script	Evento Páscoa	408,{
+set @i,0;
+mes "[Evento Páscoa]";
+mes "Feliz Páscoa, tenho muitos itens aqui, Que trazes pra mim?";
+mes "Um ovo, dois ovos, três ovos assim";
+mes "^FF0000*Lembre-se de escolher apenas um item por vez.*^000000";
+close2;
+callshop "quest_shop2",1;
+npcshopattach "quest_shop2";
+end;
+OnBuyItem:
+if(.BuildQuest) {
+for(set .e,0; !compare(getarg(.e+1)+ "","Zeny"); set .e,.e+2) {}
+npcshopadditem "quest_shop2",getarg(.e+2),getarg(.e)*compare(getarg(.e+1),"SZeny");
+setarray .Shop[.i],getarg(.e+2);
+set .i,.i+1;
+goto Quest_Setup;
+}
+if(.Shop[@i]!=@bought_nameid) for(set @i,1; 1; set @i,@i+1) if(.Shop[@i]==@bought_nameid) { set .i,@i; callsub Quest_Setup; }
+for(set @i,1; !@e; set @i,@i+1) if(.Shop[@i]==@bought_nameid) { set @e,1; set .i,@i; callsub Quest_Setup; }
+mes "[Quest Shop]";
+mes "Requerimento:";
+for(set @i,0; !compare(getarg(@i+1)+ "","Zeny"); set @i,@i+2) mes "^FF0000" + ((countitem(getarg(@i))>=getarg(@i+1))? "^00FF00":"") + "" + getarg(@i+1) + " " + getitemname(getarg(@i)) + " [" + countitem(getarg(@i)) + "/" + getarg(@i+1) + "]";
+if(getarg(@i)) mes "^FF0000" + ((Zeny>=getarg(@i))? "^00FF00":"") + "" + getarg(@i) + " Zeny";
+mes "^000000Recompensa:^0000FF";
+for(set @i,@i+2; getarg(@i+1,0); set @i,@i+2) mes getarg(@i+1) + " " + getitemname(getarg(@i));
+switch(select("Trocar:" + (((((getiteminfo(@bought_nameid,5) & 1) || (getiteminfo(@bought_nameid,5) & 256) || (getiteminfo(@bought_nameid,5) & 512)) && @equip==0))? "Item de Visualização":"") + ":Não, obrigado")) {
+case 1:
+for(set @i,0; !compare(getarg(@i+1)+ "","Zeny"); set @i,@i+2) if(countitem(getarg(@i)) < getarg(@i+1)) {
+next;
+mes "[Evento Páscoa]";
+mes "Você tem " + countitem(getarg(@i)) + " " + getitemname(getarg(@i)) + ", enquanto eu requeiro " + getarg(@i+1) + ".";
+mes "Por favor obtenha ^FF0000" + (getarg(@i+1)-countitem(getarg(@i))) + " " + getitemname(getarg(@i)) + "^000000.";
+close;
+}
+//if(Zeny < getarg(@i)) {
+//next;
+//mes "[Evento Páscoa]";
+//mes "Você não tem o Zeny suficiente.";
+//mes "Por favor obtenha ^FF0000" + (getarg(@i)-Zeny) + " Zeny^000000.";
+//close;
+//}
+for(set @i,0; !compare(getarg(@i+1)+ "","Zeny"); set @i,@i+2) delitem getarg(@i),getarg(@i+1);
+set Zeny,Zeny-getarg(@i);
+for(set @i,@i+2; getarg(@i+1,0); set @i,@i+2) getitem getarg(@i),getarg(@i+1);
+if (compare(getarg(@i,0),"announce")) announce  "[Evento Páscoa] Parabéns " + strcharinfo(0) + " adquiriu o item " + getitemname(@bought_nameid) + "!",bc_all;
+close;
+case 2:
+set @bottomview, getlook(3);
+set @topview, getlook(4);
+set @midview, getlook(5);
+addtimer 1000, strnpcinfo(3)+"::On_Leave";
+set @equip,getiteminfo(@bought_nameid, 5);
+set @view, getiteminfo(@bought_nameid, 11);
+if(@equip != -1 && @view > 0) {
+if(@equip & 1) atcommand "@changelook 3 " + @view;
+if(@equip & 256) atcommand "@changelook 1 " + @view;
+if(@equip & 512) atcommand "@changelook 2 " + @view;
+}
+next;
+goto OnBuyItem;
+case 3:
+close;
+}
+On_Leave:
+atcommand "@changelook 1 " + @topview;
+atcommand "@changelook 2 " + @midview;
+atcommand "@changelook 3 " + @bottomview;
+set @equip,0;
+set @view,0;
+set @topview,0;
+set @midview,0;
+set @bottomview,0;
+end;
+OnInit:
+npcshopdelitem "quest_shop2",501;
+set .BuildQuest,1;
+set .i,1;
+Quest_Setup:
+switch(.i) {
+default: set .BuildQuest,0; set .e,0; set .i,0; end;
+case 1: callsub OnBuyItem,12403,1000,1000,"SZeny",5379,1,"announce";
+case 2: callsub OnBuyItem,12403,1000,1000,"SZeny",5495,1,"announce";
+case 3: callsub OnBuyItem,12403,1000,1000,"SZeny",18700,1,"announce";
+case 4: callsub OnBuyItem,12403,1000,1000,"SZeny",5824,1,"announce";
+case 5: callsub OnBuyItem,12403,900,900,"SZeny",5568,1,"announce";
+case 6: callsub OnBuyItem,12403,800,800,"SZeny",5431,1,"announce";
+case 7: callsub OnBuyItem,12403,600,600,"SZeny",5378,1,"announce";
+case 8: callsub OnBuyItem,12403,550,550,"SZeny",18521,1,"announce";
+case 9: callsub OnBuyItem,12403,500,500,"SZeny",5503,1,"announce";
+case 10: callsub OnBuyItem,12403,400,400,"SZeny",5372,1,"announce";
+case 11: callsub OnBuyItem,12403,300,300,"SZeny",5489,1,"announce";
+case 12: callsub OnBuyItem,12403,300,300,"SZeny",5527,1,"announce";
+case 13: callsub OnBuyItem,12403,300,300,"SZeny",5852,1,"announce";
+case 14: callsub OnBuyItem,12403,200,200,"SZeny",5213,1,"announce";
+case 15: callsub OnBuyItem,12403,150,150,"SZeny",18683,1,"announce";
+}
+}
