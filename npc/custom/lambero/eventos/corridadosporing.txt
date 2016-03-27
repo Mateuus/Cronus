@@ -44,6 +44,25 @@ OnChequeo:
 
 -	script	Timers#prace0	-1,{
 
+	OnClock0016: callsub OnCalll2;
+    OnClock0216: callsub OnCalll2;
+    OnClock0416: callsub OnCalll2;
+    OnClock0616: callsub OnCalll2;
+    OnClock0816: callsub OnCalll2;
+    OnClock1016: callsub OnCalll2;
+    OnClock1216: callsub OnCalll2;
+    OnClock1416: callsub OnCalll2;
+    OnClock1616: callsub OnCalll2;
+    OnClock1816: callsub OnCalll2;
+    OnClock2016: callsub OnCalll2;
+    OnClock2216: callsub OnCalll2;
+
+
+    OnCalll2:
+        set $prace_gate,0;
+        announce "A 'Corrida dos Porings' está fechada.",bc_all|bc_yellow;
+        end;
+
 
     OnClock0011: callsub OnCalll;
     OnClock0211: callsub OnCalll;
@@ -61,7 +80,7 @@ OnChequeo:
 
     OnCalll:
         set $prace_gate,1;
-        announce "A 'Corrida dos Porings' irá começar em breve, façam suas apostas!",bc_all|bc_yellow;
+        announce "A 'Corrida dos Porings' irá começar em breve, façam suas apostas! Você tem 5 Minutos para Entra",bc_all|bc_yellow;
         end;
 }
 //====== Principal: ============================================
