@@ -518,6 +518,7 @@ menu
   "Labirinto de Tatames",damatsu,
   "Mina de Carvão",dcoal,
   "Montanhas dos Manuk",montman,
+  "Labirinto do Santuário Ancestral",dayothaya,
   "Navio Fantasma",dsunken,
   "Pirâmide",dpyramids,
   "Praia das Focas",dfocas,
@@ -531,7 +532,8 @@ menu
   "Desfiladeiro de El Mes",djuperos,
   "Caverna de Gelo",cavegelo,
   "Vulcão de Thor",vulcaoth,
-  "Campos de Ayothaya",campayo,
+  
+  
   "Monastério",monasterio,
   "Floresta Encantada",floenca;
 
@@ -561,7 +563,9 @@ menu            "Campos de Amatsu",wamafild,
 		"Campos de Umbala",wumfild,
 		"Campos de Veins",wveinsfild,
 		"Campos de Yuno",wyunofild,
+		"Campos de Ayothaya",campayo,
 		"Campos de Moscovia",mmoscovia;
+		
 
 // ==============Campos
 

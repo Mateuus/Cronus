@@ -1,28 +1,28 @@
 //Made by Lunar
 //Version 1.7
 //Traduzido por x Twilight
--	shop	quest_shop1	-1,501:50
-quiz_02,33,339,2,	script	Quets Especiais	797,{
+-	shop	quest_shop4	-1,501:50
+quiz_02,31,339,2,	script	Quets Utilitários	64,{
 set @i,0;
-mes "[Quest Shop]";
+mes "[Quets Utilitários]";
 mes "Olá, tenho muitos itens aqui, caso você deseje algum deles terá que fazer alguns trabalhos para min.";
 mes "mas será que você vai da conta do recado?.";
 mes "^FF0000*Lembre-se de escolher apenas um item por vez.*^000000";
 close2;
-callshop "quest_shop1",1;
-npcshopattach "quest_shop1";
+callshop "quest_shop4",1;
+npcshopattach "quest_shop4";
 end;
 OnBuyItem:
 if(.BuildQuest) {
 for(set .e,0; !compare(getarg(.e+1)+ "","Zeny"); set .e,.e+2) {}
-npcshopadditem "quest_shop1",getarg(.e+2),getarg(.e)*compare(getarg(.e+1),"SZeny");
+npcshopadditem "quest_shop4",getarg(.e+2),getarg(.e)*compare(getarg(.e+1),"SZeny");
 setarray .Shop[.i],getarg(.e+2);
 set .i,.i+1;
 goto Quest_Setup;
 }
 if(.Shop[@i]!=@bought_nameid) for(set @i,1; 1; set @i,@i+1) if(.Shop[@i]==@bought_nameid) { set .i,@i; callsub Quest_Setup; }
 for(set @i,1; !@e; set @i,@i+1) if(.Shop[@i]==@bought_nameid) { set @e,1; set .i,@i; callsub Quest_Setup; }
-mes "[Quest Shop]";
+mes "[Quets Utilitários]";
 mes "Requerimento:";
 for(set @i,0; !compare(getarg(@i+1)+ "","Zeny"); set @i,@i+2) mes "^FF0000" + ((countitem(getarg(@i))>=getarg(@i+1))? "^00FF00":"") + "" + getarg(@i+1) + " " + getitemname(getarg(@i)) + " [" + countitem(getarg(@i)) + "/" + getarg(@i+1) + "]";
 if(getarg(@i)) mes "^FF0000" + ((Zeny>=getarg(@i))? "^00FF00":"") + "" + getarg(@i) + " Zeny";
@@ -39,7 +39,7 @@ close;
 }
 if(Zeny < getarg(@i)) {
 next;
-mes "[Quest Shop]";
+mes "[Quets Utilitários]";
 mes "Você não tem o Zeny suficiente.";
 mes "Por favor obtenha ^FF0000" + (getarg(@i)-Zeny) + " Zeny^000000.";
 close;
@@ -77,19 +77,14 @@ set @midview,0;
 set @bottomview,0;
 end;
 OnInit:
-npcshopdelitem "quest_shop1",501;
+npcshopdelitem "quest_shop4",501;
 set .BuildQuest,1;
 set .i,1;
 Quest_Setup:
 switch(.i) {
 default: set .BuildQuest,0; set .e,0; set .i,0; end;
-case 1: callsub OnBuyItem,980,10,7054,200,5141,1,739,100,4253,1,790000,"SZeny",5344,1,"announce";
-case 2: callsub OnBuyItem,975,10,7054,200,5141,1,739,100,4253,1,790000,"SZeny",5341,1,"announce";
-case 3: callsub OnBuyItem,983,10,7054,200,5141,1,739,100,4253,1,790000,"SZeny",5342,1,"announce";
-case 4: callsub OnBuyItem,982,10,7054,200,5141,1,739,100,4253,1,790000,"SZeny",5343,1,"announce";
-case 5: callsub OnBuyItem,976,10,7054,200,5141,1,739,100,4253,1,790000,"SZeny",5345,1,"announce";
-case 6: callsub OnBuyItem,978,10,7054,200,5141,1,739,100,4253,1,790000,"SZeny",5340,1,"announce";
-case 7: callsub OnBuyItem,7063,150,510,200,996,60,7115,250,4163,1,3000000,"SZeny",5660,1,"announce";
-case 8: callsub OnBuyItem,7171,200,7166,250,949,150,748,100,4123,1,3000000,"SZeny",5497,1,"announce";
+case 1: callsub OnBuyItem,604,50,7203,10,7939,5,7442,1,702,1,12020,1,10000,"SZeny",12103,1,"announce";
+case 2: callsub OnBuyItem,604,450,7203,90,7939,45,7442,9,702,9,12020,9,100000,"SZeny",14233,1,"announce";
+case 3: callsub OnBuyItem,990,400,971,200,6213,30,7347,100,1004,30,7134,30,500000,"SZeny",12259,30,"announce";
 }
 }
