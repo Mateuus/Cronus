@@ -3,10 +3,10 @@ izlude,139,221,4	script	Loja Wot [Clã]	462,{
 //======== Confs
 
 set .np$,"^FF1493[ Loja Wot - Clã ]^000000";		// Nome do NPC.
-setarray .@itens[1],13517,13973,12916,12907,12906,12904,12908,12905,12903; 
-setarray .@kquant[1],5,30,20,10,10,10,10,10,10; // Quantidade que vem no Kit
-setarray .@pontos[1],8,48,10,30,30,30,30,30,30; // Pontos por cada item.
-setarray .@dpontos[1],4,24,5,15,15,15,15,15,15; // Pontos com desconto por cada item.
+setarray .@itens[1],13517,13973,12916,12907,12906,12904,12908,12905,12903,1082; 
+setarray .@kquant[1],5,30,20,10,10,10,10,10,10,50; // Quantidade que vem no Kit
+setarray .@pontos[1],8,48,10,30,30,30,30,30,30,50; // Pontos por cada item.
+setarray .@dpontos[1],4,24,5,15,15,15,15,15,15,25; // Pontos com desconto por cada item.
 
 //======== Fim das Confs
 

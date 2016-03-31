@@ -3,11 +3,11 @@
 //===== Por: ==========================================================
 //= Yondaime
 //=====================================================================
-prontera.gat,159,192,4	script	Banco LambeRO	109,{
+prontera.gat,159,192,4	script	Banco NewAgeRO	109,{
 
 
 
-set @np$,"[ Banco LambeRO ]";// Nome do NPC
+set @np$,"[ Banco NewAgeRO ]";// Nome do NPC
 set @preco1,2000000000;//Preco sacola1
 set @preco2,1000000000;//Preco sacola2
 set @preco3,500000000;//Preco sacola3

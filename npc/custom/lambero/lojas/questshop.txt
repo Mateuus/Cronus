@@ -2,7 +2,7 @@
 //Version 1.7
 //Traduzido por x Twilight
 -	shop	quest_shop1	-1,501:50
-quiz_02,33,339,2,	script	Quets Especiais	797,{
+job3_war01,30,25,2,	script	Quets Especiais	797,{
 set @i,0;
 mes "[Quest Shop]";
 mes "Olá, tenho muitos itens aqui, caso você deseje algum deles terá que fazer alguns trabalhos para min.";

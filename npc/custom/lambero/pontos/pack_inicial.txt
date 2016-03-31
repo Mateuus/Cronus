@@ -32,7 +32,6 @@ set .npc$, "[^FF8000Pack Iniciante^000000]";
 					if(select("- Sim:- Não")==2)close;
 					
 					getitem 14232,1;
-					getitem 12103,2;
 					getitem 14533,2;
 					getitem 13588,1;
 	

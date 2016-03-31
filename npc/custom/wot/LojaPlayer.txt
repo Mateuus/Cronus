@@ -3,10 +3,10 @@ izlude,137,221,5	script	Loja Wot [Jogador]	461,{
 //======== Confs
 
 set .np$,"^FF1493[ Premiador Wot ]^000000";		// Nome do NPC.
-setarray .@itens[1],13517,13973,12916,12907,12906,12904,12908,12905,12903; 
-setarray .@kquant[1],5,30,20,10,10,10,10,10,10; // Quantidade que vem no Kit
-setarray .@pontos[1],4,32,15,15,15,15,15,15,15; // Pontos por cada item.
-setarray .@dpontos[1],2,16,7,7,7,7,7,7,7; // Pontos com desconto por cada item.
+setarray .@itens[1],13517,13973,12916,12907,12906,12904,12908,12905,12903,1082; 
+setarray .@kquant[1],5,30,20,10,10,10,10,10,10,50; // Quantidade que vem no Kit
+setarray .@pontos[1],4,32,15,15,15,15,15,15,15,25; // Pontos por cada item.
+setarray .@dpontos[1],2,16,7,7,7,7,7,7,7,12; // Pontos com desconto por cada item.
 
 //======== Fim das Confs
 

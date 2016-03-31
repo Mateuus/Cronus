@@ -2,7 +2,7 @@
 //Version 1.7
 //Traduzido por x Twilight
 -	shop	quest_shop4	-1,501:50
-quiz_02,31,339,2,	script	Quets Utilitários	64,{
+job3_war01,30,27,2,	script	Quets Utilitários	64,{
 set @i,0;
 mes "[Quets Utilitários]";
 mes "Olá, tenho muitos itens aqui, caso você deseje algum deles terá que fazer alguns trabalhos para min.";

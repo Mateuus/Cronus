@@ -21,7 +21,7 @@
 // Shop NPCs -- supplying no argument displays entire menu.
 //	callfunc "qshop"{,<shop ID>{,<shop ID>{,...}}};
 //============================================================
-quiz_02,25,346,6	script	Trocador de Bandeiras#1	4_M_MOCASS2,{ callfunc "qshop"; }
+job3_war01,24,32,4	script	Trocador de Bandeiras#1	4_M_MOCASS2,{ callfunc "qshop"; }
 
 
 // Script Core
