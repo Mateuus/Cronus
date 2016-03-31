@@ -4,7 +4,7 @@
 //= rAthena Dev Team
 //= Darlskies, Darkchild, Syrus22, Lupus, kobra_k88 (2.0)
 //= L0ne_W0lf
-//===== Current Version: =====================================
+//===== Current Version: =============OK========================
 //= 6.8
 //===== Description: =========================================
 //= These functions handle save, storage, cart rental, teleport,

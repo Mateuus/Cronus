@@ -2,7 +2,7 @@
 //= Kafras (Cities/Dungeons/Fields)
 //===== By: ==================================================
 //= Joseph
-//===== Current Version: =====================================
+//===== Current Version: =OK====================================
 //= 1.1b
 //===== Description: =========================================
 //= Argument settings for callfunc "F_Kafra":
