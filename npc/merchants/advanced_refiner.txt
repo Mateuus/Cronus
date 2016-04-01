@@ -68,7 +68,7 @@ case 4: callsub S_RefineValidate,4,7620,20000,.@part; break;
 default: callsub S_RefineValidate,0,7619,2000,.@part; break;
 }
  
-if (getequippercentrefinery(.@part) > rand(100) || getequippercentrefinery(.@part) > rand(100)) {
+if (getequippercentrefinery(.@part) > rand(70) || getequippercentrefinery(.@part) > rand(70)) {
 mes "[Suhnbi]";
 mes "Clink! Clank! Clunk!";
 successrefitem .@part;
@@ -106,7 +106,7 @@ mes "Para refinar este item eu preciso de 1 ^ff9999"+getitemname(getarg(1))+"^00
 mes "Você realmente deseja continuar?";
 next;
 if (select("Sim:Não") == 1) {
-if (getequippercentrefinery(getarg(3)) < 100) {
+if (getequippercentrefinery(getarg(3)) < 70) {
 mes "[Suhnbi]";
 mes "Uau!!";
 mes "Este item possivelmente foi";
