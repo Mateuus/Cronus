@@ -606,12 +606,12 @@ function	script	refinemain	{
 	disable_items;
 	.@features = getarg(1);
 	mes "[" + getarg(0) + "]";
-	mes "I'm the Armsmith.";
-	mes "I can refine all kinds of weapons, armor and equipment, so let me";
-	mes "know what you want me to refine.";
+	mes "Eu sou um refinador.";
+	mes "Eu posso refinar todos os tipos de armas e armaduras, só preciso que voce me";
+	mes "diga o que quer refinar.";
 	next;
 
-	setarray .@position$[1], "Head","Body","Left hand","Right hand","Robe","Shoes","Accessory 1","Accessory 2","Head 2","Head 3";
+	setarray .@position$[1], "Cabeça Cima","Corpo","Mão Esquerda","Mão Direita","Capa","Botas","Accessório 1","Accessório 2","Cabeça Meio","Cabeça Baixo";
 	.@menu$ = "";
 	for(.@i = 1; .@i <= 10; ++.@i) {
 		if(getequipisequiped(.@i)) {
@@ -622,32 +622,32 @@ function	script	refinemain	{
 	}
 	if (.@equipped == 0) {
 		mes "[" + getarg(0) + "]";
-		mes "I don't think I can refine any items you have...";
+		mes "Eu acho que não posso refinar quaisquer itens que você tem...";
 		close;
 	}
 	.@part = select(.@menu$);
 
 	if(!getequipisequiped(.@part)) { //custom check
 		mes "[" + getarg(0) + "]";
-		mes "You're not wearing";
-		mes "anything there that";
-		mes "I can refine.";
+		mes "Você não está usando";
+		mes "Não há nada";
+		mes "Para refinar.";
 		emotion e_an;
 		close;
 	}
 	//Check if the item is refinable...
 	if(!getequipisenableref(.@part)) {
 		mes "[" + getarg(0) + "]";
-		mes "I don't think I can";
-		mes "refine this item at all...";
+		mes "Eu não acho que eu posso";
+		mes "refinar este item...";
 		close;
 	}
 	//Check to see if the items is already +10
 	if(getequiprefinerycnt(.@part) >= 10) {
 		mes "[" + getarg(0) + "]";
-		mes "I can't refine this";
-		mes "any more. This is as";
-		mes "refined as it gets!";
+		mes "Eu não posso aperfeiçoar este item";
+		mes "não mais. Isto é tão";
+		mes "refinado quanto ele ganha!";
 		close;
 	}
 	.@refineitemid = getequipid(.@part); // save id of the item
@@ -686,53 +686,53 @@ function	script	refinemain	{
 	}
 	if(.@features != 1) {
 		mes "[" + getarg(0) + "]";
-		mes "To refine this I need";
-		mes "one ^003366"+getitemname(.@material)+"^000000 and";
-		mes "a service fee of " + .@price + " Zeny.";
-		mes "Do you really wish to continue?";
+		mes "Para refinar isto eu preciso de";
+		mes "Um ^003366"+getitemname(.@material)+"^000000 e";
+		mes "Uma taxa de " + .@price + " Zeny.";
+		mes "Você realmente deseka continuar?";
 		next;
 		if(select("Yes:No") == 2){
 			mes "[" + getarg(0) + "]";
-			mes "Yeah...";
-			mes "There's no need to";
-			mes "rush. Take your time.";
+			mes "Sim...";
+			mes "Não há necessidade de";
+			mes "pressa. Não tenha pressa.";
 			close;
 		}
 		if(getequippercentrefinery(.@part) < 100) {
 			mes "[" + getarg(0) + "]";
-			mes "Oh no! If I continue to";
-			mes "refine this, there's a risk it could";
+			mes "Ah não! Se eu continuar a";
+			mes "refinar isso, há um risco que poderia";
 			switch(.@material) {
 			case 985:
-				mes "be destroyed! That means that ^FF0000this equipment^000000, and ^FF0000any cards^000000 or special properties added to this armor, ^FF0000will be gone^000000.";
+				mes "Ser destruído! Isso significa que ^FF0000este equipamento^000000, e ^FF0000todas as cartas^000000 ou propriedades especiais adicionados a esta armadura, ^FF0000irá junto^000000.";
 				break;
 			default:
-				mes "be destroyed, and you'd ^FF0000lose the weapon^000000, any ^FF0000cards in the weapon^000000,";
-				mes "or any added special properties.";
+				mes "ser destruído, e você ^FF0000perder a arma^000000, e qualquer ^FF0000Cartas equipada na arma^000000,";
+				mes "ou qualquer adição de propriedades especiais.";
 				break;
 			}
 			next;
 			mes "["+getarg(0)+"]";
-			mes "I can't make it any clearer.";
-			mes "Once a weapon is destroyed,";
-			mes "there's no getting it back.";
-			mes "You really have a chance to";
-			mes "^FF0000lose this weapon^000000 forever.";
-			mes "Do you still want to refine?";
+			mes "Eu não pode torná-lo mais claro.";
+			mes "Uma vez que uma arma é destruído,";
+			mes "não há nenhuma obtenção-lo de volta.";
+			mes "Você realmente tem uma chance de";
+			mes "^FF0000perder esta arma^000000 para sempre.";
+			mes "Você ainda quer para refinar";
 			next;
 			if(select("Yes:No") == 2){
 				mes "[" + getarg(0) + "]";
-				mes "I completely agree...";
-				mes "I might be a great refiner, but sometimes even I make mistakes.";
+				mes "Eu concordo completamente...";
+				mes "Eu poderia ser um grande refinador, mas às vezes até eu cometer erros.";
 				close;
 			}
 		}
 		if((countitem(.@material) < 1) || (Zeny < .@price)) {
 			mes "[" + getarg(0) + "]";
-			mes "You don't seem to have";
-			mes "enough Zeny or "+getitemname(.@material)+"...";
-			mes "Go get some more. I'll be";
-			mes "here all day if you need me.";
+			mes "Você não parece ter";
+			mes "o suficiente de Zeny ou "+getitemname(.@material)+"...";
+			mes "Vá pegar um pouco mais. eu estarei";
+			mes "aqui o dia todo se precisar de mim.";
 			close;
 		}
 		Zeny -= .@price;
@@ -741,15 +741,15 @@ function	script	refinemain	{
 		//custom checks
 		if(getequipisequiped(.@part) == 0) { // hacker has removed the item (not changed, why?)
 			mes "[" + getarg(0) + "]";
-			mes "Look here... you don't have any Items on...";
+			mes "Olha aqui ... você não tem nenhum item em ...";
 			close;
 		}
 		if(getequiprefinerycnt(.@part) != .@refinerycnt || getequipid(.@part) != .@refineitemid) { // hacker has changed the item
 			mes "[" + getarg(0) + "]";
 			emotion e_an;
-			mes "Wait a second...";
-			mes "Do you think I'm stupid?!";
-			mes "You switched the item while I wasn't looking! Get out of here!";
+			mes "Espere um segundo...";
+			mes "Você acha que eu sou estúpido?!";
+			mes "Você trocou o item enquanto eu não estava olhando! Saia daqui!";
 			close;
 		}
 
@@ -760,18 +760,18 @@ function	script	refinemain	{
 			.@lose = rand(1,3);
 			if (.@lose == 1) {
 				mes "OH! MY GOD!";
-				mes "Damn it! Not again!";
-				mes "I'm terribly sorry, but you know practice does make perfect.";
-				mes "Um, right? Heh heh...";
+				mes "Droga! De novo não!";
+				mes "Sinto muito, mas você sabe que a prática faz perfeito.";
+				mes "Hum, certo? Heh heh ...";
 			} else if(.@lose == 2) {
-				mes "Nooooooo!";
-				mes "It broke!";
-				mes "I-I'm sorry!";
+				mes "Nãoooooo!";
+				mes "Quebrou!";
+				mes "Me desculpe!";
 			} else {
-				mes "Crap!";
-				mes "It couldn't take";
-				mes "much more tempering!";
-				mes "Sorry about this...";
+				mes "Porcaria!";
+				mes "Ele não poderia tomar";
+				mes "muito mais têmpera!";
+				mes "Desculpe por isto...";
 			}
 			close;
 		}
@@ -780,22 +780,22 @@ function	script	refinemain	{
 		emotion e_heh;
 		.@win = rand(1,3);
 		if (.@win == 1) {
-			mes "Perfect!";
+			mes "Perfeito!";
 			mes "Heh heh!";
-			mes "Once again,";
-			mes "flawless work";
-			mes "from the master~";
+			mes "Mais uma vez,";
+			mes "um trabalho bem feito";
+			mes "eu sou zica!!!~";
 		} else if(.@win == 2) {
-			mes "Success...!";
-			mes "Yet again, my amazing";
-			mes "talent truly dazzles";
-			mes "and shines today.";
+			mes "Sucesso...!";
+			mes "Mais uma vez, a minha incrível";
+			mes "talento verdadeiramente deslumbra";
+			mes "e brilha hoje.";
 		} else {
 			mes "Heh heh!";
-			mes "I'm all done.";
-			mes "No doubt, my work is";
-			mes "to your satisfaction.";
-			mes "Sheer, utter perfection~";
+			mes "Eu sou tudo feito.";
+			mes "Sem dúvida, o meu trabalho é";
+			mes "A sua satisfação.";
+			mes "Sheer, perfeição absoluta~";
 		}
 		close;
 	}
