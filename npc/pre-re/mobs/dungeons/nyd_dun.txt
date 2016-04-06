@@ -43,11 +43,11 @@ nyd_dun02,0,0,0,0	monster	Duneyrr	2018,2,900000,0,
 // 2@nyd - Ninho de Nidhoggr
 //==================================================
 2@nyd,0,0,0,0	monster	Pinguicula Sombria	2015,40,0,0,0
-2@nyd,0,0,0,0	monster	Sombra Obscura	2013,40,0,0,0
+2@nyd,0,0,0,0	monster	Sombra Obscura	2023,40,0,0,0
 2@nyd,0,0,0,0	monster	Ryncho	2020,52,0,0,0
 2@nyd,0,0,0,0	monster	Phylla	2020,48,0,0,0
 
 //==================================================
 // 2@nyd - Ninho de Nidhoggr MVP
 //==================================================
-2@nyd,199,327,0,0 monster Sombra de Nidhoggur 2022,1,28800000,0,0
+2@nyd,199,327,0,0	monster	Sombra de Nidhoggur	2022,1,28800000,0,0
