@@ -50,4 +50,4 @@ nyd_dun02,0,0,0,0	monster	Duneyrr	2018,2,900000,0,
 //==================================================
 // 2@nyd - Ninho de Nidhoggr MVP
 //==================================================
-2@nyd,200,327,0,0	monster	Sombra de Nidhogg	S_NYDHOG,1,28800000,0,0
+2@nyd,199,327,0,0 monster Sombra de Nidhoggur 2022,1,28800000,0,0
