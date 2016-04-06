@@ -125,7 +125,7 @@ moc_fild22b	mapflag	nowarpto
 que_dan01	mapflag	nowarpto
 que_dan02	mapflag	nowarpto
 schg_que01	mapflag	nowarpto
-schg_dun01	mapflag	nowarpto
+//schg_dun01	mapflag	nowarpto
 arug_que01	mapflag	nowarpto
 arug_dun01	mapflag	nowarpto
 nyd_dun01	mapflag	nowarpto
