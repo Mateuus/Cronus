@@ -77,7 +77,6 @@ OnClock0031: mapwarp "job_thief1","izlude",96,104; mapwarp "que_qaru01","izlude"
 	
 	OnClock0810: set $arenac_gate, 1; announce "A Sala dos Cristais está aberta!",0; end;
 	
-	OnClock0439: set $arenac_gate, 1; announce "A Sala dos Cristais está aberta!",0; end;
 	
 //<!-----------------------------Fechando a Arena------------------------------------>
 	OnClock1030: set $arenac_gate, 0; announce "A Sala dos Cristais está fechada!",0; mapwarp "job_thief1","izlude",96,104; mapwarp "que_qaru01","izlude",96,104; mapwarp "job_monk","izlude",96,104; removemapflag "izlude",mf_noskill; end;
