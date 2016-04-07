@@ -653,18 +653,18 @@ if(@SC_RANDOM <= 5){
 
 //Visão de Okoinir Spawn Monster
 
-que_qaru01,0,0,0,0	monster	Cristal NewAgeRO	1877,20,30000,0,0
-que_qaru01,0,0,0,0	monster	Cristal NewAgeRO	1951,20,30000,0,0
-que_qaru01,0,0,0,0	monster	Cristal NewAgeRO	1952,20,30000,0,0
-que_qaru01,0,0,0,0	monster	Cristal NewAgeRO	1953,20,30000,0,0
-que_qaru01,0,0,0,0	monster	Cristal NewAgeRO	1954,20,30000,0,0
+que_qaru01,0,0,0,0	monster	Cristal NewAgeRO	1877,15,30000,0,0
+que_qaru01,0,0,0,0	monster	Cristal NewAgeRO	1951,15,30000,0,0
+que_qaru01,0,0,0,0	monster	Cristal NewAgeRO	1952,15,30000,0,0
+que_qaru01,0,0,0,0	monster	Cristal NewAgeRO	1953,10,30000,0,0
+que_qaru01,0,0,0,0	monster	Cristal NewAgeRO	1954,10,30000,0,0
 
 // job_thief1
-job_thief1,0,0,0,0	monster	Cristal NewAgeRO	1877,24,35000,0,0
-job_thief1,0,0,0,0	monster	Cristal NewAgeRO	1951,24,35000,0,0
-job_thief1,0,0,0,0	monster	Cristal NewAgeRO	1952,24,35000,0,0
-job_thief1,0,0,0,0	monster	Cristal NewAgeRO	1953,24,35000,0,0
-job_thief1,0,0,0,0	monster	Cristal NewAgeRO	1954,24,35000,0,0
+job_thief1,0,0,0,0	monster	Cristal NewAgeRO	1877,15,35000,0,0
+job_thief1,0,0,0,0	monster	Cristal NewAgeRO	1951,15,35000,0,0
+job_thief1,0,0,0,0	monster	Cristal NewAgeRO	1952,15,35000,0,0
+job_thief1,0,0,0,0	monster	Cristal NewAgeRO	1953,15,35000,0,0
+job_thief1,0,0,0,0	monster	Cristal NewAgeRO	1954,15,35000,0,0
 
 
 //Warps D:
