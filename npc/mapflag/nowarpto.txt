@@ -65,9 +65,9 @@ turbo_n_8	mapflag	nowarpto
 turbo_n_16	mapflag	nowarpto
 turbo_e_4	mapflag	nowarpto
 turbo_e_8	mapflag	nowarpto
-turbo_e_16	mapflag	nowarpto
+//turbo_e_16	mapflag	nowarpto
 // Izlude Battle Arena =========
-force_1-1	mapflag	nowarpto
+//force_1-1	mapflag	nowarpto
 force_2-1	mapflag	nowarpto
 force_3-1	mapflag	nowarpto
 force_4-1	mapflag	nowarpto
@@ -86,7 +86,7 @@ que_qsch02	mapflag	nowarpto
 que_qsch03	mapflag	nowarpto
 que_qsch04	mapflag	nowarpto
 que_qsch05	mapflag	nowarpto
-que_qaru01	mapflag	nowarpto
+//que_qaru01	mapflag	nowarpto
 que_qaru02	mapflag	nowarpto
 que_qaru03	mapflag	nowarpto
 que_qaru04	mapflag	nowarpto
