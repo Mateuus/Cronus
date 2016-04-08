@@ -152,6 +152,8 @@ mes "[^0000FF EVENTO SORTUDO ^000000]";
 mes "É possível de maneira aleatória";
 mes "obeter um dos seguintes itens:";
 mes "";
+mes "^0000FF2^000000 dias VIP TOTAL";
+mes "";
 mes "^FF00005^000000 União da Tribo";
 mes "^FF00001^000000 Caixa de YGG";
 mes "^FF00003^000000 Galho Sangreto";
