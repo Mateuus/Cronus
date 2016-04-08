@@ -193,5 +193,8 @@ next;
 warp "pvp_n_8-5",0,0; 
 close;
 
+OnInit:
+	waitingroom "EVENTO SORTUDO",0;
+end;
 }
 
