@@ -1,0 +1,195 @@
+//===== Cronus Script ========================================
+//= Sortudo
+//===== Por: =================================================
+//= Mateuus
+//===== Versão Atual: ========================================
+//= 2.0
+//===== Compatibilidade: =====================================
+//= Cronus Emulador
+//===== Descrição: ===========================================
+//= Guerra dos tesouros que se inicia a cada 2 horas depois de 10 minutos  no mapa apareçe dois baús um de cada lado.
+//===== ChangeLog: ===========================================
+//07/04/16 = Inicio do NPC
+//============================================================
+
+prontera.gat,0,0,0	script	Sortudo	-1,{
+
+OnClock0030:
+OnClock0230:
+OnClock0430:
+OnClock0630:
+OnClock0830:
+OnClock1030:
+OnClock1230:
+OnClock1430:
+OnClock1630:
+OnClock1830:
+OnClock2030:
+OnClock2230:
+
+set $sortudo_open, 1;
+announce "[Evento Sortudo]: Os tesouros irão surgir em 10 minutos!",8;
+initnpctimer;
+end;
+
+
+
+OnTimer600000: //10 Min Final
+//OnTimer10000: //10 segundos,  Min Final
+
+
+if (getmapusers("pvp_n_8-5") == 0 ){
+set	$sortudo_open,	0;
+announce "[Evento Sortudo] Os baús não apareceram por que não há jogadores suficientes no evento!",8;
+stopnpctimer;
+end;
+}
+
+set	$sortudo_open,	0;
+announce "[Evento Sortudo]: Os tesouros acabaram de surgir!",8;
+monster	"pvp_n_8-5",0,0,	"Baú do Tesouro",rand(1360,1363),1,"Sortudo::OnThisMobDeath";
+monster	"pvp_n_8-5",0,0,	"Baú do Tesouro",rand(1360,1363),1,"Sortudo::OnThisMobDeath";
+monster	"pvp_n_8-5",0,0,	"Baú do Tesouro",rand(1360,1363),1,"Sortudo::OnThisMobDeath1"; 
+monster	"pvp_n_8-5",0,0,	"Baú do Tesouro",rand(1360,1363),1,"Sortudo::OnThisMobDeath2";
+monster	"pvp_n_8-5",0,0,	"Baú do Tesouro",rand(1360,1363),1,"Sortudo::OnThisMobDeath3";  
+monster	"pvp_n_8-5",0,0,	"Baú do Tesouro",rand(1360,1363),1,"Sortudo::OnThisMobDeath4";  
+monster	"pvp_n_8-5",0,0,	"Baú do Tesouro",rand(1360,1363),1,"Sortudo::OnThisMobDeath5";  
+monster	"pvp_n_8-5",0,0,	"Baú do Tesouro",rand(1360,1363),1,"Sortudo::OnThisMobDeath6";  
+monster	"pvp_n_8-5",0,0,	"Baú do Tesouro",rand(1360,1363),1,"Sortudo::OnThisMobDeath7"; 
+monster	"pvp_n_8-5",0,0,	"Baú do Tesouro",rand(1360,1363),1,"Sortudo::OnThisMobDeath8"; 
+monster	"pvp_n_8-5",0,0,	"Baú do Tesouro",rand(1360,1363),1,"Sortudo::OnThisMobDeath9"; 
+stopnpctimer;
+
+OnThisMobDeath:
+getitem 658,5;
+warp "prontera.gat",159,171;
+announce "Sortudo: [" + strcharinfo( 0 ) + "] conquistou um dos baús, E ganhou 5 União da Tribo.", 8;
+end;
+
+OnThisMobDeath1:
+getitem 14232,1;
+warp "prontera.gat",159,171;
+announce "Sortudo: [" + strcharinfo( 0 ) + "] conquistou um dos baús, E ganhou 1 Caixa de YGG [100].", 8;
+end;
+
+OnThisMobDeath2:
+getitem 12103,3;
+warp "prontera.gat",159,171;
+announce "Sortudo: [" + strcharinfo( 0 ) + "] conquistou um dos baús, E ganhou 3 Galho Sangreto.", 8;
+end;
+
+OnThisMobDeath3:
+getitem 12710,30;
+warp "prontera.gat",159,171;
+announce "Sortudo: [" + strcharinfo( 0 ) + "] conquistou um dos baús, E ganhou 30 Pudim de Guyak.", 8;
+end;
+
+OnThisMobDeath4:
+getitem 12218,25;
+warp "prontera.gat",159,171;
+announce "Sortudo: [" + strcharinfo( 0 ) + "] conquistou um dos baús, E ganhou 25 Pergaminho de Assumptio.", 8;
+end;
+
+OnThisMobDeath5:
+getitem 604,50;
+warp "prontera.gat",159,171;
+announce "Sortudo: [" + strcharinfo( 0 ) + "] conquistou um dos baús, E ganhou 50 Galho Seco.", 8;
+end;
+
+OnThisMobDeath6:
+getitem 7939,10;
+warp "prontera.gat",159,171;
+announce "Sortudo: [" + strcharinfo( 0 ) + "] conquistou um dos baús, E ganhou 10 Galho Antigo.", 8;
+end;
+
+OnThisMobDeath7:
+getitem 7203,10;
+warp "prontera.gat",159,171;
+announce "Sortudo: [" + strcharinfo( 0 ) + "] conquistou um dos baús, E ganhou 10 Galho Resistente.", 8;
+end;
+
+OnThisMobDeath8:
+warp "prontera.gat",159,171;
+announce "Sortudo: [" + strcharinfo( 0 ) + "] conquistou um dos baús, E não ganhou nada :-(", 8;
+end;
+
+
+
+OnThisMobDeath9:
+set .@ACC,getcharid(3); //Account ID
+query_sql "UPDATE `login` SET `group_id`='99',`diasvip`= `diasvip`+'2' WHERE `account_id`='"+.@ACC+"'";
+warp "prontera.gat",159,171;
+announce "Sortudo: [" + strcharinfo( 0 ) + "] conquistou um dos baús, E ganhou 2 dias VIP TOTAL.", 8;
+end;
+
+
+}
+
+prontera.gat,163,171,0	script	Sortudo#1	108,{
+
+
+if($sortudo_open == 1) goto M_start;
+mes "[^0000FF EVENTO SORTUDO ^000000]";
+mes "Desculpe mas estamos fechados.";
+mes "Deseja saber algo sobre o evento Sortudo?";
+next;
+menu "Não",nao,"Oque é evento Sortudo",about,"Quais são os prêmios?",premios,"Que horas começa?",horas;
+
+nao:
+close;
+end;
+
+about:
+mes "[^0000FF EVENTO SORTUDO ^000000]";
+mes "O portal de entrada ficará aberto por 10 minutos";
+mes "Nesse tempo o PvP é ligado.";
+mes "Se você sobreviver poderá abrir um ^FF0000Báu do Tesouro ^000000, que dropa itens de grande valor.";
+close;
+end;
+
+premios:
+mes "[^0000FF EVENTO SORTUDO ^000000]";
+mes "É possível de maneira aleatória";
+mes "obeter um dos seguintes itens:";
+mes "";
+mes "^FF00005^000000 União da Tribo";
+mes "^FF00001^000000 Caixa de YGG";
+mes "^FF00003^000000 Galho Sangreto";
+mes "^FF000030^000000 Pudim de Guyak";
+mes "^FF000025^000000 Pergaminho de Assumptio";
+mes "^FF000050^000000 Galho Seco";
+mes "^FF000010^000000 Galho Antigo";
+mes "^FF000010^000000 Galho Resistente";
+
+
+close;
+end;
+
+horas:
+mes "[^0000FF EVENTO SORTUDO ^000000]";
+mes "O evento fica ocorre nestes horários:";
+mes "^FF0000 00:30 ^000000";
+mes "^0000FF 02:30 ^000000";
+mes "^FF0000 04:30 ^000000";
+mes "^0000FF 06:30 ^000000";
+mes "^FF0000 08:30 ^000000";
+mes "^0000FF 10:30 ^000000";
+mes "^FF0000 12:30 ^000000";
+mes "^0000FF 14:30 ^000000";
+mes "^FF0000 16:30 ^000000";
+mes "^0000FF 18:30 ^000000";
+mes "^FF0000 20:30 ^000000";
+mes "^0000FF 22:30 ^000000";
+close;
+end;
+
+M_start:
+mes "[^0000FF EVENTO SORTUDO ^000000]";
+mes "Evento está aberto você tem ^FF000010^000000 minutos para entrar";
+mes "Boa Sorte!!";
+next;
+warp "pvp_n_8-5",0,0; 
+close;
+
+}
+

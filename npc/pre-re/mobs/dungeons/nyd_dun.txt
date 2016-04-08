@@ -1,53 +1,34 @@
-//===== Cronus Script ========================================
-//= Spawns dos Calabouços de Nidhoggr
-//===== Por: =================================================
-//= Viktus
-//===== Versão Atual: ========================================
-//= 1.0a
-//===== Changelog: ===========================================
-//= 1.0 Versão incial. [Viktus]
-//= 1.0a Traduzido. [RoM]
-//= 1.1 Adicionando Mais NPC e MVP [Mateuus]
+//===== Hercules Script ======================================
+//= Yggdrasil Root Dungeon
+//===== By: ==================================================
+//= Athena (1.0)
+//===== Current Version: =====================================
+//= 1.0
+//===== Additional Comments: =================================
+//= 1.0 First version
 //============================================================
-
 //==================================================
-// nyd_dun01 - A Grande Ferida
+// 1@nyd - Nidhoggr's Nest F1
 //==================================================
-nyd_dun01,0,0,0,0	monster	Draco	2013,40,0,0,0
-nyd_dun01,0,0,0,0	monster	Ovo de Draco	2014,10,0,0,0
-nyd_dun01,0,0,0,0	monster	Elemental da Água	2016,20,0,0,0
 nyd_dun01,0,0,0,0	monster	Pinguicula Sombria	2015,10,0,0,0
-nyd_dun01,0,0,0,0	monster	Rata	2017,2,900000,0,0
-nyd_dun01,0,0,0,0	monster	Duneyrr	2018,2,900000,0,0
+nyd_dun01,0,0,0,0	monster	Elemental da Água	2016,20,0,0,0
+nyd_dun01,0,0,0,0	monster	Árvore Anciã	2019,60,0,0,0
+nyd_dun01,0,0,0,0	monster	Ryncho	2020,30,0,0,0
+nyd_dun01,0,0,0,0	monster	Phylla	2021,30,0,0,0
+nyd_dun01,0,0,0,0	monster	Sombra Obscura	2023,10,0,0,0
 
-//==================================================
-// nyd_dun02 - A Grande Ferida
-//==================================================
-nyd_dun02,0,0,0,0	monster	Draco	2013,40,0,0,0
-nyd_dun02,0,0,0,0	monster	Ovo de Draco	2014,10,0,0,0
-nyd_dun02,0,0,0,0	monster	Elemental da Água	2016,20,0,0,0
-nyd_dun02,0,0,0,0	monster	Pinguicula Sombria	2015,10,0,0,0
-nyd_dun02,0,0,0,0	monster	Rata	2017,2,900000,0,0
-nyd_dun02,0,0,0,0	monster	Duneyrr	2018,2,900000,0,
-
-//==================================================
-// 1@nyd - Ninho de Nidhoggr
-//==================================================
-1@nyd,0,0,0,0	monster	Pinguicula Sombria	2015,30,0,0,0
+1@nyd,0,0,0,0	monster	Pinguicula Sombria	2015,10,0,0,0
 1@nyd,0,0,0,0	monster	Elemental da Água	2016,20,0,0,0
-1@nyd,0,0,0,0	monster	Árvore Anciã	2019,40,0,0,0
-1@nyd,0,0,0,0	monster	Ryncho	2020,36,0,0,0
-1@nyd,0,0,0,0	monster	Phylla	2020,36,0,0,0
+1@nyd,0,0,0,0	monster	Árvore Anciã	2019,60,0,0,0
+1@nyd,0,0,0,0	monster	Rhyncho	2020,30,0,0,0
+1@nyd,0,0,0,0	monster	Phylla	2021,30,0,0,0
+1@nyd,0,0,0,0	monster	Sombra Obscura	2023,10,0,0,0
 
 //==================================================
-// 2@nyd - Ninho de Nidhoggr
+// 2@nyd - Nidhoggr's Nest F2
 //==================================================
-2@nyd,0,0,0,0	monster	Pinguicula Sombria	2015,40,0,0,0
-2@nyd,0,0,0,0	monster	Sombra Obscura	2023,40,0,0,0
-2@nyd,0,0,0,0	monster	Ryncho	2020,52,0,0,0
-2@nyd,0,0,0,0	monster	Phylla	2020,48,0,0,0
-
-//==================================================
-// 2@nyd - Ninho de Nidhoggr MVP
-//==================================================
-2@nyd,199,327,0,0	monster	Sombra de Nidhogg	2022,1,28800000,0,0
+2@nyd,200,100,180,80	monster	Pinguicula Sombria	2015,20,0,0,0
+2@nyd,200,100,180,80	monster	Ryncho	2020,45,0,0,0
+2@nyd,200,100,180,80	monster	Phylla	2021,45,0,0,0
+2@nyd,200,100,180,80	monster	Sombra Obscura	2023,80,0,0,0
+2@nyd,200,328,14,14	boss_monster	Sombra de Nidhogg	2022,1,14400000,0,0

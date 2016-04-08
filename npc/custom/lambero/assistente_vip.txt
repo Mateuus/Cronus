@@ -142,7 +142,7 @@ L_m:
               "Andar 5 [ ^0000FF"+getmapusers("pvp_n_5-5")+"^000000 / ^FF000015^000000]",bussolv5,
               "Andar 6 [ ^0000FF"+getmapusers("pvp_n_6-5")+"^000000 / ^FF000015^000000]",bussolv6,
               "Andar 7 [ ^0000FF"+getmapusers("pvp_n_7-5")+"^000000 / ^FF000015^000000]",bussolv7,
-              "Andar 8 [ ^0000FF"+getmapusers("pvp_n_8-5")+"^000000 / ^FF000015^000000]",bussolv8,
+             // "Andar 8 [ ^0000FF"+getmapusers("pvp_n_8-5")+"^000000 / ^FF000015^000000]",bussolv8,
               "Sair",L_sairmvp3;
               
               L_sairmvp3:
@@ -157,7 +157,7 @@ L_m:
         bussolv5: warp "pvp_n_5-5", 102,102; end;
         bussolv6: warp "pvp_n_6-5", 102,102; end;
         bussolv7: warp "pvp_n_7-5", 102,102; end;
-        bussolv8: warp "pvp_n_8-5", 102,102; end;
+       // bussolv8: warp "pvp_n_8-5", 102,102; end;
 
 //============================================================================
 //==== CURA
@@ -2104,10 +2104,10 @@ pvp_n_7-5,0,0,0,0	monster	Faraó	1157,2,60000,66000
 pvp_n_7-5,0,0,0,0	monster	Senhor das Trevas	1272,2,60000,66000
 pvp_n_7-5,0,0,0,0	monster	Bafomé	1039,2,60000,66000
 // --- First Epsilon-MVP area
-pvp_n_8-5,0,0,0,0	monster	Samurai Encarnado	1492,2,60000,66000
-pvp_n_8-5,0,0,0,0	monster	Faraó	1157,2,60000,66000
-pvp_n_8-5,0,0,0,0	monster	Senhor das Trevas	1272,2,60000,66000
-pvp_n_8-5,0,0,0,0	monster	Bafomé	1039,2,60000,66000
+//pvp_n_8-5,0,0,0,0	monster	Samurai Encarnado	1492,2,60000,66000
+//pvp_n_8-5,0,0,0,0	monster	Faraó	1157,2,60000,66000
+//pvp_n_8-5,0,0,0,0	monster	Senhor das Trevas	1272,2,60000,66000
+//pvp_n_8-5,0,0,0,0	monster	Bafomé	1039,2,60000,66000
 
 //============================================================================
 
@@ -2183,4 +2183,4 @@ pvp_n_4-5,100,100,4	duplicate(warpvip)	Assistente VIP#128	91
 pvp_n_5-5,100,100,4	duplicate(warpvip)	Assistente VIP#129	91
 pvp_n_6-5,100,100,4	duplicate(warpvip)	Assistente VIP#130	91
 pvp_n_7-5,100,100,4	duplicate(warpvip)	Assistente VIP#131	91
-pvp_n_8-5,100,100,4	duplicate(warpvip)	Assistente VIP#132	91
+//pvp_n_8-5,100,100,4	duplicate(warpvip)	Assistente VIP#132	91
