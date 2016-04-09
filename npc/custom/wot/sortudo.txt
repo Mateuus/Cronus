@@ -10,6 +10,7 @@
 //= Guerra dos tesouros que se inicia a cada 2 horas depois de 10 minutos  no mapa apareçe dois baús um de cada lado.
 //===== ChangeLog: ===========================================
 //07/04/16 = Inicio do NPC
+//09/04/16 = Fix os baus que não eram quebrado, eles ficavam para outra rodada
 //============================================================
 
 prontera.gat,0,0,0	script	Sortudo	-1,{
@@ -27,15 +28,17 @@ OnClock1830:
 OnClock2030:
 OnClock2230:
 
+
 set $sortudo_open, 1;
+killmonsterall "pvp_n_8-5";
 announce "[Evento Sortudo]: Os tesouros irão surgir em 10 minutos!",8;
 initnpctimer;
 end;
 
 
 
-OnTimer600000: //10 Min Final
-//OnTimer10000: //10 segundos,  Min Final
+//OnTimer600000: //10 Min Final
+OnTimer10000: //10 segundos,  Min Final
 
 
 if (getmapusers("pvp_n_8-5") == 0 ){
@@ -69,7 +72,7 @@ end;
 OnThisMobDeath1:
 getitem 14232,1;
 warp "prontera.gat",159,171;
-announce "Sortudo: [" + strcharinfo( 0 ) + "] conquistou um dos baús, E ganhou 1 Caixa de YGG [100].", 8;
+announce "Sortudo: [" + strcharinfo( 0 ) + "] conquistou um dos baús, E ganhou 1 Caixa de YGG [1000].", 8;
 end;
 
 OnThisMobDeath2:
@@ -121,8 +124,6 @@ query_sql "UPDATE `login` SET `group_id`='99',`diasvip`= `diasvip`+'2' WHERE `ac
 warp "prontera.gat",159,171;
 announce "Sortudo: [" + strcharinfo( 0 ) + "] conquistou um dos baús, E ganhou 2 dias VIP TOTAL.", 8;
 end;
-
-
 }
 
 prontera.gat,163,171,0	script	Sortudo#1	108,{
