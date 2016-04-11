@@ -136,12 +136,12 @@ M_start:
 mes "[Sala dos Cristais]";
 mes "Qual arena deseja entrar?";
 mes "^309A98Usuários VIP TOTAL podem entrar na arena mesmo estando lotada^000000.";
-if(getgmlevel() >= 20){ mes "^306C2FVocê é um usuário VIP TOTAL^000000."; }else{ mes "^306C2FVocê não é um usuário VIP TOTAL^000000."; }
+if(getgmlevel() >= 2){ mes "^306C2FVocê é um usuário VIP TOTAL^000000."; }else{ mes "^306C2FVocê não é um usuário VIP TOTAL^000000."; }
 next;
 menu "Arena 1 ^0000FF[" + getmapusers("job_thief1") + "/" + @limite1 + "]^000000",arena1,"Arena 2 ^0000FF[" + getmapusers("que_qaru01") + "/" + @limite2 + "]^000000",arena2;
 
 arena1:
-if($arenac_gate == 1 && getgmlevel () >= 20) { warp "job_thief1",0,0; close; }
+if($arenac_gate == 1 && getgmlevel () >= 2) { warp "job_thief1",0,0; close; }
 if($arenac_gate == 1 && getmapusers("job_thief1") < @limite1){ warp "job_thief1",0,0; close; }
 if($arenac_gate == 1){ mes "[Sala dos Cristais]"; mes "A arena está lotada."; emotion e_wah,1; next; goto L_Init; }
 mes "[Sala dos Cristais]";
@@ -154,7 +154,7 @@ close;
 end;
 
 arena2:
-if($arenac_gate == 1 && getgmlevel () >= 20) { warp "que_qaru01",0,0; close; }
+if($arenac_gate == 1 && getgmlevel () >= 2) { warp "que_qaru01",0,0; close; }
 if($arenac_gate == 1 && getmapusers("que_qaru01") < @limite2){ warp "que_qaru01",0,0; close; }
 if($arenac_gate == 1){ mes "[Sala dos Cristais]"; mes "A arena está lotada."; emotion e_wah,1; next; goto L_Init; }
 mes "[Sala dos Cristais]";

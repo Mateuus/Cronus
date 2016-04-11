@@ -27,7 +27,7 @@ set @npc$,"[ ^FF0000VIP GRATUITO^000000 ]";
 
 mes @npc$;
 mes "Para conseguir os pontos você deve fazer login no site e votar nos links indicados corretamente.";
-mes "^FF0000www.lambero.com.br/vote^000000";
+mes "^FF0000www.newagero.com.br/vote^000000";
 close;
 
 OnInit:

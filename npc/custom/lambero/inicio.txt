@@ -13,7 +13,7 @@ set @quant3, 1;          // -- Quanntidade 3
 
 if(#welcome == 1)end; //-- para setar apenas cada char novo use welcome$
 
-mes "[^FF8000Seja Bem Vindo ao LambeRO '-'^000000]";
+mes "[^FF8000Seja Bem Vindo ao NewAgeRO '-'^000000]";
 mes "Olá ^0000CD"+strcharinfo(0)+"^000000!";
 mes "Seja bem-vindo ao nosso servidor,^FF8000 divirta-se^000000";
 next;
@@ -23,7 +23,7 @@ getitem @item2,@quant2;
 getitem @item3,@quant3;
 next;
 
-mes "[^FF8000Seja Bem Vindo ao LambeRO '-'^000000]";
+mes "[^FF8000Seja Bem Vindo ao NewAgeRO '-'^000000]";
 set .@ACC,getcharid(3); //Account ID
 mes "E aqui está 15 dias VIP TOTAL, divirta-se...";
 next;

@@ -10,19 +10,31 @@ mes @npc$;
 mes "Me desculpe, mas atendo somente a";
 mes "usuários VIP.";
 mes "Se você deseja ser usuário VIP,";
-mes "visite www.lambero.com.br e descubra";
+mes "visite www.newagero.com.br e descubra";
 mes "como se tornar um.";
-close; 
+close;
 }
-
 
 
 mes @npc$;
 mes "Olá ^CD3333"+strcharinfo(0)+"^000000!";
+if (getgroupid() >= 2){
+mes "Você é um usuário ^FF0000VIP TOTAL^000000."; 
 mes "Seu passe esta confirmado.";
 mes "Diga-me o que deseja.";
+}else if (getgroupid() == 1){
+mes "Você é um usuário ^FF0000VIP FREE^000000."; 
+mes "Seu passe esta confirmado.";
+mes "Diga-me o que deseja.";
+}
 next;
+
+if(getgmlevel () >= 2){
 menu "- Curar/Encantamentos",L_a,"- Arenas MVP",L_m,"- Teleportador",L_g,"- Removedor de Cartas",L_d,"- Reparador de Equipamentos",L_e,"- Resetador de Pontos",L_f,"- Estilista",L_c,"- Teleportador WOE",L_h,"- Administração",L_ADM;
+} else {
+menu "- Curar/Encantamentos",L_a,"- Reparador de Equipamentos",L_e,"- Estilista",L_c,"- Teleportador WOE",L_h;
+
+}
 
 //============================================================================
 //==== ARENA MVP
@@ -1917,8 +1929,16 @@ end;
 
 -	script	Sistema Vip#02	-1,{
 
-OnClock0001: query_sql "UPDATE `login` SET `diasvip`=`diasvip`-1 WHERE `group_id`='1'"; end;
-OnClock0002: query_sql "UPDATE `login` SET `group_id`='0' WHERE `diasvip`<='0' AND `group_id`='1'"; end;
+OnClock0001: 
+query_sql "UPDATE `login` SET `diasvip`=`diasvip`-1 WHERE `group_id`='1'"; //VIP FREE
+query_sql "UPDATE `login` SET `diasvip`=`diasvip`-1 WHERE `group_id`='2'"; //VIP TOTAL
+end;
+
+OnClock0002: 
+query_sql "UPDATE `login` SET `group_id`='0' WHERE `diasvip`<='0' AND `group_id`='1'"; //VIP FREE
+query_sql "UPDATE `login` SET `group_id`='0' WHERE `diasvip`<='0' AND `group_id`='2'"; //VIP TOTAL
+end; 
+
 end;
 }
 
@@ -1928,7 +1948,12 @@ OnPCLoginEvent:
 if (getgmlevel() >= 20){ end; }
 query_sql "SELECT `diasvip` FROM `login` WHERE `account_id` = '"+getcharid(3)+"'", .@diasvip;
 if(.@diasvip == 0){ end; }
-dispbottom "Olá "+strcharinfo(0)+" você possui "+.@diasvip+" dias vip.";
+if (getgroupid () >= 2){
+dispbottom "Olá "+strcharinfo(0)+" você possui "+.@diasvip+" dias VIP Total.";
+} else if (getgroupid () == 1){
+dispbottom "Olá "+strcharinfo(0)+" você possui "+.@diasvip+" dias VIP Free.";
+}
+
 end;
 }
 
