@@ -1,10 +1,10 @@
 -	script	AnuncioProg	-1,{
 
-	setarray .@msg$[0], "[LambeRO] Ajude o servidor a se manter, seja VIP!",
-						"[LambeRO] Chame seus amigos, diversão aqui é o que não falta!",
-						"[LambeRO] Fique por dentro das novidades, visite o nosso fórum!",
-						"[LambeRO] A equipe nunca pedirá sua senha, caso alguém o faça denuncie!",
-						"[LambeRO] Achou algum erro? Reporte no Bug Tracker em nosso fórum!";
+	setarray .@msg$[0], "[NewAgeRO] Ajude o servidor a se manter, seja VIP!",
+						"[NewAgeRO] Chame seus amigos, diversão aqui é o que não falta!",
+						"[NewAgeRO] Fique por dentro das novidades, visite o nosso fórum!",
+						"[NewAgeRO] A equipe nunca pedirá sua senha, caso alguém o faça denuncie!",
+						"[NewAgeRO] Achou algum erro? Reporte no Bug Tracker em nosso fórum!";
 	
 	
 	set .@max, (getarraysize(.@msg$) - 1);
